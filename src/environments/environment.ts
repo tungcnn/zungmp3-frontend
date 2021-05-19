@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl : 'http://localhost:8080',
   firebaseConfig: {
     apiKey: "AIzaSyDTvSWVvpKHs1jBgfzaNfcWVXyPrKg-hEY",
     authDomain: "webmusic-cc387.firebaseapp.com",

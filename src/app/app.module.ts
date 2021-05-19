@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MusicplayerComponent } from './musicplayer/musicplayer.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { AddPlayListComponent } from './play_list/add-play-list/add-play-list.component';
 import { AddSongComponent } from './song/add-song/add-song.component';
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
@@ -16,6 +17,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
     AppComponent,
     MusicplayerComponent,
     SidemenuComponent,
+    AddPlayListComponent
     AddSongComponent
   ],
   imports: [
