@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MusicplayerComponent } from './musicplayer/musicplayer.component';
-import { SidemenuComponent } from './sidemenu/sidemenu.component';
-import { AddPlayListComponent } from './play_list/add-play-list/add-play-list.component';
-import { AddSongComponent } from './song/add-song/add-song.component';
+import { MusicplayerComponent } from './components/musicplayer/musicplayer.component';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
+import { AddPlayListComponent } from './components/play_list/add-play-list/add-play-list.component';
+import { AddSongComponent } from './components/song/add-song/add-song.component';
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
@@ -17,7 +17,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
     AppComponent,
     MusicplayerComponent,
     SidemenuComponent,
-    AddPlayListComponent
+    AddPlayListComponent,
     AddSongComponent
   ],
   imports: [

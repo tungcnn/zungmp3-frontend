@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AddPlayListComponent} from "./play_list/add-play-list/add-play-list.component";
+import {AddPlayListComponent} from "./components/play_list/add-play-list/add-play-list.component";
 
 
 const routes: Routes = [
