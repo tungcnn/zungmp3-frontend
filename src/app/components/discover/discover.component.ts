@@ -1,14 +1,13 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Song} from "../../interface/song";
 import {PlaymusicService} from "../../service/playmusic.service";
 
-
 @Component({
-  selector: 'app-musicplayer',
-  templateUrl: './musicplayer.component.html',
-  styleUrls: ['./musicplayer.component.css']
+  selector: 'app-discover',
+  templateUrl: './discover.component.html',
+  styleUrls: ['./discover.component.css']
 })
-export class MusicplayerComponent implements OnInit {
+export class DiscoverComponent implements OnInit {
   song: Song = {
     id: 1,
     name: 'Trốn tìm',
@@ -18,9 +17,13 @@ export class MusicplayerComponent implements OnInit {
       name: 'Đen Vâu'
     }]
   };
-  constructor(private playmusic: PlaymusicService) { }
+
+  constructor(private playService: PlaymusicService) { }
 
   ngOnInit() {
-    this.playmusic.playsong(this.song);
+  }
+
+  playmusic() {
+    this.playService.playsong(this.song);
   }
 }
