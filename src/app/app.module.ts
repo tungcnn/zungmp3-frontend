@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MusicplayerComponent } from './musicplayer/musicplayer.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MusicplayerComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
