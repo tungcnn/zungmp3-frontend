@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { MusicplayerComponent } from './musicplayer/musicplayer.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { AddSongComponent } from './song/add-song/add-song.component';
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,10 @@ import { AddSongComponent } from './song/add-song/add-song.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
