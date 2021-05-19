@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MusicplayerComponent } from './musicplayer/musicplayer.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { AddSongComponent } from './song/add-song/add-song.component';
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
@@ -14,7 +15,8 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
   declarations: [
     AppComponent,
     MusicplayerComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    AddSongComponent
   ],
   imports: [
     BrowserModule,
