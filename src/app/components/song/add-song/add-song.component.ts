@@ -6,11 +6,7 @@ import {Song} from '../../../interface/song';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
-import {Singer} from '../../../interface/singer';
-import {Album} from '../../../interface/album';
-import {Genre} from '../../../interface/genre';
-import {Theme} from '../../../interface/theme';
-import {Country} from '../../../interface/country';
+
 
 @Component({
   selector: 'app-add-song',
@@ -21,67 +17,11 @@ export class AddSongComponent implements OnInit {
   public firebase;
   private downloadURL: Observable<string>;
   public songs: Song[];
-  public testSong: Song[] = [
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    },
-    {
-      name: 'sdgfsdgfsdgfd',
-      releaseDate: '12/123/123',
-      lyrics: 'lyrics',
-      filename: 'filename',
-    }
-  ];
-
   constructor(private songService: SongServiceService, private storage: AngularFireStorage) {
   }
 
   ngOnInit() {
+    this.getAllSong();
   }
 
   public getAllSong(): void {
@@ -103,6 +43,18 @@ export class AddSongComponent implements OnInit {
         this.getAllSong();
         addForm.reset();
       });
+  }
+
+  public deleteBook(songId: number): void {
+    this.songService.deleteSong(songId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getAllSong();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public onFileSelected(event) {
