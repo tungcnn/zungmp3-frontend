@@ -5,20 +5,22 @@
       <div class="ms_top_search">
         <input type="text" class="form-control" placeholder="Search Music Here..">
         <span class="search_icon">
-							<img src="images/svg/search.svg" alt="">
+							<img src="assets/images/svg/search.svg" alt="">
 						</span>
       </div>
       <div class="ms_top_trend">
-        <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+        <span><a href="#" class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
       </div>
     </div>
     <div class="ms_top_right">
       <div class="ms_top_lang">
-        <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+        <span data-toggle="modal" data-target="#lang_modal">languages <img src="assets/images/svg/lang.svg" alt=""></span>
       </div>
       <div class="ms_top_btn">
-        <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#myModal"><span>register</span></a>
-        <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#myModal1"><span>login</span></a>
+        <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal"
+           data-target="#myModal"><span>register</span></a>
+        <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal"
+           data-target="#myModal1"><span>login</span></a>
       </div>
     </div>
   </div>
@@ -31,47 +33,57 @@
             <h1>Your Playlists</h1>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div *ngFor="let PlayList of PlayLists as i" class="col-lg-2 col-md-6" >
           <div class="ms_rcnt_box marger_bottom25">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img1.jpg" alt="" class="img-fluid">
+              <img src="assets/images/radio/img1.jpg" alt="" class="img-fluid">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
+                <div class="ms_more_icon">
+                  <img src="assets/images/svg/more.svg" alt="">
+                </div>
+                <ul class="more_option" >
+                  <li><a href="#" data-toggle="modal" data-target="#EditPlayList" (click)="updateFrofilePlayList(PlayList.id)"><span class="opt_icon"><span class="icon icon_fav"></span></span>Re-Name PlayList</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Delete PlayList</a>
+                  </li>
+                </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
             <div class="ms_rcnt_box_text">
-              <h3><a href="#">My Favourites</a></h3>
+              <h3><a href="#">{{PlayList.name}}</a></h3>
               <p>15 songs</p>
             </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <div class="ms_rcnt_box marger_bottom25">
-            <div class="ms_rcnt_box_img">
-              <img src="images/radio/img2.jpg" alt="" class="img-fluid">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+          <form #EditFrom = 'ngForm' >
+            <div class="modal" tabindex="-1" role="dialog" id="EditPlayList" style="color: black ">
+              <div class="modal-dialog" role="document" style="width: 500px">
+                <div class="modal-content">
+                  <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div class="form-group">
+                    <input ngModel name="name" type="text" placeholder="Enter Your PlayList Name" class="form-control">
+                  </div>
+                  <div class="ms_upload_btn" style="height: 30px">
+                    <a [id]="playListProfile.id" href="#" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)= "editPlayList(this , EditFrom)" data-dismiss="modal">Create</a>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">My Music</a></h3>
-              <p>15 songs</p>
-            </div>
-          </div>
+          </form>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2" data-toggle="modal" data-target="#createPlayList">
           <div class="ms_rcnt_box marger_bottom25">
             <div class="create_playlist">
               <i class="ms_icon icon_playlist"></i>
             </div>
             <div class="ms_rcnt_box_text">
-              <h3><a href="#">Create New Playlist</a></h3>
+              <h3><a href="#" data-toggle="modal" data-target="#createPlayList">Create New Playlist</a></h3>
             </div>
           </div>
         </div>
@@ -89,21 +101,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/album/album10.jpg" alt="">
+              <img src="assets/images/album/album10.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -116,21 +131,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img8.jpg" alt="">
+              <img src="assets/images/radio/img8.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -143,21 +161,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img9.jpg" alt="">
+              <img src="assets/images/radio/img9.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -170,21 +191,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/music/r_music2.jpg" alt="">
+              <img src="assets/images/music/r_music2.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -197,21 +221,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img10.jpg" alt="">
+              <img src="assets/images/radio/img10.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -224,21 +251,24 @@
         <div class="swiper-slide swiper-slide-duplicate">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img11.jpg" alt="">
+              <img src="assets/images/radio/img11.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -251,21 +281,24 @@
         <div class="swiper-slide swiper-slide-prev">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img1.jpg" alt="">
+              <img src="assets/images/radio/img1.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -278,21 +311,24 @@
         <div class="swiper-slide swiper-slide-active">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img2.jpg" alt="">
+              <img src="assets/images/radio/img2.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -305,21 +341,24 @@
         <div class="swiper-slide swiper-slide-next">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img3.jpg" alt="">
+              <img src="assets/images/radio/img3.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -332,21 +371,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img4.jpg" alt="">
+              <img src="assets/images/radio/img4.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -359,21 +401,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img5.jpg" alt="">
+              <img src="assets/images/radio/img5.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -386,21 +431,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img6.jpg" alt="">
+              <img src="assets/images/radio/img6.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -413,21 +461,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img1.jpg" alt="">
+              <img src="assets/images/radio/img1.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -440,21 +491,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img2.jpg" alt="">
+              <img src="assets/images/radio/img2.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -467,21 +521,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img3.jpg" alt="">
+              <img src="assets/images/radio/img3.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -494,21 +551,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img4.jpg" alt="">
+              <img src="assets/images/radio/img4.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -521,21 +581,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img1.jpg" alt="">
+              <img src="assets/images/radio/img1.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -548,21 +611,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img2.jpg" alt="">
+              <img src="assets/images/radio/img2.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -575,21 +641,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img3.jpg" alt="">
+              <img src="assets/images/radio/img3.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -602,21 +671,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img4.jpg" alt="">
+              <img src="assets/images/radio/img4.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -629,21 +701,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img5.jpg" alt="">
+              <img src="assets/images/radio/img5.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -656,21 +731,24 @@
         <div class="swiper-slide">
           <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="images/radio/img6.jpg" alt="">
+              <img src="assets/images/radio/img6.jpg" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
+                  <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="">
                 </div>
               </div>
             </div>
@@ -688,3 +766,22 @@
   </div>
   <!----Main div close---->
 </div>
+<form #CreateForm = 'ngForm' >
+<div class="modal" tabindex="-1" role="dialog" id="createPlayList" style="color: black ">
+  <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-content">
+      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Create New Play List</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="form-group">
+        <input [(ngModel)]="playList.name" name="name" type="text" placeholder="Enter Your PlayList Name" class="form-control">
+      </div>
+        <div class="ms_upload_btn" style="height: 30px">
+          <a href="#" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)= "createPlayList(CreateForm)">Create</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

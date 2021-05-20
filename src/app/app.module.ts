@@ -7,10 +7,12 @@ import { MusicplayerComponent } from './components/musicplayer/musicplayer.compo
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { AddPlayListComponent } from './components/play_list/add-play-list/add-play-list.component';
 import { AddSongComponent } from './components/song/add-song/add-song.component';
-import {AngularFireModule} from "@angular/fire";
+import {AngularFireModule} from '@angular/fire';
 import {environment} from "../environments/environment";
-import {AngularFireStorageModule} from "@angular/fire/storage";
-import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
