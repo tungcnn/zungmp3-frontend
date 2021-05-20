@@ -12,7 +12,8 @@
           <div class="ms_banner_text">
             <h1>This Month’s</h1>
             <h1 class="ms_color">Record Breaking Albums !</h1>
-            <p>Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley, One More Of A Stranger, Endless<br> Things, The Heartbeat Stops, Walking Promises, Desired Games and many more...</p>
+            <p>Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley, One More Of A Stranger, Endless<br>
+              Things, The Heartbeat Stops, Walking Promises, Desired Games and many more...</p>
             <div class="ms_banner_btn">
               <a href="#" class="ms_btn">Listen Now</a>
               <a href="#" class="ms_btn">Add To Queue</a>
@@ -30,8 +31,8 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
+        <div class="swiper-slide" *ngFor="let song of songs; let i = index">
+          <div class="ms_rcnt_box" (click)="selectSong(i+1)">
             <div class="ms_rcnt_box_img">
               <img src="assets/images/music/r_music1.jpg" alt="">
               <div class="ms_main_overlay">
@@ -40,10 +41,13 @@
                   <img src="assets/images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -52,251 +56,8 @@
               </div>
             </div>
             <div class="ms_rcnt_box_text">
-              <h3><a href="#">Dream Your Moments (Duet)</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music2.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Until I Met You</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music3.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Gimme Some Courage</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music4.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Dark Alley Acoustic</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music5.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Walking Promises</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music6.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Desired Games</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music1.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Dream Your Moments (Duet)</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music2.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="assets/images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Until I Met You</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="images/music/r_music3.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Gimme Some Courage</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="ms_rcnt_box">
-            <div class="ms_rcnt_box_img">
-              <img src="images/music/r_music4.jpg" alt="">
-              <div class="ms_main_overlay">
-                <div class="ms_box_overlay"></div>
-                <div class="ms_more_icon">
-                  <img src="images/svg/more.svg" alt="">
-                </div>
-                <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                </ul>
-                <div class="ms_play_icon">
-                  <img src="images/svg/play.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="ms_rcnt_box_text">
-              <h3><a href="#">Dark Alley Acoustic</a></h3>
-              <p>Ava Cornish & Brian Hill</p>
+              <h3><a href="#">{{song.name}}</a></h3>
+              <p>{{song.views}}</p>
             </div>
           </div>
         </div>
@@ -343,10 +104,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -378,10 +141,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -413,10 +178,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -448,10 +215,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -483,10 +252,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -519,10 +290,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -554,10 +327,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -596,10 +371,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -631,10 +408,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -666,10 +445,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -702,10 +483,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -737,10 +520,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -772,10 +557,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -807,10 +594,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -842,10 +631,12 @@
 									</span>
             </div>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </div>
@@ -871,10 +662,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -897,10 +691,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -923,10 +720,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -949,10 +749,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -975,10 +778,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1001,10 +807,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1027,10 +836,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1053,10 +865,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1079,10 +894,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1105,10 +923,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1280,10 +1101,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1307,10 +1131,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1334,10 +1161,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1361,10 +1191,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1388,10 +1221,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1415,10 +1251,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1442,10 +1281,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1469,10 +1311,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1496,10 +1341,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1523,10 +1371,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1557,7 +1408,7 @@
       </div>
       <div class="col-lg-4">
         <div class="ms_genres_box">
-          <img src="images/genrs/img1.jpg" alt="" class="img-fluid" />
+          <img src="images/genrs/img1.jpg" alt="" class="img-fluid"/>
           <div class="ms_main_overlay">
             <div class="ms_box_overlay"></div>
             <div class="ms_play_icon">
@@ -1580,7 +1431,7 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="ms_genres_box">
-              <img src="images/genrs/img2.jpg" alt="" class="img-fluid" />
+              <img src="images/genrs/img2.jpg" alt="" class="img-fluid"/>
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
@@ -1599,7 +1450,7 @@
           </div>
           <div class="col-lg-8">
             <div class="ms_genres_box">
-              <img src="images/genrs/img3.jpg" alt="" class="img-fluid" />
+              <img src="images/genrs/img3.jpg" alt="" class="img-fluid"/>
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
@@ -1618,7 +1469,7 @@
           </div>
           <div class="col-lg-8">
             <div class="ms_genres_box">
-              <img src="images/genrs/img5.jpg" alt="" class="img-fluid" />
+              <img src="images/genrs/img5.jpg" alt="" class="img-fluid"/>
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
@@ -1637,7 +1488,7 @@
           </div>
           <div class="col-lg-4">
             <div class="ms_genres_box">
-              <img src="images/genrs/img6.jpg" alt="" class="img-fluid" />
+              <img src="images/genrs/img6.jpg" alt="" class="img-fluid"/>
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
@@ -1658,7 +1509,7 @@
       </div>
       <div class="col-lg-2">
         <div class="ms_genres_box">
-          <img src="images/genrs/img4.jpg" alt="" class="img-fluid" />
+          <img src="images/genrs/img4.jpg" alt="" class="img-fluid"/>
           <div class="ms_main_overlay">
             <div class="ms_box_overlay"></div>
             <div class="ms_play_icon">
@@ -1705,10 +1556,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1731,10 +1585,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1757,10 +1614,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1783,10 +1643,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1809,10 +1672,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1835,10 +1701,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1861,10 +1730,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1887,10 +1759,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1913,10 +1788,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
@@ -1939,10 +1817,13 @@
                   <img src="images/svg/more.svg" alt="">
                 </div>
                 <ul class="more_option">
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+                  </li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
+                  </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                  <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
+                    Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">

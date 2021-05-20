@@ -9,7 +9,7 @@ declare var jPlayerPlaylist: any;
 export class PlaymusicService {
 
   constructor() { }
-  playsong(song: Song) {
+  playsong(songs: Song[]) {
     $(function () {
       "use strict";
       if ($('.audio-player').length) {
@@ -18,14 +18,7 @@ export class PlaymusicService {
         var myPlaylist = new jPlayerPlaylist({
           jPlayer: "#jquery_jplayer_1",
           cssSelectorAncestor: "#jp_container_1"
-        }, [{
-          image: 'assets/images/weekly/song1.jpg',
-          title: song.name,
-          artist: song.singers.toString(),
-          mp3: song.filename,
-          oga: song.filename,
-          option: myPlayListOtion
-        }], {
+        }, [], {
           swfPath: "js/plugins",
           supplied: "oga, mp3",
           wmode: "window",
@@ -34,9 +27,19 @@ export class PlaymusicService {
           smoothPlayBar: true,
           keyEnabled: true,
           playlistOptions: {
-            autoPlay: false
+            autoPlay: true
           }
         });
+        for (let i = 0; i < songs.length; i++) {
+          myPlaylist.add({
+            image: 'assets/images/weekly/song1.jpg',
+            title: songs[i].name,
+            artist: songs[i].singers.toString(),
+            mp3: songs[i].filename,
+            oga: songs[i].filename,
+            option: myPlayListOtion
+          });
+        }
         $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function (event) {
           var current = myPlaylist.current;
           var playlist = myPlaylist.playlist;
@@ -132,6 +135,5 @@ export class PlaymusicService {
         });
       }
     });
-
   }
 }
