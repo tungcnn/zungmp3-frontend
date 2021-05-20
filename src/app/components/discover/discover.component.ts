@@ -33,6 +33,6 @@ export class DiscoverComponent implements OnInit {
     })
   }
   playmusic() {
-    this.playService.playsong(this.currentPlayingSongs);
+    this.playService.playmusic(this.currentPlayingSongs);
   }
 }

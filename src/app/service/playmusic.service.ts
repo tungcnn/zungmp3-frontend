@@ -9,7 +9,7 @@ declare var jPlayerPlaylist: any;
 export class PlaymusicService {
 
   constructor() { }
-  playsong(songs: Song[]) {
+  playmusic(songs: Song[]) {
     $(function () {
       "use strict";
       if ($('.audio-player').length) {
