@@ -9,7 +9,7 @@
             <h1>Your Playlists</h1>
           </div>
         </div>
-        <div *ngFor="let PlayList of PlayLists.content as i" class="col-lg-2 col-md-6" >
+        <div *ngFor="let PlayList of PlayLists.content as i" class="col-lg-2 col-md-6">
           <div class="ms_rcnt_box marger_bottom25">
             <div class="ms_rcnt_box_img">
               <img src="assets/images/radio/img1.jpg" alt="" class="img-fluid">
@@ -22,7 +22,11 @@
             </div>
             <div class="ms_rcnt_box_text">
               <h3><a href="#">{{PlayList.name}}</a></h3>
-              <a href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#DeletePlayList">Delete</a>        <span><a style="margin-left: 30px" href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#EditPlayList">Edit</a></span>
+              <a href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal"
+                 data-target="#DeletePlayList">Delete</a> <span><a style="margin-left: 30px" href="#"
+                                                                   (click)="updateFrofilePlayList(PlayList.id)"
+                                                                   data-toggle="modal"
+                                                                   data-target="#EditPlayList">Edit</a></span>
               <p>15 songs</p>
             </div>
           </div>
@@ -716,44 +720,28 @@
   </div>
   <!----Main div close---->
 </div>
-  <form #CreateForm = 'ngForm' >
-    <div class="modal" tabindex="-1" role="dialog" id="createPlayList" style="color: black ">
-      <div class="modal-dialog" role="document" style="width: 500px">
-        <div class="modal-content">
-          <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Create New Play List</p>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="form-group">
-            <input [(ngModel)]="playList.name" name="name" type="text" placeholder="Enter Your PlayList Name" class="form-control">
-          </div>
-          <div class="ms_upload_btn" style="height: 30px">
-            <a href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)= "createPlayList(CreateForm)" data-dismiss="modal">Create</a>
-          </div>
+<form #CreateForm='ngForm'>
+  <div class="modal" tabindex="-1" role="dialog" id="createPlayList" style="color: black ">
+    <div class="modal-dialog" role="document" style="width: 500px">
+      <div class="modal-content">
+        <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Create New Play List</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-group">
+          <input [(ngModel)]="playList.name" name="name" type="text" placeholder="Enter Your PlayList Name"
+                 class="form-control">
+        </div>
+        <div class="ms_upload_btn" style="height: 30px">
+          <a href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px"
+             (click)="createPlayList(CreateForm)" data-dismiss="modal">Create</a>
         </div>
       </div>
     </div>
-  </form>
-  <form #EditFrom = 'ngForm' >
-    <div class="modal" tabindex="-1" role="dialog" id="EditPlayList" style="color: black ">
-      <div class="modal-dialog" role="document" style="width: 500px">
-        <div class="modal-content">
-          <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="form-group">
-            <input [(ngModel)]="playListProfile.name" name="name" type="text" placeholder="Enter Your PlayList Name" class="form-control">
-          </div>
-          <div class="ms_upload_btn" style="height: 30px">
-            <a [id]="playListProfile.id" href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)= "editPlayList(this , EditFrom)" data-dismiss="modal">Create</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-  <div class="modal" tabindex="-1" role="dialog" id="DeletePlayList" style="color: black ">
+  </div>
+</form>
+<form #EditFrom='ngForm'>
+  <div class="modal" tabindex="-1" role="dialog" id="EditPlayList" style="color: black ">
     <div class="modal-dialog" role="document" style="width: 500px">
       <div class="modal-content">
         <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
@@ -761,12 +749,33 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <div class="form-group">
-          <h1 style="font-size: 20px; margin-left: 12px; color: aliceblue">Do You Want To Delete Your Play List </h1>
+          <input [(ngModel)]="playListProfile.name" name="name" type="text" placeholder="Enter Your PlayList Name"
+                 class="form-control">
         </div>
         <div class="ms_upload_btn" style="height: 30px">
-          <a [id]="playListProfile.id" href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)= "DeletePlayList(this)" data-dismiss="modal">Delete</a>
+          <a [id]="playListProfile.id" href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px"
+             (click)="editPlayList(this , EditFrom)" data-dismiss="modal">Create</a>
         </div>
       </div>
     </div>
   </div>
+</form>
+
+<div class="modal" tabindex="-1" role="dialog" id="DeletePlayList" style="color: black ">
+  <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-content">
+      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="form-group">
+        <h1 style="font-size: 20px; margin-left: 12px; color: aliceblue">Do You Want To Delete Your Play List </h1>
+      </div>
+      <div class="ms_upload_btn" style="height: 30px">
+        <a [id]="playListProfile.id" href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px"
+           (click)="DeletePlayList(this)" data-dismiss="modal">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
 
