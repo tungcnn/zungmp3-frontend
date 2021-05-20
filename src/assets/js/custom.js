@@ -45,7 +45,7 @@ Assigned to: Theme Forest
             $(".play-left-arrow").on('click', function() {
                 $(".player_left").toggleClass('open_list');
             });
-            //On Click Profile 
+            //On Click Profile
             $(".ms_admin_name").on('click', function() {
                 $(".pro_dropdown_menu").toggleClass("open_dropdown");
             });
@@ -392,7 +392,7 @@ Assigned to: Theme Forest
             });
         },
 
-        // Volume 
+        // Volume
         volume: function() {
             $(".knob-mask .knob").css("transform", "rotateZ(270deg)");
             $(".knob-mask .handle").css("transform", "rotateZ(270deg)");
@@ -402,12 +402,12 @@ Assigned to: Theme Forest
     };
     $(document).ready(function() {
         music.init();
-		
+
 		// Scrollbar
 		$(".ms_nav_wrapper").mCustomScrollbar({
 			theme:"minimal"
 		});
-		
+
 		// Queue Scrollbar
 		$(".jp_queue_list_inner").mCustomScrollbar({
 			theme:"minimal",

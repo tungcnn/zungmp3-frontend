@@ -13,6 +13,10 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import {HttpClientModule} from '@angular/common/http';
     MusicplayerComponent,
     SidemenuComponent,
     AddPlayListComponent,
-    AddSongComponent
+    AddSongComponent,
+    DiscoverComponent,
+    SearchbarComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
