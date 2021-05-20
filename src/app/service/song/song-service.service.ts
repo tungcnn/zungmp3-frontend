@@ -15,6 +15,9 @@ export class SongServiceService {
     return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/all`);
   }
 
+  public findById(id: number): Observable<Song> {
+    return this.http.get<Song>(`${this.apiSongServiceUrl}/songs/${id}`);
+  }
   public addSong(newSong: Song): Observable<Song> {
     return this.http.post<Song>(`${this.apiSongServiceUrl}/songs/add`, newSong);
   }
