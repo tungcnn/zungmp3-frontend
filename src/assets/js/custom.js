@@ -336,7 +336,8 @@ Assigned to: Theme Forest
                 e.stopImmediatePropagation();
                 if (typeof $(this).attr('data-other') != 'undefined') {
                     var target = $(this).parent().parent();
-                } else {
+                }
+                else {
                     var target = $(this).parent();
                 }
                 if (target.find("ul.more_option").hasClass('open_option')) {

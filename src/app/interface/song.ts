@@ -1,8 +1,8 @@
-import {Singer} from "./singer";
-import {Album} from "./album";
-import {Genre} from "./genre";
-import {Theme} from "./theme";
-import {Country} from "./country";
+import {Singer} from './singer';
+import {Album} from './album';
+import {Genre} from './genre';
+import {Theme} from './theme';
+import {Country} from './country';
 
 export interface Song {
   id?: number;
