@@ -17,6 +17,7 @@ import { DiscoverComponent } from './components/discover/discover.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -30,15 +31,16 @@ import { HeaderComponent } from './components/header/header.component';
     FooterComponent,
     HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        FormsModule,
+        CommonModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

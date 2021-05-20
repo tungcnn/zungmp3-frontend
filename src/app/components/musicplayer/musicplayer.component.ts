@@ -9,14 +9,8 @@ import {PlaymusicService} from "../../service/playmusic.service";
   styleUrls: ['./musicplayer.component.css']
 })
 export class MusicplayerComponent implements OnInit {
-  constructor(private playmusicService: PlaymusicService) { }
+  constructor() { }
 
   ngOnInit() {
   }
-  // loops() {
-  //   this.playmusicService.loopsong();
-  // }
-  // shuffle() {
-  //   this.playmusicService.shuffles();
-  // }
 }

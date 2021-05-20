@@ -28,7 +28,7 @@ export class AddPlayListComponent implements OnInit {
 
   getAllPlayList(){
     this.playListService.getAllPlayList().subscribe(playlists => {
-      this.PlayLists = playlists.content;
+      // this.PlayLists = playlists.content;
       console.log(playlists)
     })
   }
