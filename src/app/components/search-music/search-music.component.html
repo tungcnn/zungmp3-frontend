@@ -1,0 +1,38 @@
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>Purchased Tracks</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>Song Title</li>
+        <li>singer</li>
+        <li class="text-center">views</li>
+        <li class="text-center">Album</li>
+        <li class="text-center">Like</li>
+        <li class="text-center">Add To Play List</li>
+      </ul>
+      <ul *ngFor="let song of songs as i">
+        <li><a href="#"><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
+        <li><a href="#" *ngFor="let singer of song.singers">{{singer.name}}</a></li>
+        <li class="text-center"><a href="#">{{song.views}}</a></li>
+        <li class="text-center"><a href="#">{{song.album.name}}</a></li>
+        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
+          <ul class="more_option">
+            <li *ngFor="let PlayList of playLists"><a href="#">{{PlayList.name}}</a>
+<!--            </li>-->
+<!--              <span class="opt_icon"><span class="icon icon_fav"></span></span>-->
+<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>-->
+<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>-->
+<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>-->
+<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>-->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="ms_view_more padder_bottom20">
+    <a href="#" class="ms_btn">view more</a>
+  </div>
+</div>
