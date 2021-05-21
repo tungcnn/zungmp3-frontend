@@ -1,80 +1,16 @@
 <!----Upload and Share Wrapper Start---->
 <div class="ms_upload_wrapper marger_top60">
-  <div class=" marger_top60">
+  <form #addForm="ngForm" (ngSubmit)="add(addForm)">
     <div class="ms_upload_box">
-      <div class="ms_heading">
-        <h1>Track Information</h1>
-      </div>
-      <div class="ms_pro_form">
-        <form #addForm="ngForm" (ngSubmit)="add(addForm)">
-          <div class="form-group">
-            <label>Track Name *</label>
-            <input type="text" ngModel="name" name="name" id="name" placeholder="Track Name" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>ReleaseDate *</label>
-            <input type="date" ngModel="releaseDate" name="releaseDate" id="releaseDate" placeholder="ReleaseDate"
-                   class="form-control">
-          </div>
-          <div class="ms_pro_form">
-            <div class="form-group">
-              <label>Lyrics *</label>
-              <input type="text" ngModel="lyrics" name="lyrics" id="lyrics" placeholder="Lyrics" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>View *</label>
-              <input type="number" value="0" ngModel="vew" name="view" id="view" placeholder="number" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Singers</label>
-            <select class="form-control" ngModel="singers" name="singers" id="singers">
-              <option value="">3 Con Rua</option>
-              <option value="">Ngoc Trinh</option>
-              <option value="">Ho Ngoc Ha</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Album</label>
-            <select class="form-control" ngModel="album" name="album" id="album">
-              <option>Public</option>
-              <option value="">Private</option>
-              <option value="">Public</option>
-              <option value="">Private</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Theme</label>
-            <select class="form-control" ngModel="theme" name="theme" id="theme">
-              <option>Rock</option>
-              <option value="">EDM</option>
-              <option value="">Trap</option>
-              <option value="">House</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Country</label>
-            <select class="form-control" ngModel="country" name="country" id="country">
-              <option value="">VN</option>
-              <option value="">USA</option>
-              <option value="">KP</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="file" id="filename" name="filename" (change)="onFileSelected($event)"
-                   autocomplete="off"/>
-          </div>
-          <div class="pro-form-btn text-center marger_top15">
-            <div class="ms_upload_btn">
-              <button [disabled]="addForm.invalid" class="ms_btn">Upload Now</button>
-              <a href="#" class="ms_btn">cancle</a>
-            </div>
-          </div>
-        </form>
+      <h2>Upload & Share Your Music With The World</h2>
+      <img src="assets/images/svg/upload.svg" alt="">
+      <div class="ms_upload_btn">
+        <input type="file" (change)="onFileSelected($event)"/>
       </div>
     </div>
-  </div>
+  </form>
 </div>
+
 
 <!----Album Single Section Start---->
 <div class="ms_content_wrapper padder_top80">
@@ -102,10 +38,12 @@
           <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
           <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
             <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+              </li>
               <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
             </ul>
           </li>
@@ -119,8 +57,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 <!----Footer Start---->
