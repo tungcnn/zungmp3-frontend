@@ -29,4 +29,9 @@ export class SongServiceService {
   public deleteSong(idSong: number): Observable<void> {
     return this.http.delete<void>(`${this.apiSongServiceUrl}/songs/delete/${idSong}`);
   }
+
+  public findByName(name:Song):Observable<Song[]>{
+    return this.http.post<Song[]>(`${this.apiSongServiceUrl}/songs/search`,name)
+  }
+
 }
