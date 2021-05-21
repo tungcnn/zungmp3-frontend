@@ -18,6 +18,7 @@ export class SongServiceService {
   public findById(id: number): Observable<Song> {
     return this.http.get<Song>(`${this.apiSongServiceUrl}/songs/${id}`);
   }
+
   public addSong(newSong: Song): Observable<Song> {
     return this.http.post<Song>(`${this.apiSongServiceUrl}/songs/add`, newSong);
   }
@@ -30,8 +31,8 @@ export class SongServiceService {
     return this.http.delete<void>(`${this.apiSongServiceUrl}/songs/delete/${idSong}`);
   }
 
-  public findByName(name:Song):Observable<Song[]>{
-    return this.http.post<Song[]>(`${this.apiSongServiceUrl}/songs/search`,name)
+  public findByName(name: Song): Observable<Song[]> {
+    return this.http.post<Song[]>(`${this.apiSongServiceUrl}/songs/search`, name);
   }
 
 }
