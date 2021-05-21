@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
 import {SongServiceService} from '../../../service/song/song-service.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
-import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 
@@ -15,8 +13,9 @@ import {finalize} from 'rxjs/operators';
 })
 export class AddSongComponent implements OnInit {
   public url;
-  private downloadURL: Observable<string>;
   public songs: Song[];
+  public editSong: Song;
+  public removeSong: Song;
 
   constructor(private songService: SongServiceService,
               private storage: AngularFireStorage) {
@@ -52,11 +51,61 @@ export class AddSongComponent implements OnInit {
           }
           this.songService.addSong(song).subscribe(
             (response: Song) => {
+              console.log(response);
               this.getAllSong();
             });
-          alert('Upload successful!')
-        })
+          alert('Upload successful!');
+        });
       })
     ).subscribe();
+  }
+
+  public onOpenModal(song: Song, mode: string): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    // if (mode === 'add') {
+    //   button.setAttribute('data-target', '#addBook');
+    // }
+    if (mode === 'edit') {
+      this.editSong = song;
+      button.setAttribute('data-target', '#edit');
+    }
+    if (mode === 'delete') {
+      this.removeSong = song;
+      button.setAttribute('data-target', '#deletesong');
+    }
+    // if (mode === 'view') {
+    //   this.viewBook = book;
+    //   button.setAttribute('data-target', '#viewBook');
+    // }
+    container.appendChild(button);
+    button.click();
+  }
+
+  public deleteSongz(id: number): void {
+    this.songService.deleteSong(id).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getAllSong();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public upDateSong(song: Song): void {
+    this.songService.editSong(song).subscribe(
+      (response: Song) => {
+        console.log(response);
+        this.getAllSong();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 }
