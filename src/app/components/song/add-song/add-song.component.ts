@@ -47,8 +47,8 @@ export class AddSongComponent implements OnInit {
           this.url = url;
           const song: Song = {
             name: fileName,
-            filename: this.url
-          };
+            url: this.url
+          }
           this.songService.addSong(song).subscribe(
             (response: Song) => {
               console.log(response);

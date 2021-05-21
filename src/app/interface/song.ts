@@ -9,7 +9,8 @@ export interface Song {
   name?: string;
   releaseDate?: string;
   lyrics?: string;
-  filename?: string;
+  url?: string;
+  coverUrl?: string;
   views?: number;
   singers?: Singer[];
   album?: Album;

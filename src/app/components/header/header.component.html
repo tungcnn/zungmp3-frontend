@@ -1,10 +1,12 @@
 <div class="ms_header">
   <div class="ms_top_left">
     <div class="ms_top_search">
-      <input type="text" class="form-control" placeholder="Search Music Here..">
-      <span class="search_icon">
-							<img src="images/svg/search.svg" alt="">
-						</span>
+      <form>
+      <input type="text" class="form-control" placeholder="Search Music Here.." name="q" #q >
+      <a routerLink="search"><span class="search_icon" (click)="search(q.value)">
+							<img src="assets/images/svg/search.svg" alt="">
+						</span></a>
+      </form>
     </div>
     <div class="ms_top_trend">
       <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>

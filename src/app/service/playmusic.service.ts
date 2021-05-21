@@ -10,6 +10,7 @@ export class PlaymusicService {
 
   constructor() { }
   playsong(songs: Song[]) {
+    $("#jquery_jplayer_1").jPlayer("destroy");
     $(function () {
       "use strict";
       if ($('.audio-player').length) {
@@ -30,13 +31,20 @@ export class PlaymusicService {
             autoPlay: true
           }
         });
+        let singers = '';
         for (let i = 0; i < songs.length; i++) {
+          for (let j = 0; j < songs[i].singers.length; j++) {
+            singers += songs[i].singers[j].name
+            if (j != songs[i].singers.length - 1) {
+              singers += ", "
+            }
+          }
           myPlaylist.add({
-            image: 'assets/images/weekly/song1.jpg',
+            image: songs[i].coverUrl,
             title: songs[i].name,
-            artist: songs[i].singers.toString(),
-            mp3: songs[i].filename,
-            oga: songs[i].filename,
+            artist: singers,
+            mp3: songs[i].url,
+            oga: songs[i].url,
             option: myPlayListOtion
           });
         }

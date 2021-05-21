@@ -2,6 +2,8 @@ import {Component, Directive, OnInit} from '@angular/core';
 import {PlayListService} from "../../../service/playlist/play-list.service";
 import {Playlist} from "../../../interface/playlist";
 import {NgForm} from "@angular/forms";
+import {Song} from "../../../interface/song";
+import {SongServiceService} from "../../../service/song/song-service.service";
 
 
 @Component({
@@ -13,7 +15,9 @@ export class AddPlayListComponent implements OnInit {
   playListProfile : Playlist = {}
   playList : Playlist = {};
   PlayLists: Playlist[] = [];
-  constructor(private playListService: PlayListService) { }
+  songs : Song[] = []
+  song : Song = {}
+  constructor(private playListService: PlayListService , private songService : SongServiceService) { }
 
   ngOnInit() {
     this.getAllPlayList();
@@ -50,5 +54,16 @@ export class AddPlayListComponent implements OnInit {
     this.playListService.deletePlayList(form.playListProfile.id).subscribe(()=>{
       this.getAllPlayList();
     })
+  }
+
+  searchByName(name) {
+    this.song.name = name;
+    if (name!= ''){
+    this.songService.findByName(this.song).subscribe(response => {
+      this.songs = response;
+    })
+  } else {
+      this.songs = []
+    }
   }
 }

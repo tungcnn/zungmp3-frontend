@@ -18,6 +18,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import {CommonModule} from "@angular/common";
+import { SearchMusicComponent } from './components/search-music/search-music.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {CommonModule} from "@angular/common";
     DiscoverComponent,
     SearchbarComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchMusicComponent
   ],
     imports: [
         BrowserModule,
