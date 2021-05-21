@@ -39,6 +39,7 @@ export class AddSongComponent implements OnInit {
 
   public onFileSelected(event) {
     const file = event.target.files[0];
+    console.log(file);
     const fileName = file.name.split('.')[0].replace(/[^\w\s]/gi, '');
     const filePath = `music/${fileName}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
