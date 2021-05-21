@@ -28,7 +28,7 @@ export class PlayListService {
   }
 
   addSongToPlayList(id: number , id_PlayList: number): Observable<Playlist>{
-    return this.http.get(`${API_URL}/${id}/${id_PlayList}`)
+    return this.http.get(`${API_URL}/playlists/${id}/${id_PlayList}`)
   }
 
   editPlayList(id:number , playList : Playlist) : Observable<Playlist>{

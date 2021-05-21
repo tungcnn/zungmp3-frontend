@@ -12,27 +12,35 @@
         <li class="text-center">Like</li>
         <li class="text-center">Add To Play List</li>
       </ul>
-      <ul *ngFor="let song of songs as i">
+      <ul *ngFor="let song of songs">
         <li><a href="#"><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
         <li><a href="#" *ngFor="let singer of song.singers">{{singer.name}}</a></li>
         <li class="text-center"><a href="#">{{song.views}}</a></li>
         <li class="text-center"><a href="#">{{song.album.name}}</a></li>
         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-        <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
-          <ul class="more_option">
-            <li *ngFor="let PlayList of playLists"><a href="#">{{PlayList.name}}</a>
-<!--            </li>-->
-<!--              <span class="opt_icon"><span class="icon icon_fav"></span></span>-->
-<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>-->
-<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>-->
-<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>-->
-<!--            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>-->
-          </ul>
-        </li>
+        <li data-toggle="modal" data-target="#showPlayList" class="text-center" (click)="addProfileSong(song.id)"><span class="ms_icon1 ms_active_icon"></span></li>
       </ul>
     </div>
   </div>
   <div class="ms_view_more padder_bottom20">
     <a href="#" class="ms_btn">view more</a>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="showPlayList" style="color: black ">
+  <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-content">
+      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div data-dismiss="modal">
+        <a href="javascript:;"><p style="background-color: #2ec8e6 ;
+         text-align: center ; color: red ; margin-bottom: 10px" *ngFor="let PlayList of playLists" (click)="addSongToPlayList(PlayList.id)">PlayList : {{PlayList.name}}</p></a>
+      </div>
+      <div class="ms_upload_btn" style="height: 30px">
+      </div>
+    </div>
   </div>
 </div>
