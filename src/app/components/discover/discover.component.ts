@@ -17,6 +17,7 @@ export class DiscoverComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("danh sach bai hat: " + this.songs.length)
     this.getListSong();
   }
 
@@ -28,9 +29,11 @@ export class DiscoverComponent implements OnInit {
     });
   }
   getListSong() {
-    this.songService.getAllSong().subscribe(songs => {
-      this.songs = songs;
-    })
+    if (this.songs.length == 0) {
+      this.songService.getAllSong().subscribe(songs => {
+        this.songs = songs;
+      })
+    }
   }
   playmusic() {
     this.playService.playsong(this.currentPlayingSongs);
