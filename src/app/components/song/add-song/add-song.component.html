@@ -1,23 +1,21 @@
 <!----Upload and Share Wrapper Start---->
 <div class="ms_upload_wrapper marger_top60">
-  <form #addForm="ngForm" (ngSubmit)="add(addForm)">
-    <div class="ms_upload_box">
-      <h2>Upload & Share Your Music With The World</h2>
-      <img src="assets/images/svg/upload.svg" alt="">
-      <div class="ms_upload_btn">
-        <input type="file" (change)="onFileSelected($event)"/>
-      </div>
+  <div class="ms_upload_box">
+    <h2>Upload & Share Your Music With The World</h2>
+    <img src="assets/images/svg/upload.svg" alt="">
+    <div class="ms_upload_btn">
+      <input type="file" (change)="onFileSelected($event)"/>
     </div>
-  </form>
+  </div>
 </div>
 
 
 <!----Album Single Section Start---->
-<div class="ms_content_wrapper padder_top80">
+<div class="ms_content_wrapper padder_top80" id="main-container">
   <!----Free Download Css Start---->
   <div class="ms_free_download">
     <div class="ms_heading">
-      <h1>Free Downloads</h1>
+      <h1>List</h1>
     </div>
     <div class="album_inner_list">
       <div class="album_list_wrapper">
@@ -27,28 +25,28 @@
           <li>Album</li>
           <li class="text-center">Duration</li>
           <li class="text-center">Add To Favourites</li>
-          <li class="text-center">More</li>
+          <li class="text-center">Edit</li>
           <li class="text-center">remove</li>
         </ul>
         <ul *ngFor="let s of songs; index as idx">
           <li><a href="#"><span class="play_no">{{idx + 1}}</span><span class="play_hover"></span></a></li>
           <li><a href="#">{{s.name}}</a></li>
-          <li><a href="#">{{s.lyrics}}</a></li>
+          <li><a href="#">{{s.album.name}}</a></li>
           <li class="text-center"><a href="#">5:26</a></li>
           <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-          <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
-            <ul class="more_option">
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a>
-              </li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
-              </li>
-              <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-            </ul>
+          <li class="text-center">
+            <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">
+            <span class="ms_close">
+            </span>
+            </a>
           </li>
-          <li class="text-center"><a href="#"><span class="ms_close">
-            <img src="assets/images/svg/close.svg" alt=""></span></a></li>
+          <li class="text-center">
+            <a href="#" data-toggle="modal" (click)="onOpenModal(s,'delete')">
+            <span class="ms_close">
+            <img src="assets/images/svg/close.svg" alt="">
+            </span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -62,7 +60,7 @@
 <!----Footer Start---->
 <div class="ms_footer_wrapper">
   <div class="ms_footer_logo">
-    <a href="index-2.html"><img src="assets/images/open_logo.png" alt=""></a>
+    <a href=""><img src="assets/images/open_logo.png" alt=""></a>
   </div>
   <div class="ms_footer_inner">
     <div class="row">
@@ -150,6 +148,82 @@
     <div class="ms_copyright">
       <div class="footer_border"></div>
       <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="deletesong" style="color: black ">
+  <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-content">
+      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Delete Your Song</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="form-group">
+        <h1 style="font-size: 20px; margin-left: 12px; color: aliceblue">Do You Want To Delete Your
+          " {{removeSong?.name}} "</h1>
+      </div>
+      <div class="ms_upload_btn" style="height: 30px">
+        <a class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)="deleteSongz(removeSong?.id)"
+           data-dismiss="modal">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Edit -->
+<div class="ms_register_popup">
+  <div id="edit" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="justify-content-center" style="margin-left: 160px; width: 100%;">
+          <form #editForm="ngForm">
+            <div class="ms_register_form">
+              <h2>Edit</h2>
+              <div class="form-group">
+                <input type="hidden" ngModel="{{editSong?.id}}" name="id"/>
+                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
+                <span class="form_icon">
+							</span>
+              </div>
+              <div class="form-group">
+                <textarea type="text" placeholder="Lyrics" ngModel="{{editSong?.lyrics}}" name="lyrics"
+                          class="form-control"></textarea>
+                <span class="form_icon">
+						    </span>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
+                <span class="form_icon">
+							</span>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
+                <span class="form_icon">
+							</span>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
+                <span class="form_icon">
+							</span>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
+                <span class="form_icon">
+							</span>
+              </div>
+              <a (click)="upDateSong(editForm.value)" class="ms_btn" data-dismiss="modal">Save</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
