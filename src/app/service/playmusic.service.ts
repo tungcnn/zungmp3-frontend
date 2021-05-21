@@ -33,7 +33,7 @@ export class PlaymusicService {
           cssSelectorAncestor: "#jp_container_1"
         }, [
           {
-            image: song.coverUrl,
+            image: "assets/images/svg/play.svg",
             title: song.name,
             artist: singers,
             mp3: song.url,
