@@ -14,10 +14,12 @@ import {finalize} from 'rxjs/operators';
   styleUrls: ['./add-song.component.css']
 })
 export class AddSongComponent implements OnInit {
-  public firebase;
+  public url;
   private downloadURL: Observable<string>;
   public songs: Song[];
-  constructor(private songService: SongServiceService, private storage: AngularFireStorage) {
+
+  constructor(private songService: SongServiceService,
+              private storage: AngularFireStorage) {
   }
 
   ngOnInit() {
@@ -36,41 +38,24 @@ export class AddSongComponent implements OnInit {
     );
   }
 
-  public add(addForm: NgForm): void {
-    this.songService.addSong(addForm.value).subscribe(
-      (response: Song) => {
-        console.log(response);
-        this.getAllSong();
-        addForm.reset();
-      });
-  }
-
-  public deleteBook(songId: number): void {
-    this.songService.deleteSong(songId).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getAllSong();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
   public onFileSelected(event) {
-    const name = Date.now();
     const file = event.target.files[0];
-    const filePath = `RoomsMuisc/${name}`;
+    const fileName = file.name.split('.')[0].replace(/[^\w\s]/gi, '');
+    const filePath = `music/${fileName}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-    task.snapshotChanges().pipe(finalize(() => {
-        this.downloadURL = fileRef.getDownloadURL();
-        this.downloadURL.subscribe(url => {
-          if (url) {
-            this.firebase = url;
+    this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          this.url = url;
+          const song: Song = {
+            name: fileName,
+            filename: this.url
           }
-          console.log(this.firebase);
-        });
+          this.songService.addSong(song).subscribe(
+            (response: Song) => {
+              this.getAllSong();
+            });
+          alert('Upload successful!')
+        })
       })
     ).subscribe();
   }
