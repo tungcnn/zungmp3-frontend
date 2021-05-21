@@ -15,29 +15,41 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   songs : Song[] = [];
   song : Song = {};
   playLists : Playlist[] = [];
+  idSong : number = -1;
   constructor( private search : SearchService , private songServiceService : SongServiceService , private playListService : PlayListService) {
   }
 
   ngOnInit() {
     this.searchResult()
     this.getAllPlayList()
-    this.playLists = []
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.searchResult()
   }
 
   searchResult(){
     this.song.name = this.search.search();
     this.songServiceService.findByName(this.song).subscribe(response => {
       this.songs = response;
+    },() => {
+      this.songs = []
     })
   }
 
   getAllPlayList(){
     this.playListService.getAllPlayList().subscribe(response =>{
       this.playLists = response;
-      console.log(response)
+    })
+  }
+
+
+  addProfileSong(id: number) {
+    this.idSong = id;
+  }
+
+  addSongToPlayList(id: number) {
+    this.playListService.addSongToPlayList(id,this.idSong).subscribe(()=>{
     })
   }
 }

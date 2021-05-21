@@ -22,7 +22,8 @@
             </div>
             <div class="ms_rcnt_box_text">
               <h3><a href="#">{{PlayList.name}}</a></h3>
-              <a href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#DeletePlayList">Delete</a>        <span><a style="margin-left: 30px" href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#EditPlayList">Edit</a></span>
+              <a href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#DeletePlayList">Delete</a>
+              <span><a style="margin-left: 30px" href="#" (click)="updateFrofilePlayList(PlayList.id)" data-toggle="modal" data-target="#EditPlayList">Edit</a></span>
               <p>{{PlayList.songs.length}} music</p>
             </div>
           </div>
@@ -727,7 +728,9 @@
         </button>
         <div class="form-group">
           <input [(ngModel)]="playList.name" name="name" type="text" placeholder="Enter Your PlayList Name"
-                 class="form-control">
+                 class="form-control" required #create = "ngModel">
+          <div *ngIf="create.invalid && (create.dirty || create.touched)"
+               class="alert" style="color: red">Trường này không được để trống</div>
         </div>
         <div class="ms_upload_btn" style="height: 30px">
           <a href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px"
@@ -747,7 +750,9 @@
         </button>
         <div class="form-group">
           <input [(ngModel)]="playListProfile.name" name="name" type="text" placeholder="Enter Your PlayList Name"
-                 class="form-control">
+                 class="form-control" #edit = "ngModel" required>
+          <div *ngIf="edit.invalid && (edit.dirty || edit.touched)"
+               class="alert" style="color: red">Trường này không được để trống</div>
         </div>
         <div class="ms_upload_btn" style="height: 30px">
           <a [id]="playListProfile.id" href="" class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px"

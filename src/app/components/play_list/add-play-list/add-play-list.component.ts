@@ -17,6 +17,7 @@ export class AddPlayListComponent implements OnInit {
   PlayLists: Playlist[] = [];
   songs : Song[] = []
   song : Song = {}
+
   constructor(private playListService: PlayListService , private songService : SongServiceService) { }
 
   ngOnInit() {
@@ -28,6 +29,8 @@ export class AddPlayListComponent implements OnInit {
   createPlayList(CreateForm: NgForm) {
     this.playListService.createPlayList(CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
+    },() =>{
+     alert("Tên không hợp lệ")
     })
   }
 
@@ -41,6 +44,8 @@ export class AddPlayListComponent implements OnInit {
   editPlayList(form , editForm: NgForm) {
       this.playListService.editPlayList(form.playListProfile.id , editForm.value).subscribe(playList =>{
        this.getAllPlayList()
+      }, ()=>{
+        alert("Tên không hợp lệ")
       })
   }
 
