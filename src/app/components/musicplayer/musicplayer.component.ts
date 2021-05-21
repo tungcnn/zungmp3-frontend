@@ -9,7 +9,7 @@ import {PlaymusicService} from "../../service/playmusic.service";
   styleUrls: ['./musicplayer.component.css']
 })
 export class MusicplayerComponent implements OnInit {
-  constructor() { }
+  constructor(private playService: PlaymusicService) { }
 
   ngOnInit() {
   }

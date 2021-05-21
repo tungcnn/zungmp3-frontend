@@ -31,10 +31,10 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let song of songs; let i = index">
-          <div class="ms_rcnt_box" (click)="selectSong(i+1)">
+        <div class="swiper-slide" *ngFor="let song of songs">
+          <div class="ms_rcnt_box">
             <div class="ms_rcnt_box_img">
-              <img src="assets/images/music/r_music1.jpg" alt="">
+              <img [src]="song.coverUrl" alt="">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_more_icon">
@@ -45,13 +45,13 @@
                   </li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a>
                   </li>
-                  <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+                  <li><a [href]="song.url"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To
                     Playlist</a></li>
                   <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                 </ul>
                 <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="" (click)="playmusic()">
+                  <img src="assets/images/svg/play.svg" alt="" (click)="selectSong(song.id)">
                 </div>
               </div>
             </div>
