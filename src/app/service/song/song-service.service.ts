@@ -33,5 +33,10 @@ export class SongServiceService {
   public findByName(name:Song):Observable<Song[]>{
     return this.http.post<Song[]>(`${this.apiSongServiceUrl}/songs/search`,name)
   }
-
+  public getTop15(): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/top15`);
+  }
+  public getLatestSong(): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/latest`);
+  }
 }
