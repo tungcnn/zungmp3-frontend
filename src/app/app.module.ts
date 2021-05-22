@@ -19,6 +19,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import {CommonModule} from "@angular/common";
 import { SearchMusicComponent } from './components/search-music/search-music.component';
+import { UserComponent } from './components/user/user.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,11 @@ import { SearchMusicComponent } from './components/search-music/search-music.com
     SearchbarComponent,
     FooterComponent,
     HeaderComponent,
-    SearchMusicComponent
+    SearchMusicComponent,
+    UserComponent,
+    AdminComponent,
+    ProfileComponent,
+    
   ],
     imports: [
         BrowserModule,
