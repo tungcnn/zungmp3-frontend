@@ -3,6 +3,7 @@ import {Song} from "../../interface/song";
 import {SongServiceService} from "../../service/song/song-service.service";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
+import {TokenServiceService} from "../../service/token/token-service.service";
 
 @Component({
   selector: 'app-search-music',
@@ -15,7 +16,7 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   song : Song = {};
   playLists : Playlist[] = [];
   idSong : number = -1;
-  constructor( private songServiceService : SongServiceService , private playListService : PlayListService) {
+  constructor( private songServiceService : SongServiceService , private playListService : PlayListService ,private token:TokenServiceService) {
   }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   }
 
   getAllPlayList(){
-    this.playListService.getAllPlayList().subscribe(response =>{
+    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response =>{
       this.playLists = response;
     })
   }
