@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient,HttpClientModule} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Playlist} from "../../interface/playlist";
+import {User} from "../../interface/user";
 const API_URL = `${environment.apiUrl}`;
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,8 @@ export class PlayListService {
 
   editPlayList(id:number , playList : Playlist) : Observable<Playlist>{
     return this.http.put(`${API_URL}/playlists/${id}`, playList)
+  }
+  getAllPlayListByUserId(id:number):Observable<Playlist[]>{
+    return this.http.get<Playlist[]>(`${API_URL}/playlists/userPlayList/${id}`)
   }
 }
