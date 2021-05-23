@@ -2,7 +2,7 @@
 [Master Javascript]
 Project: Miraculous - Online Music Store Html Template
 Version: 1.0.0
-Assigned to: Theme Forest
+Assigned to: ThemeService Forest
 -------------------------------------------------------------------*/
 (function($) {
     "use strict";
