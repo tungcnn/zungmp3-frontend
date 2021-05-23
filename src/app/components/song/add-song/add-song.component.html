@@ -23,16 +23,14 @@
           <li>#</li>
           <li>Name</li>
           <li>Album</li>
-          <li class="text-center">Duration</li>
           <li class="text-center">Add To Favourites</li>
           <li class="text-center">Edit</li>
           <li class="text-center">remove</li>
         </ul>
         <ul *ngFor="let s of songs; index as idx">
-          <li><a href="#"><span class="play_no">{{idx + 1}}</span><span class="play_hover"></span></a></li>
-          <li><a href="#">{{s.name}}</a></li>
-          <li><a href="#">{{s.album.name}}</a></li>
-          <li class="text-center"><a href="#">5:26</a></li>
+          <li><a><span class="play_no">{{idx + 1}}</span><span class="play_hover" (click)="playmusic(s.id)"></span></a></li>
+          <li><a>{{s.name}}</a></li>
+          <li><a>{{s.album.name}}</a></li>
           <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
           <li class="text-center">
             <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">

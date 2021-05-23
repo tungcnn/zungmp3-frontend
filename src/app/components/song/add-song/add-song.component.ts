@@ -4,6 +4,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {PlaymusicService} from "../../../service/playmusic.service";
 
 
 @Component({
@@ -18,7 +19,8 @@ export class AddSongComponent implements OnInit {
   public removeSong: Song;
 
   constructor(private songService: SongServiceService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private playService: PlaymusicService) {
   }
 
   ngOnInit() {
@@ -35,6 +37,12 @@ export class AddSongComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  playmusic(id: number) {
+    this.songService.findById(id).subscribe(song => {
+      this.playService.playsong(song);
+    });
   }
 
   public onFileSelected(event) {
