@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {Song} from "../../../interface/song";
 import {SongServiceService} from "../../../service/song/song-service.service";
 import {TokenServiceService} from "../../../service/token/token-service.service";
+import {PlaymusicService} from "../../../service/playmusic.service";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class AddPlayListComponent implements OnInit {
   songs : Song[] = []
   song : Song = {}
 
-  constructor(private playListService: PlayListService , private songService : SongServiceService , private  token : TokenServiceService) { }
+  constructor(private playListService: PlayListService , private songService : SongServiceService ,
+              private  token : TokenServiceService , private playMusic : PlaymusicService) { }
 
   ngOnInit() {
     if (this.token.getUser().id==null){
@@ -70,6 +72,12 @@ export class AddPlayListComponent implements OnInit {
   DeletePlayList(form) {
     this.playListService.deletePlayList(form.playListProfile.id).subscribe(()=>{
       this.getAllPlayList();
+    })
+  }
+
+  PlayPlayList(id: number) {
+    this.playListService.getPlayListById(id).subscribe(data =>{
+        this.playMusic.playPlayList(data.songs);
     })
   }
 }
