@@ -22,13 +22,17 @@ export class AddPlayListComponent implements OnInit {
   constructor(private playListService: PlayListService , private songService : SongServiceService , private  token : TokenServiceService) { }
 
   ngOnInit() {
-    this.getAllPlayList();
+    if (this.token.getUser().id==null){
+
+    }else {this.getAllPlayList();
+    }
 
   }
 
 
   createPlayList(CreateForm: NgForm) {
-    this.playListService.createPlayList(CreateForm.value).subscribe(()=>{
+
+    this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
      alert("Tên không hợp lệ")
