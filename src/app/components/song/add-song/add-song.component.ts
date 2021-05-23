@@ -5,6 +5,7 @@ import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {PlaymusicService} from "../../../service/playmusic.service";
+import {TokenServiceService} from "../../../service/token/token-service.service";
 
 
 @Component({
@@ -14,21 +15,33 @@ import {PlaymusicService} from "../../../service/playmusic.service";
 })
 export class AddSongComponent implements OnInit {
   public url;
+
   public songs: Song[];
+
   public editSong: Song;
+
   public removeSong: Song;
+
+  private currentUser: any = null;
 
   constructor(private songService: SongServiceService,
               private storage: AngularFireStorage,
-              private playService: PlaymusicService) {
+              private playService: PlaymusicService,
+              private  token : TokenServiceService) {
   }
 
   ngOnInit() {
-    this.getAllSong();
+    this.currentUser = this.token.getUser();
+    if (this.currentUser==null){
+
+    }else {
+      this.getAllSong(this.currentUser.id);
+    }
+
   }
 
-  public getAllSong(): void {
-    this.songService.getAllSong().subscribe(
+  public getAllSong(id: number): void {
+    this.songService.getAllSongByUserId(id).subscribe(
       (response: Song[]) => {
         this.songs = response;
         console.log(this.songs);
@@ -61,7 +74,7 @@ export class AddSongComponent implements OnInit {
           this.songService.addSong(song).subscribe(
             (response: Song) => {
               console.log(response);
-              this.getAllSong();
+              this.getAllSong(this.currentUser.id);
             });
           alert('Upload successful!');
         });
@@ -98,7 +111,7 @@ export class AddSongComponent implements OnInit {
     this.songService.deleteSong(id).subscribe(
       (response: void) => {
         console.log(response);
-        this.getAllSong();
+        this.getAllSong(this.currentUser.id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -110,7 +123,7 @@ export class AddSongComponent implements OnInit {
     this.songService.editSong(song).subscribe(
       (response: Song) => {
         console.log(response);
-        this.getAllSong();
+        this.getAllSong(this.currentUser.id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

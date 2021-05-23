@@ -77,7 +77,7 @@
         </li>
       </ul>
       <ul class="nav_downloads">
-        <li><a [routerLink]="'uploadSong'" title="UploadSong">
+        <li *ngIf="user!=null"><a [routerLink]="'uploadSong'" title="UploadSong">
 						<span class="nav_icon">
 							<span class="icon icon_download"></span>
 						</span>
@@ -123,15 +123,6 @@
         </a>
         </li>
         <li *ngIf="user!=null"><a routerLink="playList" title="Create Playlist">
-						<span class="nav_icon">
-							<span class="icon icon_c_playlist"></span>
-						</span>
-          <span class="nav_text" >
-							create playlist
-						</span>
-        </a>
-        </li>
-        <li *ngIf="user==null"><a routerLink="" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
