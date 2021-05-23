@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SongServiceService} from "../../service/song/song-service.service";
 import {NgForm} from "@angular/forms";
 import {Song} from "../../interface/song";
-import {SearchService} from "../../service/search.service";
 import { User } from 'src/app/interface/user';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { Router } from '@angular/router';
@@ -15,7 +14,6 @@ import { TokenServiceService } from 'src/app/service/token/token-service.service
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
     formRegistration: any = {};
   user:User={};
   isSuccessful =false;
@@ -27,7 +25,7 @@ export class HeaderComponent implements OnInit {
   isLoginFailed = false;
   errorMessageLogin = '';
 
-  constructor(private searchService: SearchService,
+  constructor(
     private authService: AuthService,
       private router: Router,
       private tokenStorage: TokenServiceService) { }
