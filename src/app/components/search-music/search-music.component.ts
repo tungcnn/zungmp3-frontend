@@ -46,6 +46,8 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   addSongToPlayList(id: number) {
     this.playListService.addSongToPlayList(id, this.idSong).subscribe(() => {
+    },error => {
+      alert("bài hát đã có trong PlayList")
     })
   }
 
