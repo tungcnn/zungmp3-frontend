@@ -122,11 +122,20 @@
 						</span>
         </a>
         </li>
-        <li><a routerLink="playList" title="Create Playlist">
+        <li *ngIf="user!=null"><a routerLink="playList" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
-          <span class="nav_text">
+          <span class="nav_text" >
+							create playlist
+						</span>
+        </a>
+        </li>
+        <li *ngIf="user==null"><a routerLink="" title="Create Playlist">
+						<span class="nav_icon">
+							<span class="icon icon_c_playlist"></span>
+						</span>
+          <span class="nav_text" >
 							create playlist
 						</span>
         </a>
