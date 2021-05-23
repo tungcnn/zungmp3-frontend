@@ -20,8 +20,8 @@ export class PlayListService {
     return this.http.get<Playlist>(`${API_URL}/playlists/${id}`)
   }
 
-  createPlayList(playList : Playlist): Observable<Playlist>{
-    return this.http.post<Playlist>(`${API_URL}/playlists`,playList)
+  createPlayList(id , playList : Playlist): Observable<Playlist>{
+    return this.http.post<Playlist>(`${API_URL}/playlists/${id}`,playList)
   }
 
   deletePlayList(id: number): Observable<Playlist> {
