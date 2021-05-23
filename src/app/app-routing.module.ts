@@ -4,6 +4,9 @@ import {AddPlayListComponent} from "./components/play_list/add-play-list/add-pla
 import {DiscoverComponent} from "./components/discover/discover.component";
 import {AddSongComponent} from './components/song/add-song/add-song.component';
 import {SearchMusicComponent} from "./components/search-music/search-music.component";
+import { HeaderComponent } from './components/header/header.component';
+import { UserComponent } from './components/user/user.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 const routes: Routes = [
@@ -22,7 +25,23 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchMusicComponent
-  }
+  },
+  {
+    path:'registration',
+    component: HeaderComponent
+  },
+  {
+    path:'login',
+    component: HeaderComponent
+  },
+  {
+    path:'user',
+    component: UserComponent
+  },
+  {
+    path:'admin',
+    component: AdminComponent
+  },
 ];
 
 @NgModule({
