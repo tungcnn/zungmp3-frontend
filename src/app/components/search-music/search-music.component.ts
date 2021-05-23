@@ -4,19 +4,24 @@ import {SongServiceService} from "../../service/song/song-service.service";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
 import {TokenServiceService} from "../../service/token/token-service.service";
+import {PlaymusicService} from "../../service/playmusic.service";
 
 @Component({
   selector: 'app-search-music',
   templateUrl: './search-music.component.html',
   styleUrls: ['./search-music.component.css']
 })
-export class SearchMusicComponent implements OnInit,OnChanges {
+export class SearchMusicComponent implements OnInit, OnChanges {
 
-  songs : Song[] = [];
-  song : Song = {};
-  playLists : Playlist[] = [];
-  idSong : number = -1;
-  constructor( private songServiceService : SongServiceService , private playListService : PlayListService ,private token:TokenServiceService) {
+  songs: Song[] = [];
+  song: Song = {};
+  playLists: Playlist[] = [];
+  idSong: number = -1;
+
+  constructor(private songServiceService: SongServiceService,
+              private playListService: PlayListService
+    , private token: TokenServiceService
+    , private playMusic: PlaymusicService) {
   }
 
   ngOnInit() {
@@ -28,8 +33,8 @@ export class SearchMusicComponent implements OnInit,OnChanges {
 
   }
 
-  getAllPlayList(){
-    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response =>{
+  getAllPlayList() {
+    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response => {
       this.playLists = response;
     })
   }
@@ -40,14 +45,20 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   }
 
   addSongToPlayList(id: number) {
-    this.playListService.addSongToPlayList(id,this.idSong).subscribe(()=>{
+    this.playListService.addSongToPlayList(id, this.idSong).subscribe(() => {
     })
   }
 
   getSongByName(value) {
     this.song.name = value;
-    this.songServiceService.findByName(this.song).subscribe(response =>{
+    this.songServiceService.findByName(this.song).subscribe(response => {
       this.songs = response
+    })
+  }
+
+  PlaySong(id: number) {
+    this.songServiceService.findById(id).subscribe(data => {
+        this.playMusic.playsong(data);
     })
   }
 }

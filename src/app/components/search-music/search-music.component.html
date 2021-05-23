@@ -130,7 +130,7 @@
         <li class="text-center">Add To Play List</li>
       </ul>
       <ul *ngFor="let song of songs">
-        <li><a href="#"><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
+        <li><a (click)="PlaySong(song.id)" ><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
         <li><ng-container *ngIf="song.singers!=null"><a href ="#" *ngFor="let singer of song.singers">{{singer.name}}</a></ng-container></li>
         <li class="text-center"><a href="#">{{song.views}}</a></li>
         <li class="text-center"><a href="#" *ngIf="song.album!= null">{{song.album.name}}</a></li>
