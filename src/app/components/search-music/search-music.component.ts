@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Song} from "../../interface/song";
-import {SearchService} from "../../service/search.service";
 import {SongServiceService} from "../../service/song/song-service.service";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
@@ -16,25 +15,16 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   song : Song = {};
   playLists : Playlist[] = [];
   idSong : number = -1;
-  constructor( private search : SearchService , private songServiceService : SongServiceService , private playListService : PlayListService) {
+  constructor( private songServiceService : SongServiceService , private playListService : PlayListService) {
   }
 
   ngOnInit() {
-    this.searchResult()
+
     this.getAllPlayList()
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.searchResult()
-  }
 
-  searchResult(){
-    this.song.name = this.search.search();
-    this.songServiceService.findByName(this.song).subscribe(response => {
-      this.songs = response;
-    },() => {
-      this.songs = []
-    })
   }
 
   getAllPlayList(){
@@ -50,6 +40,13 @@ export class SearchMusicComponent implements OnInit,OnChanges {
 
   addSongToPlayList(id: number) {
     this.playListService.addSongToPlayList(id,this.idSong).subscribe(()=>{
+    })
+  }
+
+  getSongByName(value) {
+    this.song.name = value;
+    this.songServiceService.findByName(this.song).subscribe(response =>{
+      this.songs = response
     })
   }
 }
