@@ -14,8 +14,8 @@ import { TokenServiceService } from 'src/app/service/token/token-service.service
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    songs : Song[] = []
-    song: Song = {};
+
+  constructor() { }
     formRegistration: any = {};
   user:User={};
   isSuccessful =false;
@@ -39,9 +39,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  search(value: string) {
-    this.searchService.searchValue(value)
-  }
   registration(value : NgForm){
     this.authService.registration(value.value).subscribe(
       data => {
