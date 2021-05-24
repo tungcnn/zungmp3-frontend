@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {AddPlayListComponent} from "./components/play_list/add-play-list/add-play-list.component";
-import {DiscoverComponent} from "./components/discover/discover.component";
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {AddPlayListComponent} from './components/play_list/add-play-list/add-play-list.component';
+import {DiscoverComponent} from './components/discover/discover.component';
 import {AddSongComponent} from './components/song/add-song/add-song.component';
-import {SearchMusicComponent} from "./components/search-music/search-music.component";
-import { HeaderComponent } from './components/header/header.component';
-import { UserComponent } from './components/user/user.component';
-import { AdminComponent } from './components/admin/admin.component';
+import {SearchMusicComponent} from './components/search-music/search-music.component';
+import {HeaderComponent} from './components/header/header.component';
+import {UserComponent} from './components/user/user.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {GenresComponent} from './components/genres/genres.component';
 
 
 const routes: Routes = [
@@ -27,20 +28,24 @@ const routes: Routes = [
     component: SearchMusicComponent
   },
   {
-    path:'registration',
+    path: 'registration',
     component: HeaderComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: HeaderComponent
   },
   {
-    path:'user',
+    path: 'user',
     component: UserComponent
   },
   {
-    path:'admin',
+    path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'genres',
+    component: GenresComponent
   },
 ];
 

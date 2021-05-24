@@ -4,15 +4,15 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
-import {PlaymusicService} from "../../../service/playmusic.service";
-import {TokenServiceService} from "../../../service/token/token-service.service";
-import {ThemeService} from "../../../service/theme.service";
-import {GenreService} from "../../../service/genre.service";
-import {CountryService} from "../../../service/country.service";
-import {Genre} from "../../../interface/genre";
-import {Theme} from "../../../interface/theme";
-import {Country} from "../../../interface/country";
-import {NgForm} from "@angular/forms";
+import {PlaymusicService} from '../../../service/playmusic.service';
+import {TokenServiceService} from '../../../service/token/token-service.service';
+import {ThemeService} from '../../../service/theme.service';
+import {GenreService} from '../../../service/genre.service';
+import {CountryService} from '../../../service/country.service';
+import {Genre} from '../../../interface/genre';
+import {Theme} from '../../../interface/theme';
+import {Country} from '../../../interface/country';
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -40,7 +40,7 @@ export class AddSongComponent implements OnInit {
   constructor(private songService: SongServiceService,
               private storage: AngularFireStorage,
               private playService: PlaymusicService,
-              private  token : TokenServiceService,
+              private token: TokenServiceService,
               private themeService: ThemeService,
               private genreService: GenreService,
               private countryService: CountryService) {
@@ -49,17 +49,17 @@ export class AddSongComponent implements OnInit {
   ngOnInit() {
     this.themeService.getAllTheme().subscribe(themes => {
       this.themes = themes;
-    })
+    });
     this.genreService.getAllGenre().subscribe(genres => {
       this.genres = genres;
-    })
+    });
     this.countryService.getAllCountry().subscribe(countries => {
       this.countries = countries;
-    })
+    });
     this.currentUser = this.token.getUser();
-    if (this.currentUser==null){
+    if (this.currentUser == null) {
 
-    }else {
+    } else {
       this.getAllSong(this.currentUser.id);
     }
 
@@ -99,7 +99,7 @@ export class AddSongComponent implements OnInit {
             user: {
               id: this.currentUser.id
             }
-          }
+          };
           this.songService.addSong(song).subscribe(
             (response: Song) => {
               console.log(response);
