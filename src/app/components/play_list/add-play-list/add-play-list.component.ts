@@ -6,7 +6,7 @@ import {Song} from "../../../interface/song";
 import {SongServiceService} from "../../../service/song/song-service.service";
 import {TokenServiceService} from "../../../service/token/token-service.service";
 import {PlaymusicService} from "../../../service/playmusic.service";
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-add-play-list',
@@ -14,6 +14,7 @@ import {PlaymusicService} from "../../../service/playmusic.service";
   styleUrls: ['./add-play-list.component.css']
 })
 export class AddPlayListComponent implements OnInit {
+
   playListProfile : Playlist = {}
   playList : Playlist = {};
   PlayLists: Playlist[] = [];
@@ -37,7 +38,7 @@ export class AddPlayListComponent implements OnInit {
     this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
-     alert("Tên không hợp lệ")
+      Swal.fire("Good job!", "You clicked the button!", "success");
     })
   }
 
