@@ -3,8 +3,8 @@
     <div class="ms_top_search">
       <form>
         <input type="text" class="form-control" placeholder="Search Music Here.." #q>
-        <a><span class="search_icon">
-							<img src="assets/images/svg/search.svg" alt="" (click)="getSongByName(q.value)">
+        <a (click)="getSongByName(q.value)"><span class="search_icon">
+							<img src="assets/images/svg/search.svg" alt="">
 						</span></a>
       </form>
     </div>
