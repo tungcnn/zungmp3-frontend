@@ -5,6 +5,8 @@ import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
 import {TokenServiceService} from "../../service/token/token-service.service";
 import {PlaymusicService} from "../../service/playmusic.service";
+import {Singer} from "../../interface/singer";
+
 
 @Component({
   selector: 'app-search-music',
@@ -14,6 +16,8 @@ import {PlaymusicService} from "../../service/playmusic.service";
 export class SearchMusicComponent implements OnInit, OnChanges {
 
   songs: Song[] = [];
+  singers : Singer[] = [];
+  playlists : Playlist[] = [];
   song: Song = {};
   playLists: Playlist[] = [];
   idSong: number = -1;
@@ -50,9 +54,12 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   getSongByName(value) {
-    this.song.name = value;
-    this.songServiceService.findByName(this.song).subscribe(response => {
-      this.songs = response
+    this.song.name = value
+    this.songServiceService.findByName(this.song).subscribe((response:any) => {
+      this.songs = response[0];
+      this.playlists = response[1];
+      this.singers = response[2];
+      console.log(response)
     })
   }
 
