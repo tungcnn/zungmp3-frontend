@@ -41,12 +41,6 @@ export class AddPlayListComponent implements OnInit {
     })
   }
 
-  // getAllPlayList(){
-  //   console.log(this.token.getUser())
-  //   this.playListService.getAllPlayList().subscribe(playlists => {
-  //     this.PlayLists = playlists;
-  //   })
-  // }
 
   getAllPlayList(){
     let id : number = this.token.getUser().id
