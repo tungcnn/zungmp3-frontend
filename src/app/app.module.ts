@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
+import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,8 @@ import {GenresComponent} from './components/genres/genres.component';
     UserUpdateComponent,
     UserDeleteComponent,
     GenresComponent,
+    ShowPlayListComponent,
+
   ],
     imports: [
         BrowserModule,
