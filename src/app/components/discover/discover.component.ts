@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Song} from "../../interface/song";
-import {PlaymusicService} from "../../service/playmusic.service";
-import {SongServiceService} from "../../service/song/song-service.service";
+import {Song} from '../../interface/song';
+import {PlaymusicService} from '../../service/playmusic.service';
+import {SongService} from '../../service/song/song.service';
 
 @Component({
   selector: 'app-discover',
@@ -23,7 +23,7 @@ export class DiscoverComponent implements OnInit {
 
 
   constructor(private playService: PlaymusicService,
-              private songService: SongServiceService) {
+              private songService: SongService) {
   }
 
   ngOnInit() {
@@ -38,13 +38,15 @@ export class DiscoverComponent implements OnInit {
       this.playmusic();
     });
   }
+
   getListSong() {
     if (this.songs.length == 0) {
       this.songService.getLatestSong().subscribe(songs => {
         this.songs = songs;
-      })
+      });
     }
   }
+
   playmusic() {
     this.playService.playsong(this.selectedSong);
   }

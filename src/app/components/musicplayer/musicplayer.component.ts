@@ -1,6 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {Song} from "../../interface/song";
-import {PlaymusicService} from "../../service/playmusic.service";
+import {PlaymusicService} from '../../service/playmusic.service';
 
 
 @Component({
@@ -9,7 +8,8 @@ import {PlaymusicService} from "../../service/playmusic.service";
   styleUrls: ['./musicplayer.component.css']
 })
 export class MusicplayerComponent implements OnInit {
-  constructor(private playService: PlaymusicService) { }
+  constructor(private playService: PlaymusicService) {
+  }
 
   ngOnInit() {
   }

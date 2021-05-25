@@ -23,6 +23,8 @@ import {UserComponent} from './components/user/user.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {GenresComponent} from './components/genres/genres.component';
+import { SingerComponent } from './components/singer/singer.component';
+import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import {GenresComponent} from './components/genres/genres.component';
     AdminComponent,
     ProfileComponent,
     GenresComponent,
+    SingerComponent,
+    AlbumComponent,
 
   ],
   imports: [

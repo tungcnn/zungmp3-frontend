@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SongServiceService} from '../../../service/song/song-service.service';
+import {SongService} from '../../../service/song/song.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -37,7 +37,7 @@ export class AddSongComponent implements OnInit {
 
   public countries: Country[];
 
-  constructor(private songService: SongServiceService,
+  constructor(private songService: SongService,
               private storage: AngularFireStorage,
               private playService: PlaymusicService,
               private token: TokenServiceService,

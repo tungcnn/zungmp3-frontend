@@ -23,7 +23,7 @@
 						</span>
         </a>
         </li>
-        <li><a title="Albums">
+        <li><a *ngIf="user != null" [routerLink]="'album'" title="Albums">
 						<span class="nav_icon">
 							<span class="icon icon_albums"></span>
 						</span>
@@ -42,7 +42,7 @@
         </a>
         </li>
         <li>
-          <a [routerLink]="'genres'" title="Genres">
+          <a *ngIf="user != null" [routerLink]="'genres'" title="Genres">
 						<span class="nav_icon">
 							<span class="icon icon_genres"></span>
 						</span>
@@ -78,7 +78,7 @@
         </li>
       </ul>
       <ul class="nav_downloads">
-        <li *ngIf="user!=null">
+        <li *ngIf="user!= null">
           <a [routerLink]="'uploadSong'" title="UploadSong">
 						<span class="nav_icon">
 							<span class="icon icon_download"></span>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SongServiceService} from "../../service/song/song-service.service";
+import {SongService} from "../../service/song/song.service";
 import {NgForm} from "@angular/forms";
 import {Song} from "../../interface/song";
 import { User } from 'src/app/interface/user';
