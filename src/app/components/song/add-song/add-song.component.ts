@@ -14,6 +14,7 @@ import {Theme} from "../../../interface/theme";
 import {Country} from "../../../interface/country";
 import {NgForm} from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-song',

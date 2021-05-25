@@ -1,3 +1,4 @@
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,7 +12,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
@@ -24,6 +25,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import {GenresComponent} from './components/genres/genres.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,9 @@ import {MatButtonModule} from '@angular/material/button';
     UserComponent,
     AdminComponent,
     ProfileComponent,
-
+    UserUpdateComponent,
+    UserDeleteComponent,
+    GenresComponent,
   ],
     imports: [
         BrowserModule,
@@ -49,11 +55,13 @@ import {MatButtonModule} from '@angular/material/button';
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         FormsModule,
-        CommonModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        ReactiveFormsModule,
+        CommonModule
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
