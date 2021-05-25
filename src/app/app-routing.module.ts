@@ -51,7 +51,7 @@ const routes: Routes = [
   {
     path:'deleteUser',
     component: UserDeleteComponent
-  }
+  },
   {
     path: 'genres',
     component: GenresComponent
