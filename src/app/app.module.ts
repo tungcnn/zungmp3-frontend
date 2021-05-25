@@ -23,6 +23,8 @@ import { SearchMusicComponent } from './components/search-music/search-music.com
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 
@@ -53,6 +55,8 @@ import {GenresComponent} from './components/genres/genres.component';
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         FormsModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
         ReactiveFormsModule,
         CommonModule
     ],
