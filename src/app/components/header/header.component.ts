@@ -10,6 +10,7 @@ import { UserServiceService } from 'src/app/service/user/user-service.service';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit {
     email: new FormControl
   });
   id=-1;
-  constructor(private searchService: SearchService,
+  constructor(
               private authService: AuthService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
