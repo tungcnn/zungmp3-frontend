@@ -1,12 +1,12 @@
 import {Component, Directive, OnInit} from '@angular/core';
-import {PlayListService} from '../../../service/playlist/play-list.service';
-import {Playlist} from '../../../interface/playlist';
-import {NgForm} from '@angular/forms';
-import {Song} from '../../../interface/song';
-import {SongService} from '../../../service/song/song.service';
-import {TokenServiceService} from '../../../service/token/token-service.service';
-import {PlaymusicService} from '../../../service/playmusic.service';
-
+import {PlayListService} from "../../../service/playlist/play-list.service";
+import {Playlist} from "../../../interface/playlist";
+import {NgForm} from "@angular/forms";
+import {Song} from "../../../interface/song";
+import {SongServiceService} from "../../../service/song/song-service.service";
+import {TokenServiceService} from "../../../service/token/token-service.service";
+import {PlaymusicService} from "../../../service/playmusic.service";
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-add-play-list',
@@ -14,8 +14,8 @@ import {PlaymusicService} from '../../../service/playmusic.service';
   styleUrls: ['./add-play-list.component.css']
 })
 export class AddPlayListComponent implements OnInit {
-  playListProfile: Playlist = {};
-  playList: Playlist = {};
+  playListProfile : Playlist = {}
+  playList : Playlist = {};
   PlayLists: Playlist[] = [];
   songs: Song[] = [];
   song: Song = {};
@@ -35,20 +35,13 @@ export class AddPlayListComponent implements OnInit {
 
 
   createPlayList(CreateForm: NgForm) {
-
-    this.playListService.createPlayList(this.token.getUser().id, CreateForm.value).subscribe(() => {
-      this.getAllPlayList();
-    }, () => {
-      alert('Tên không hợp lệ');
-    });
+    this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
+      this.getAllPlayList()
+    },() =>{
+      Swal.fire("Invalid characters!", "Please only use letters and/or numbers", "warning");
+    })
   }
 
-  // getAllPlayList(){
-  //   console.log(this.token.getUser())
-  //   this.playListService.getAllPlayList().subscribe(playlists => {
-  //     this.PlayLists = playlists;
-  //   })
-  // }
 
   getAllPlayList() {
     let id: number = this.token.getUser().id;

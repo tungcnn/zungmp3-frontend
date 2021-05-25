@@ -3,14 +3,16 @@ import {Routes, RouterModule} from '@angular/router';
 import {AddPlayListComponent} from './components/play_list/add-play-list/add-play-list.component';
 import {DiscoverComponent} from './components/discover/discover.component';
 import {AddSongComponent} from './components/song/add-song/add-song.component';
-import {SearchMusicComponent} from './components/search-music/search-music.component';
-import {HeaderComponent} from './components/header/header.component';
-import {UserComponent} from './components/user/user.component';
-import {AdminComponent} from './components/admin/admin.component';
+import {SearchMusicComponent} from "./components/search-music/search-music.component";
+import { HeaderComponent } from './components/header/header.component';
+import { UserComponent } from './components/user/user.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 import {AlbumComponent} from './components/album/album.component';
 import {SingerComponent} from './components/singer/singer.component';
-
+import {ShowPlayListComponent} from "./components/show-play-list/show-play-list.component";
 
 const routes: Routes = [
   {
@@ -45,6 +47,14 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent
   },
+  // {
+  //   path:'updateUser',
+  //   component: UserUpdateComponent
+  // },
+  {
+    path:'deleteUser',
+    component: UserDeleteComponent
+  },
   {
     path: 'genres',
     component: GenresComponent
@@ -61,10 +71,13 @@ const routes: Routes = [
     path: 'singerAlbum',
     component: AlbumComponent
   },
+    path:'showPlayList',
+    component: ShowPlayListComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
