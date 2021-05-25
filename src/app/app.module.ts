@@ -24,6 +24,7 @@ import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import {GenresComponent} from './components/genres/genres.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserDeleteComponent } from './components/user-delete/user-delete.compon
     ProfileComponent,
     UserUpdateComponent,
     UserDeleteComponent,
+    GenresComponent,
   ],
     imports: [
         BrowserModule,
@@ -57,4 +59,5 @@ import { UserDeleteComponent } from './components/user-delete/user-delete.compon
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

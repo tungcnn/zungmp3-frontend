@@ -1,6 +1,123 @@
+<div class="ms_header">
+  <div class="ms_top_left">
+    <div class="ms_top_search">
+      <form>
+        <input type="text" class="form-control" placeholder="Search Music Here.." #q>
+        <a><span class="search_icon">
+							<img src="assets/images/svg/search.svg" alt="" (click)="getSongByName(q.value)">
+						</span></a>
+      </form>
+    </div>
+    <div class="ms_top_trend">
+      <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+    </div>
+  </div>
+  <div class="ms_top_right">
+    <div class="ms_top_lang">
+      <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
+    </div>
+    <div class="ms_top_btn">
+      <a href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#myModal"><span>register</span></a>
+      <a href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#myModal1"><span>login</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="ms_register_popup">
+
+  <!--  Regiser Modal-->
+  <div id="myModal" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog register_dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="modal-body">
+          <div class="ms_register_img">
+            <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+          </div>
+          <div class="ms_register_form">
+            <h2>Register / Sign Up</h2>
+            <div class="form-group">
+              <input type="text" placeholder="Enter Your Name" class="form-control">
+              <span class="form_icon">
+							<i class="fa_icon form-user" aria-hidden="true"></i>
+							</span>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Enter Your Email" class="form-control">
+              <span class="form_icon">
+							<i class="fa_icon form-envelope" aria-hidden="true"></i>
+						</span>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Enter Password" class="form-control">
+              <span class="form_icon">
+						<i class="fa_icon form-lock" aria-hidden="true"></i>
+						</span>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Confirm Password" class="form-control">
+              <span class="form_icon">
+						<i class=" fa_icon form-lock" aria-hidden="true"></i>
+						</span>
+            </div>
+            <a href="#" class="ms_btn">register now</a>
+            <p>Already Have An Account? <a href="#myModal1" data-toggle="modal" class="ms_modal hideCurrentModel">login here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!----Login Popup Start---->
+  <div id="myModal1" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog login_dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="modal-body">
+          <div class="ms_register_img">
+            <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+          </div>
+          <div class="ms_register_form">
+            <h2>login / Sign in</h2>
+            <div class="form-group">
+              <input type="text" placeholder="Enter Your Email" class="form-control">
+              <span class="form_icon">
+							<i class="fa_icon form-envelope" aria-hidden="true"></i>
+						</span>
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Enter Password" class="form-control">
+              <span class="form_icon">
+						<i class="fa_icon form-lock" aria-hidden="true"></i>
+						</span>
+            </div>
+            <div class="remember_checkbox">
+              <label>Keep me signed in
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <a href="assets/profile.html" class="ms_btn" target="_blank">login now</a>
+            <div class="popup_forgot">
+              <a href="#">Forgot Password ?</a>
+            </div>
+            <p>Don't Have An Account? <a href="#myModal" data-toggle="modal" class="ms_modal1 hideCurrentModel">register here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
   <div class="ms_heading">
-    <h1>Purchased Tracks</h1>
+    <h1>Song List</h1>
   </div>
   <div class="album_inner_list">
     <div class="album_list_wrapper">
@@ -13,10 +130,10 @@
         <li class="text-center">Add To Play List</li>
       </ul>
       <ul *ngFor="let song of songs">
-        <li><a href="#"><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
-        <li><a href="#" *ngFor="let singer of song.singers">{{singer.name}}</a></li>
+        <li><a (click)="PlaySong(song.id)" ><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
+        <li><ng-container *ngIf="song.singers!=null"><a href ="#" *ngFor="let singer of song.singers">{{singer.name}}</a></ng-container></li>
         <li class="text-center"><a href="#">{{song.views}}</a></li>
-        <li class="text-center"><a href="#">{{song.album.name}}</a></li>
+        <li class="text-center"><a href="#" *ngIf="song.album!= null">{{song.album.name}}</a></li>
         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
         <li data-toggle="modal" data-target="#showPlayList" class="text-center" (click)="addProfileSong(song.id)"><span class="ms_icon1 ms_active_icon"></span></li>
       </ul>
@@ -26,8 +143,56 @@
     <a href="#" class="ms_btn">view more</a>
   </div>
 </div>
-
-
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>PlayList</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>PlayList Name</li>
+        <li class="text-center">views</li>
+        <li class="text-center">Like</li>
+        <li class="text-center">more</li>
+      </ul>
+      <ul *ngFor="let playlist of playlists">
+        <li><a><span class="play_no">{{playlist.name}}</span><span class="play_hover"></span></a></li>
+        <li class="text-center"><a href="#">{{playlist.views}}</a></li>
+        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li class="text-center"><span class="ms_icon1 ms_active_icon"></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ms_view_more padder_bottom20">
+    <a href="#" class="ms_btn">view more</a>
+  </div>
+</div>
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>Singer List</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>singer Title</li>
+        <li class="text-center">Date</li>
+        <li class="text-center">Description</li>
+        <li class="text-center">Like</li>
+        <li class="text-center">more</li>
+      </ul>
+      <ul *ngFor="let singer of singers">
+        <li><a><span class="play_no">{{singer.name}}</span><span class="play_hover"></span></a></li>
+        <li class="text-center"><a href="#">{{singer.date}}</a></li>
+        <li class="text-center"><a href="#" >{{singer.description}}</a></li>
+        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li class="text-center" ><span class="ms_icon1 ms_active_icon"></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ms_view_more padder_bottom20">
+    <a href="#" class="ms_btn">view more</a>
+  </div>
+</div>
 <div class="modal" tabindex="-1" role="dialog" id="showPlayList" style="color: black ">
   <div class="modal-dialog" role="document" style="width: 500px">
     <div class="modal-content">

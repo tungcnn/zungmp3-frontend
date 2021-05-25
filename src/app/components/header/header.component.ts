@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SongServiceService} from "../../service/song/song-service.service";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
 import {Song} from "../../interface/song";
-import {SearchService} from "../../service/search.service";
 import { User } from 'src/app/interface/user';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,11 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    songs : Song[] = []
-    song: Song = {};
-    reg: User = {};
-    lg: User = {};
-  
+  songs : Song[] = []
+  song: Song = {};
+  reg: User = {};
+  lg: User = {};
+  formRegistration: any = {};
   user:User={};
 
   isSuccessful =false;
@@ -46,11 +45,11 @@ export class HeaderComponent implements OnInit {
   });
   id=-1;
   constructor(private searchService: SearchService,
-    private authService: AuthService,
-      private router: Router,
-      private activatedRoute: ActivatedRoute,
-      private tokenStorage: TokenServiceService,
-      private userService: UserServiceService) {
+              private authService: AuthService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private tokenStorage: TokenServiceService,
+              private userService: UserServiceService) {
         this.activatedRoute.paramMap.subscribe(
           paramMap=>{
           this.id=+paramMap.get('id');
@@ -80,9 +79,6 @@ export class HeaderComponent implements OnInit {
     this.checkUser();
   }
 
-  search(value: string) {
-    this.searchService.searchValue(value)
-  }
   registration(value : NgForm){
     this.authService.registration(value.value).subscribe(
       data => {

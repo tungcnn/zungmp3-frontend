@@ -1,3 +1,4 @@
+<app-header></app-header>
 <!----Upload and Share Wrapper Start---->
 <div class="ms_upload_wrapper marger_top60">
   <div class="ms_upload_box">
@@ -19,35 +20,49 @@
     </div>
     <div class="album_inner_list">
       <div class="album_list_wrapper">
-        <ul class="album_list_name">
-          <li>#</li>
-          <li>Name</li>
-          <li>Album</li>
-          <li class="text-center">Duration</li>
-          <li class="text-center">Add To Favourites</li>
-          <li class="text-center">Edit</li>
-          <li class="text-center">remove</li>
-        </ul>
-        <ul *ngFor="let s of songs; index as idx">
-          <li><a href="#"><span class="play_no">{{idx + 1}}</span><span class="play_hover"></span></a></li>
-          <li><a href="#">{{s.name}}</a></li>
-          <li><a href="#">{{s.album.name}}</a></li>
-          <li class="text-center"><a href="#">5:26</a></li>
-          <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-          <li class="text-center">
+        <table class="album_list_name">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Artists</th>
+            <th>Album</th>
+            <th>Genre</th>
+            <th>Country</th>
+            <th>Theme</th>
+            <th class="text-center">Add To Favourites</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">remove</th>
+          </tr>
+        <tr *ngFor="let s of songs; index as idx">
+          <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span class="play_hover" ></span></a></td>
+          <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
+          <ng-container *ngIf="s.singers != null; else elseBlock">
+            <td><span *ngFor="let singer of s.singers">{{singer.name}} </span></td>
+          </ng-container>
+          <ng-template #elseBlock>
+            none
+          </ng-template>
+          <td><a>{{s.album.name}}</a></td>
+          <td><a>{{s.genre.name}}</a></td>
+          <td><a>{{s.country.name}}</a></td>
+          <td><a>{{s.theme.name}}</a></td>
+          <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
+          <td class="text-center">
             <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">
             <span class="ms_close">
+                <img src="assets/images/svg/more.svg" alt="">
             </span>
             </a>
-          </li>
-          <li class="text-center">
+          </td>
+          <td class="text-center">
             <a href="#" data-toggle="modal" (click)="onOpenModal(s,'delete')">
             <span class="ms_close">
             <img src="assets/images/svg/close.svg" alt="">
             </span>
             </a>
-          </li>
-        </ul>
+          </td>
+        </tr>
+        </table>
       </div>
     </div>
     <div class="ms_view_more padder_bottom20">
@@ -187,39 +202,39 @@
           <form #editForm="ngForm">
             <div class="ms_register_form">
               <h2>Edit</h2>
+              <input type="hidden" ngModel="{{editSong?.id}}" name="id"/>
               <div class="form-group">
-                <input type="hidden" ngModel="{{editSong?.id}}" name="id"/>
+                <p>Song Title</p>
                 <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
                 <span class="form_icon">
 							</span>
               </div>
               <div class="form-group">
-                <textarea type="text" placeholder="Lyrics" ngModel="{{editSong?.lyrics}}" name="lyrics"
+                <p>Genre</p>
+                <select class="form-control" ngModel="{{editSong?.genre}}" name="genre">
+                  <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <p>Theme</p>
+                <select class="form-control" ngModel="{{editSong?.theme}}" name="theme">
+                  <option *ngFor="let theme of themes" [ngValue]="theme">{{theme.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <p>Country</p>
+                <select class="form-control" ngModel="{{editSong?.country}}" name="country">
+                  <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <p>Lyrics</p>
+                <textarea type="text" rows="5" placeholder="Lyrics" ngModel="{{editSong?.lyrics}}" name="lyrics"
                           class="form-control"></textarea>
                 <span class="form_icon">
 						    </span>
               </div>
-              <div class="form-group">
-                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
-                <span class="form_icon">
-							</span>
-              </div>
-              <div class="form-group">
-                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
-                <span class="form_icon">
-							</span>
-              </div>
-              <div class="form-group">
-                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
-                <span class="form_icon">
-							</span>
-              </div>
-              <div class="form-group">
-                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
-                <span class="form_icon">
-							</span>
-              </div>
-              <a (click)="upDateSong(editForm.value)" class="ms_btn" data-dismiss="modal">Save</a>
+              <a (click)="upDateSong(editForm)" class="ms_btn" data-dismiss="modal">Saves</a>
             </div>
           </form>
         </div>

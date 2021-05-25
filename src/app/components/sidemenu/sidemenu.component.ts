@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../interface/user";
+import {TokenServiceService} from "../../service/token/token-service.service";
 
 @Component({
   selector: 'app-sidemenu',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
-
-  constructor() { }
+  user: User = null;
+  constructor(private token : TokenServiceService) { }
 
   ngOnInit() {
+    this.user = this.token.getUser()
   }
 
 }

@@ -4,6 +4,15 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
+import {PlaymusicService} from '../../../service/playmusic.service';
+import {TokenServiceService} from '../../../service/token/token-service.service';
+import {ThemeService} from '../../../service/theme.service';
+import {GenreService} from '../../../service/genre.service';
+import {CountryService} from '../../../service/country.service';
+import {Genre} from '../../../interface/genre';
+import {Theme} from '../../../interface/theme';
+import {Country} from '../../../interface/country';
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -13,20 +22,52 @@ import {finalize} from 'rxjs/operators';
 })
 export class AddSongComponent implements OnInit {
   public url;
+
   public songs: Song[];
+
   public editSong: Song;
+
   public removeSong: Song;
 
+  private currentUser: any = null;
+
+  public genres: Genre[];
+
+  public themes: Theme[];
+
+  public countries: Country[];
+
   constructor(private songService: SongServiceService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private playService: PlaymusicService,
+              private token: TokenServiceService,
+              private themeService: ThemeService,
+              private genreService: GenreService,
+              private countryService: CountryService) {
   }
 
   ngOnInit() {
-    this.getAllSong();
+    this.themeService.getAllTheme().subscribe(themes => {
+      this.themes = themes;
+    });
+    this.genreService.getAllGenre().subscribe(genres => {
+      this.genres = genres;
+    });
+    this.countryService.getAllCountry().subscribe(countries => {
+      this.countries = countries;
+    });
+    this.currentUser = this.token.getUser();
+    if (this.currentUser == null) {
+
+    } else {
+      this.getAllSong(this.currentUser.id);
+    }
+
+
   }
 
-  public getAllSong(): void {
-    this.songService.getAllSong().subscribe(
+  public getAllSong(id: number): void {
+    this.songService.getAllSongByUserId(id).subscribe(
       (response: Song[]) => {
         this.songs = response;
         console.log(this.songs);
@@ -37,10 +78,16 @@ export class AddSongComponent implements OnInit {
     );
   }
 
+  playmusic(id: number) {
+    this.songService.findById(id).subscribe(song => {
+      this.playService.playsong(song);
+    });
+  }
+
   public onFileSelected(event) {
     const file = event.target.files[0];
     console.log(file);
-    const fileName = file.name.split('.')[0].replace(/[^\w\s]/gi, '');
+    const fileName = file.name.split('-')[0].replace(/[^\w\s]/gi, '');
     const filePath = `music/${fileName}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, file).snapshotChanges().pipe(finalize(() => {
@@ -48,12 +95,15 @@ export class AddSongComponent implements OnInit {
           this.url = url;
           const song: Song = {
             name: fileName,
-            url: this.url
-          }
+            url: this.url,
+            user: {
+              id: this.currentUser.id
+            }
+          };
           this.songService.addSong(song).subscribe(
             (response: Song) => {
               console.log(response);
-              this.getAllSong();
+              this.getAllSong(this.currentUser.id);
             });
           alert('Upload successful!');
         });
@@ -90,7 +140,7 @@ export class AddSongComponent implements OnInit {
     this.songService.deleteSong(id).subscribe(
       (response: void) => {
         console.log(response);
-        this.getAllSong();
+        this.getAllSong(this.currentUser.id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -98,11 +148,11 @@ export class AddSongComponent implements OnInit {
     );
   }
 
-  public upDateSong(song: Song): void {
-    this.songService.editSong(song).subscribe(
+  public upDateSong(song: NgForm): void {
+    this.songService.editSong(song.value).subscribe(
       (response: Song) => {
         console.log(response);
-        this.getAllSong();
+        this.getAllSong(this.currentUser.id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -4,6 +4,8 @@ import {Playlist} from "../../../interface/playlist";
 import {NgForm} from "@angular/forms";
 import {Song} from "../../../interface/song";
 import {SongServiceService} from "../../../service/song/song-service.service";
+import {TokenServiceService} from "../../../service/token/token-service.service";
+import {PlaymusicService} from "../../../service/playmusic.service";
 
 
 @Component({
@@ -18,28 +20,34 @@ export class AddPlayListComponent implements OnInit {
   songs : Song[] = []
   song : Song = {}
 
-  constructor(private playListService: PlayListService , private songService : SongServiceService) { }
+  constructor(private playListService: PlayListService , private songService : SongServiceService ,
+              private  token : TokenServiceService , private playMusic : PlaymusicService) { }
 
   ngOnInit() {
-    this.getAllPlayList();
+    if (this.token.getUser().id==null){
+
+    }else {this.getAllPlayList();
+    }
 
   }
 
 
   createPlayList(CreateForm: NgForm) {
-    this.playListService.createPlayList(CreateForm.value).subscribe(()=>{
+
+    this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
      alert("Tên không hợp lệ")
     })
   }
 
+
   getAllPlayList(){
-    this.playListService.getAllPlayList().subscribe(playlists => {
-      this.PlayLists = playlists;
+    let id : number = this.token.getUser().id
+    this.playListService.getAllPlayListByUserId(id).subscribe(data=>{
+      this.PlayLists = data;
     })
   }
-
 
   editPlayList(form , editForm: NgForm) {
       this.playListService.editPlayList(form.playListProfile.id , editForm.value).subscribe(playList =>{
@@ -61,14 +69,9 @@ export class AddPlayListComponent implements OnInit {
     })
   }
 
-  searchByName(name) {
-    this.song.name = name;
-    if (name!= ''){
-    this.songService.findByName(this.song).subscribe(response => {
-      this.songs = response;
+  PlayPlayList(id: number) {
+    this.playListService.getPlayListById(id).subscribe(data =>{
+        this.playMusic.playPlayList(data.songs);
     })
-  } else {
-      this.songs = []
-    }
   }
 }

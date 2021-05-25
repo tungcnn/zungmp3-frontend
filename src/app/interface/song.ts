@@ -3,6 +3,7 @@ import {Album} from './album';
 import {Genre} from './genre';
 import {Theme} from './theme';
 import {Country} from './country';
+import {User} from "./user";
 
 export interface Song {
   id?: number;
@@ -14,7 +15,8 @@ export interface Song {
   views?: number;
   singers?: Singer[];
   album?: Album;
-  genres?: Genre[];
+  genre?: Genre;
   theme?: Theme;
   country?: Country;
+  user?: User;
 }

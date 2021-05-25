@@ -179,7 +179,7 @@ export class PlaymusicService {
             }
           }
           myPlaylist.add({
-            image: songs[i].coverUrl,
+            image: "assets/images/svg/play.svg",
             title: songs[i].name,
             artist: singers,
             mp3: songs[i].url,

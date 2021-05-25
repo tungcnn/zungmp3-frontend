@@ -1,5 +1,6 @@
 <div class="ms_content_wrapper padder_top90">
   <!---Header--->
+  <app-header></app-header>
   <!----Live Radio Section Start---->
   <div class="ms_top_artist">
     <div class="container-fluid">
@@ -16,7 +17,7 @@
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
-                  <img src="assets/images/svg/play.svg" alt="">
+                  <img src="assets/images/svg/play.svg" alt="" (click)="PlayPlayList(PlayList.id)">
                 </div>
               </div>
             </div>

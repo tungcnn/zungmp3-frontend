@@ -1,44 +1,44 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Song} from "../../interface/song";
-import {SearchService} from "../../service/search.service";
 import {SongServiceService} from "../../service/song/song-service.service";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
+import {TokenServiceService} from "../../service/token/token-service.service";
+import {PlaymusicService} from "../../service/playmusic.service";
+import {Singer} from "../../interface/singer";
+
 
 @Component({
   selector: 'app-search-music',
   templateUrl: './search-music.component.html',
   styleUrls: ['./search-music.component.css']
 })
-export class SearchMusicComponent implements OnInit,OnChanges {
+export class SearchMusicComponent implements OnInit, OnChanges {
 
-  songs : Song[] = [];
-  song : Song = {};
-  playLists : Playlist[] = [];
-  idSong : number = -1;
-  constructor( private search : SearchService , private songServiceService : SongServiceService , private playListService : PlayListService) {
+  songs: Song[] = [];
+  singers : Singer[] = [];
+  playlists : Playlist[] = [];
+  song: Song = {};
+  playLists: Playlist[] = [];
+  idSong: number = -1;
+
+  constructor(private songServiceService: SongServiceService,
+              private playListService: PlayListService
+    , private token: TokenServiceService
+    , private playMusic: PlaymusicService) {
   }
 
   ngOnInit() {
-    this.searchResult()
+
     this.getAllPlayList()
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.searchResult()
+
   }
 
-  searchResult(){
-    this.song.name = this.search.search();
-    this.songServiceService.findByName(this.song).subscribe(response => {
-      this.songs = response;
-    },() => {
-      this.songs = []
-    })
-  }
-
-  getAllPlayList(){
-    this.playListService.getAllPlayList().subscribe(response =>{
+  getAllPlayList() {
+    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response => {
       this.playLists = response;
     })
   }
@@ -49,7 +49,23 @@ export class SearchMusicComponent implements OnInit,OnChanges {
   }
 
   addSongToPlayList(id: number) {
-    this.playListService.addSongToPlayList(id,this.idSong).subscribe(()=>{
+    this.playListService.addSongToPlayList(id, this.idSong).subscribe(() => {
+    })
+  }
+
+  getSongByName(value) {
+    this.song.name = value
+    this.songServiceService.findByName(this.song).subscribe((response:any) => {
+      this.songs = response[0];
+      this.playlists = response[1];
+      this.singers = response[2];
+      console.log(response)
+    })
+  }
+
+  PlaySong(id: number) {
+    this.songServiceService.findById(id).subscribe(data => {
+        this.playMusic.playsong(data);
     })
   }
 }
