@@ -10,6 +10,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
+import {AlbumComponent} from './components/album/album.component';
+import {SingerComponent} from './components/singer/singer.component';
 import {ShowPlayListComponent} from "./components/show-play-list/show-play-list.component";
 
 const routes: Routes = [
@@ -58,6 +60,17 @@ const routes: Routes = [
     component: GenresComponent
   },
   {
+    path: 'playListSinger',
+    component: GenresComponent
+  },
+  {
+    path: 'singer',
+    component: SingerComponent
+  },
+  {
+    path: 'singerAlbum',
+    component: AlbumComponent
+  },
     path:'showPlayList',
     component: ShowPlayListComponent
   }

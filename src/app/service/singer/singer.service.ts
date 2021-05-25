@@ -7,7 +7,7 @@ import {Singer} from '../../interface/singer';
 @Injectable({
   providedIn: 'root'
 })
-export class SingerServiceService {
+export class SingerService {
 
   private apiSingerServiceUrl = environment.apiUrl;
 
@@ -19,7 +19,7 @@ export class SingerServiceService {
   }
 
   public findById(id: number): Observable<Singer> {
-    return this.http.get<Singer>(`${this.apiSingerServiceUrl}/singers/${id}`);
+    return this.http.get<Singer>(`${this.apiSingerServiceUrl}/singers/find/${id}`);
   }
 
   public addSinger(newSinger: Singer): Observable<Singer> {

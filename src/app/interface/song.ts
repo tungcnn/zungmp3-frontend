@@ -2,7 +2,7 @@ import {Singer} from './singer';
 import {Genre} from './genre';
 import {Theme} from './theme';
 import {Country} from './country';
-import {User} from "./user";
+import {User} from './user';
 
 export interface Song {
   id?: number;

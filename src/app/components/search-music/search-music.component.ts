@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Song} from "../../interface/song";
-import {SongServiceService} from "../../service/song/song-service.service";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {Playlist} from "../../interface/playlist";
 import {TokenServiceService} from "../../service/token/token-service.service";
@@ -8,7 +7,6 @@ import {PlaymusicService} from "../../service/playmusic.service";
 import {Singer} from "../../interface/singer";
 import {ShowPlayListService} from "../../service/show-play-list.service";
 import {ActivatedRoute, Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-search-music',
@@ -50,7 +48,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   getAllPlayList() {
     this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response => {
       this.playLists = response;
-    })
+    });
   }
 
 
@@ -60,7 +58,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   addSongToPlayList(id: number) {
     this.playListService.addSongToPlayList(id, this.idSong).subscribe(() => {
-    })
+    });
   }
 
   getSongByName(value) {
@@ -75,8 +73,8 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   PlaySong(id: number) {
     this.songServiceService.findById(id).subscribe(data => {
-        this.playMusic.playsong(data);
-    })
+      this.playMusic.playsong(data);
+    });
   }
 
   nextSearch(id) {

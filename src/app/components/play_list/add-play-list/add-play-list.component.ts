@@ -14,27 +14,27 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./add-play-list.component.css']
 })
 export class AddPlayListComponent implements OnInit {
-
   playListProfile : Playlist = {}
   playList : Playlist = {};
   PlayLists: Playlist[] = [];
-  songs : Song[] = []
-  song : Song = {}
+  songs: Song[] = [];
+  song: Song = {};
 
-  constructor(private playListService: PlayListService , private songService : SongServiceService ,
-              private  token : TokenServiceService , private playMusic : PlaymusicService) { }
+  constructor(private playListService: PlayListService, private songService: SongService,
+              private token: TokenServiceService, private playMusic: PlaymusicService) {
+  }
 
   ngOnInit() {
-    if (this.token.getUser().id==null){
+    if (this.token.getUser().id == null) {
 
-    }else {this.getAllPlayList();
+    } else {
+      this.getAllPlayList();
     }
 
   }
 
 
   createPlayList(CreateForm: NgForm) {
-
     this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
@@ -43,36 +43,36 @@ export class AddPlayListComponent implements OnInit {
   }
 
 
-  getAllPlayList(){
-    let id : number = this.token.getUser().id
-    this.playListService.getAllPlayListByUserId(id).subscribe(data=>{
+  getAllPlayList() {
+    let id: number = this.token.getUser().id;
+    this.playListService.getAllPlayListByUserId(id).subscribe(data => {
       this.PlayLists = data;
-    })
+    });
   }
 
-  editPlayList(form , editForm: NgForm) {
-      this.playListService.editPlayList(form.playListProfile.id , editForm.value).subscribe(playList =>{
-       this.getAllPlayList()
-      }, ()=>{
-        alert("Tên không hợp lệ")
-      })
+  editPlayList(form, editForm: NgForm) {
+    this.playListService.editPlayList(form.playListProfile.id, editForm.value).subscribe(playList => {
+      this.getAllPlayList();
+    }, () => {
+      alert('Tên không hợp lệ');
+    });
   }
 
   updateFrofilePlayList(id) {
-   this.playListService.getPlayListById(id).subscribe(playlist =>{
-     this.playListProfile = playlist
-   })
+    this.playListService.getPlayListById(id).subscribe(playlist => {
+      this.playListProfile = playlist;
+    });
   }
 
   DeletePlayList(form) {
-    this.playListService.deletePlayList(form.playListProfile.id).subscribe(()=>{
+    this.playListService.deletePlayList(form.playListProfile.id).subscribe(() => {
       this.getAllPlayList();
-    })
+    });
   }
 
   PlayPlayList(id: number) {
-    this.playListService.getPlayListById(id).subscribe(data =>{
-        this.playMusic.playPlayList(data.songs);
-    })
+    this.playListService.getPlayListById(id).subscribe(data => {
+      this.playMusic.playPlayList(data.songs);
+    });
   }
 }

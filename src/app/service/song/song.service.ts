@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {Song} from '../../interface/song';
 
 @Injectable({providedIn: 'root'})
-export class SongServiceService {
+export class SongService {
   private apiSongServiceUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
@@ -20,7 +20,7 @@ export class SongServiceService {
   }
 
   public findById(id: number): Observable<Song> {
-    return this.http.get<Song>(`${this.apiSongServiceUrl}/songs/${id}`);
+    return this.http.get<Song>(`${this.apiSongServiceUrl}/songs/find/${id}`);
   }
 
   public addSong(newSong: Song): Observable<Song> {
@@ -38,10 +38,16 @@ export class SongServiceService {
   public findByName(name: Song): Observable<Song[]> {
     return this.http.post<Song[]>(`${this.apiSongServiceUrl}/songs/search`, name);
   }
+
   public getTop15(): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/top15`);
   }
+
   public getLatestSong(): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/latest`);
+  }
+
+  public getListSongId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiSongServiceUrl}/songs/list/${id}`);
   }
 }

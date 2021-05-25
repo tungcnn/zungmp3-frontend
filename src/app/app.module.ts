@@ -27,6 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
+import { SingerComponent } from './components/singer/singer.component';
+import { AlbumComponent } from './components/album/album.component';
 import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 
 @NgModule({
@@ -47,6 +49,8 @@ import { ShowPlayListComponent } from './components/show-play-list/show-play-lis
     UserUpdateComponent,
     UserDeleteComponent,
     GenresComponent,
+    SingerComponent,
+    AlbumComponent,
     ShowPlayListComponent,
 
   ],
