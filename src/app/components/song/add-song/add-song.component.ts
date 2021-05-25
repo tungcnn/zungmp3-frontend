@@ -51,7 +51,7 @@ export class AddSongComponent implements OnInit {
 
   public countryHtml: string;
 
-  constructor(private songService: SongServiceService,
+  constructor(private songService: SongService,
               private storage: AngularFireStorage,
               private playService: PlaymusicService,
               private token: TokenServiceService,

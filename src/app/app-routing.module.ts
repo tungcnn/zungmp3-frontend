@@ -71,6 +71,7 @@ const routes: Routes = [
     path: 'singerAlbum',
     component: AlbumComponent
   },
+  {
     path:'showPlayList',
     component: ShowPlayListComponent
   }

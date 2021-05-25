@@ -7,6 +7,7 @@ import {PlaymusicService} from "../../service/playmusic.service";
 import {Singer} from "../../interface/singer";
 import {ShowPlayListService} from "../../service/show-play-list.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SongService} from "../../service/song/song.service";
 
 @Component({
   selector: 'app-search-music',
@@ -22,7 +23,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   playLists: Playlist[] = [];
   idSong: number = -1;
 
-  constructor(private songServiceService: SongServiceService,
+  constructor(private songServiceService: SongService,
               private playListService: PlayListService,
     private router: Router,
     private activatedRoute: ActivatedRoute,

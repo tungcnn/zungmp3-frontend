@@ -3,10 +3,10 @@ import {PlayListService} from "../../../service/playlist/play-list.service";
 import {Playlist} from "../../../interface/playlist";
 import {NgForm} from "@angular/forms";
 import {Song} from "../../../interface/song";
-import {SongServiceService} from "../../../service/song/song-service.service";
 import {TokenServiceService} from "../../../service/token/token-service.service";
 import {PlaymusicService} from "../../../service/playmusic.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {SongService} from "../../../service/song/song.service";
 
 @Component({
   selector: 'app-add-play-list',
