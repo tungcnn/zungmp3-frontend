@@ -9,6 +9,7 @@ const API_URL = `${environment.apiUrl}`
   providedIn: 'root'
 })
 export class UserServiceService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -24,21 +25,25 @@ export class UserServiceService {
     return this.http.get(`${API_URL}/api/admin`, {responseType: 'text'});
   }
 
+
   // getAllUsers(): Observable<User[]> {
   //   return this.httpClient.get<User[]>(`${API_URL}/users`);
   // }
-  // getUserById(id:number): Observable<User> {
-  //   return this.http.get<User>(`${API_URL}/api/${id}`);
-  // }
+  getUserById(id:number): Observable<User> {
+    return this.http.get<User>(`${API_URL}/api/${id}`);
+  }
   // createNewUser(user: User): Observable<User> {
   //   return this.http.post<User>(`${API_URL}/api/registration`, user);
   // }
-  // updateUserInfo(id: number, user: User): Observable<User> {
-  //   return this.http.put<User>(`${API_URL}/api/updateUser/${id}`, user);
-  // }
-  // deleteUser(id: number): Observable<User> {
-  //   return this.http.delete<User>(`${API_URL}/api/deleteUser/${id}`);
-  // }
+  updateUser(id: number,user: User): Observable<User> {
+    return this.http.put<User>(`${API_URL}/api/updateUser/`, user);
+  }
+  deleteUserById(id: number): Observable<User> {
+    return this.http.delete<User>(`${API_URL}/api/deleteUser/${id}`);
+  }
+  deleteUser(user: User): Observable<User> {
+    return this.http.delete<User>(`${API_URL}/api/deleteUser/`);
+  }
   // login(user: User): Observable<User>{
   //   return this.http.post<User>(`${API_URL}/api/login`,user);
   // }
