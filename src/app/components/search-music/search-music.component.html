@@ -150,13 +150,16 @@
   <div class="album_inner_list">
     <div class="album_list_wrapper">
       <ul class="album_list_name">
-        <li>PlayList Name</li>
+        <li>Play</li>
+        <li class="text-center">PlayList Name</li>
         <li class="text-center">views</li>
         <li class="text-center">Like</li>
         <li class="text-center">more</li>
       </ul>
-      <ul *ngFor="let playlist of playlists">
-        <li><a><span class="play_no">{{playlist.name}}</span><span class="play_hover"></span></a></li>
+
+      <ul *ngFor="let playlist of playlists, let i = index">
+        <li><a><span class="play_no">{{i+1}}</span><span class="play_hover"></span></a></li>
+        <li class="text-center"><a href="javascript:;" (click)="nextSearch(playlist.id)">{{playlist.name}}</a></li>
         <li class="text-center"><a href="#">{{playlist.views}}</a></li>
         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
         <li class="text-center"><span class="ms_icon1 ms_active_icon"></span></li>
@@ -200,7 +203,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
         <span aria-hidden="true">&times;</span>
       </button>
-      <div data-dismiss="modal">
+      <div data-dismiss="modal" *ngIf="token.getUser()!=null">
         <a href="javascript:;"><p style="background-color: #2ec8e6 ;
          text-align: center ; color: red ; margin-bottom: 10px" *ngFor="let PlayList of playLists" (click)="addSongToPlayList(PlayList.id)">PlayList : {{PlayList.name}}</p></a>
       </div>

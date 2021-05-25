@@ -23,6 +23,7 @@ import {UserComponent} from './components/user/user.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {GenresComponent} from './components/genres/genres.component';
+import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {GenresComponent} from './components/genres/genres.component';
     AdminComponent,
     ProfileComponent,
     GenresComponent,
+    ShowPlayListComponent,
 
   ],
   imports: [
