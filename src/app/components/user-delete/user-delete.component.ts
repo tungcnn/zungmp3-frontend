@@ -5,11 +5,11 @@ import { TokenServiceService } from 'src/app/service/token/token-service.service
 import { UserServiceService } from 'src/app/service/user/user-service.service';
 
 @Component({
-  selector: 'app-user-update',
-  templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.css']
+  selector: 'app-user-delete',
+  templateUrl: './user-delete.component.html',
+  styleUrls: ['./user-delete.component.css']
 })
-export class UserUpdateComponent implements OnInit {
+export class UserDeleteComponent implements OnInit {
 
   user: User={};
   constructor(private tokenService:TokenServiceService,
@@ -17,10 +17,9 @@ export class UserUpdateComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // updateUser(user: NgForm) {
-  //   this.userService.updateUser(user.value).subscribe(()=>{
-  //     console.log(user.value);
-  //   })
-  // }
+  deleteUser(user: NgForm) {
+    this.userService.deleteUser(user.value).subscribe(()=>{
+      console.log(user.value);
+    })
+  }
 }

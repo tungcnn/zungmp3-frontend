@@ -1,3 +1,4 @@
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,7 +12,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
@@ -22,6 +23,7 @@ import { SearchMusicComponent } from './components/search-music/search-music.com
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     UserComponent,
     AdminComponent,
     ProfileComponent,
-    
+    UserUpdateComponent,
+    UserDeleteComponent,
   ],
     imports: [
         BrowserModule,
@@ -48,6 +51,7 @@ import { ProfileComponent } from './components/profile/profile.component';
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         FormsModule,
+        ReactiveFormsModule,
         CommonModule
     ],
   providers: [],

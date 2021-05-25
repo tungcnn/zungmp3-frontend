@@ -1,0 +1,5 @@
+<form #f="ngForm" style="position: absolute;left: 40%;top: 62%;height: 300px;width: 200px;">
+    <span name="username" style="color: #3F51B5">Welcome: <strong style="color: #9C27B0">Are you are to delete {{user.username}}</strong></span>
+    <a class="btn btn_ms" >Delete</a>
+    <button (click)="deleteUser(f)">Delete</button>
+</form>
