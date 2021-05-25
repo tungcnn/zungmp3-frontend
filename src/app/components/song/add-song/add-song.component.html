@@ -1,19 +1,59 @@
 <app-header></app-header>
-<!----Upload and Share Wrapper Start---->
+<!----Upload Start---->
 <div class="ms_upload_wrapper marger_top60">
-  <div class="ms_upload_box">
-    <h2>Upload & Share Your Music With The World</h2>
-    <img src="assets/images/svg/upload.svg" alt="">
-    <div class="ms_upload_btn">
-      <input type="file" (change)="onFileSelected($event)"/>
+  <form #songForm="ngForm">
+    <div class=" marger_top60">
+      <div class="ms_upload_box">
+        <h2>Upload & Share Your Music With The World</h2>
+        <img src="assets/images/svg/upload.svg" alt="">
+        <div class="ms_heading">
+          <h1>Track Information</h1>
+        </div>
+        <div class="ms_pro_form">
+          <div class="form-group">
+            <label>Track Name *</label>
+            <input type="text" placeholder="Song title" class="form-control" [(ngModel)]="song.name" name="name">
+          </div>
+          <div class="form-group">
+            <label>Genre</label>
+            <select class="form-control" [(ngModel)]="song.genre" name="genre">
+              <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Theme</label>
+            <select class="form-control" [(ngModel)]="song.theme" name="theme">
+              <option *ngFor="let theme of themes" [ngValue]="theme">{{theme.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select class="form-control" [(ngModel)]="song.country" name="country">
+              <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+            </select>
+          </div>
+          <div class="form-group" >
+            <label>Lyrics</label>
+            <textarea class="form-control" [rows]="5" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Select file *</label>
+            <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
+          </div>
+          <div class="pro-form-btn text-center marger_top15">
+            <div class="ms_upload_btn">
+              <a href="javascript:;" class="ms_btn" (click)="createSong(songForm)">Upload Now</a>
+              <a href="#" class="ms_btn">cancle</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
 </div>
 
-
-<!----Album Single Section Start---->
+<!----User Song List---->
 <div class="ms_content_wrapper padder_top80" id="main-container">
-  <!----Free Download Css Start---->
   <div class="ms_free_download">
     <div class="ms_heading">
       <h1>List</h1>
@@ -25,7 +65,6 @@
             <th>#</th>
             <th>Name</th>
             <th>Artists</th>
-            <th>Album</th>
             <th>Genre</th>
             <th>Country</th>
             <th>Theme</th>
@@ -33,35 +72,30 @@
             <th class="text-center">Edit</th>
             <th class="text-center">remove</th>
           </tr>
-        <tr *ngFor="let s of songs; index as idx">
-          <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span class="play_hover" ></span></a></td>
-          <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
-          <ng-container *ngIf="s.singers != null; else elseBlock">
+          <tr *ngFor="let s of songs; index as idx">
+            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span
+              class="play_hover"></span></a></td>
+            <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
             <td><span *ngFor="let singer of s.singers">{{singer.name}} </span></td>
-          </ng-container>
-          <ng-template #elseBlock>
-            none
-          </ng-template>
-          <td><a>{{s.album.name}}</a></td>
-          <td><a>{{s.genre.name}}</a></td>
-          <td><a>{{s.country.name}}</a></td>
-          <td><a>{{s.theme.name}}</a></td>
-          <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
-          <td class="text-center">
-            <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">
+            <td><a>{{s.genre.name}}</a></td>
+            <td><a>{{s.country.name}}</a></td>
+            <td><a>{{s.theme.name}}</a></td>
+            <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
+            <td class="text-center">
+              <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">
             <span class="ms_close">
                 <img src="assets/images/svg/more.svg" alt="">
             </span>
-            </a>
-          </td>
-          <td class="text-center">
-            <a href="#" data-toggle="modal" (click)="onOpenModal(s,'delete')">
+              </a>
+            </td>
+            <td class="text-center">
+              <a href="#" data-toggle="modal" (click)="deleteConfirm(s)">
             <span class="ms_close">
             <img src="assets/images/svg/close.svg" alt="">
             </span>
-            </a>
-          </td>
-        </tr>
+              </a>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -70,124 +104,6 @@
     </div>
   </div>
 </div>
-
-
-<!----Footer Start---->
-<div class="ms_footer_wrapper">
-  <div class="ms_footer_logo">
-    <a href=""><img src="assets/images/open_logo.png" alt=""></a>
-  </div>
-  <div class="ms_footer_inner">
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="footer_box">
-          <h1 class="footer_title">music template</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat duis aute irure dolor.</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer_box footer_app">
-          <h1 class="footer_title">Download our App</h1>
-          <p>Go Mobile with our app.<br> Listen to your favourite songs at just one click. Download Now !</p>
-          <a href="#" class="foo_app_btn"><img src="#" alt="" class="img-fluid"></a>
-          <a href="#" class="foo_app_btn"><img src="#" alt="" class="img-fluid"></a>
-          <a href="#" class="foo_app_btn"><img src="#" alt="" class="img-fluid"></a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer_box footer_subscribe">
-          <h1 class="footer_title">subscribe</h1>
-          <p>Subscribe to our newsletter and get latest updates and offers.</p>
-          <form>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Enter Your Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Enter Your Email">
-            </div>
-            <div class="form-group">
-              <a href="#" class="ms_btn">sign me up</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="footer_box footer_contacts">
-          <h1 class="footer_title">contact us</h1>
-          <ul class="foo_con_info">
-            <li>
-              <div class="foo_con_icon">
-                <img src="#" alt="">
-              </div>
-              <div class="foo_con_data">
-                <span class="con-title">Call us :</span>
-                <span>(+1) 202-555-0176, (+1) 2025-5501</span>
-              </div>
-            </li>
-            <li>
-              <div class="foo_con_icon">
-                <img src="#" alt="">
-              </div>
-              <div class="foo_con_data">
-                <span class="con-title">email us :</span>
-                <span><a href="#">demo@mail.com </a>, <a href="#">dummy@mail.com</a></span>
-              </div>
-            </li>
-            <li>
-              <div class="foo_con_icon">
-                <img src="#" alt="">
-              </div>
-              <div class="foo_con_data">
-                <span class="con-title">walk in :</span>
-                <span>598 Old House Drive, London</span>
-              </div>
-            </li>
-          </ul>
-          <div class="foo_sharing">
-            <div class="share_title">follow us :</div>
-            <ul>
-              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!----Copyright---->
-  <div class="col-lg-12">
-    <div class="ms_copyright">
-      <div class="footer_border"></div>
-      <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
-    </div>
-  </div>
-</div>
-
-
-<!-- Delete Modal -->
-<div class="modal" tabindex="-1" role="dialog" id="deletesong" style="color: black ">
-  <div class="modal-dialog" role="document" style="width: 500px">
-    <div class="modal-content">
-      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Delete Your Song</p>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="form-group">
-        <h1 style="font-size: 20px; margin-left: 12px; color: aliceblue">Do You Want To Delete Your
-          " {{removeSong?.name}} "</h1>
-      </div>
-      <div class="ms_upload_btn" style="height: 30px">
-        <a class="ms_btn" style="position: absolute ; left: 135px ; bottom: 10px" (click)="deleteSongz(removeSong?.id)"
-           data-dismiss="modal">Delete</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- Modal Edit -->
 <div class="ms_register_popup">

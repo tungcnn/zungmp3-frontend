@@ -22,7 +22,8 @@ import { SearchMusicComponent } from './components/search-music/search-music.com
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     UserComponent,
     AdminComponent,
     ProfileComponent,
-    
+
   ],
     imports: [
         BrowserModule,
@@ -48,7 +49,9 @@ import { ProfileComponent } from './components/profile/profile.component';
         AngularFireStorageModule,
         AngularFireDatabaseModule,
         FormsModule,
-        CommonModule
+        CommonModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

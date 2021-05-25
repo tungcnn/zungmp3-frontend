@@ -38,7 +38,7 @@ export class AddPlayListComponent implements OnInit {
     this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
-      Swal.fire("Good job!", "You clicked the button!", "success");
+      Swal.fire("Invalid characters!", "Please only use letters and/or numbers", "warning");
     })
   }
 
