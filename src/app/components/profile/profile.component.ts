@@ -8,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser: any;
+  user: any;
   constructor(private token: TokenServiceService) { }
 
   ngOnInit() {
-    this.currentUser = this.token.getUser();
+    this.user = this.token.getUser();
+  }
+
+  showProfile(){
+    let showProfile=this.token.getUser();
   }
 }
