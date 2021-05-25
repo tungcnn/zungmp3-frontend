@@ -10,6 +10,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
+import {ShowPlayListComponent} from "./components/show-play-list/show-play-list.component";
 
 const routes: Routes = [
   {
@@ -56,10 +57,14 @@ const routes: Routes = [
     path: 'genres',
     component: GenresComponent
   },
+  {
+    path:'showPlayList',
+    component: ShowPlayListComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
