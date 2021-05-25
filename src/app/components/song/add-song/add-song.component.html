@@ -40,6 +40,10 @@
             <label>Select file *</label>
             <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
           </div>
+          <div class="form-group">
+            <label>Select avatar *</label>
+            <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+          </div>
           <div class="pro-form-btn text-center marger_top15">
             <div class="ms_upload_btn">
               <a href="javascript:;" class="ms_btn" (click)="createSong(songForm)">Upload Now</a>
@@ -76,13 +80,17 @@
             <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span
               class="play_hover"></span></a></td>
             <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
-            <td><span *ngFor="let singer of s.singers">{{singer.name}} </span></td>
+            <td>
+              <ng-container *ngIf="s.singers !== null">
+                <span *ngFor="let singer of s.singers">{{singer.name}}</span>
+              </ng-container>
+            </td>
             <td><a>{{s.genre.name}}</a></td>
             <td><a>{{s.country.name}}</a></td>
             <td><a>{{s.theme.name}}</a></td>
             <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="onOpenModal(s,'edit')">
+              <a href="#" data-toggle="modal" (click)="showUpdateForm(s.id)">
             <span class="ms_close">
                 <img src="assets/images/svg/more.svg" alt="">
             </span>
