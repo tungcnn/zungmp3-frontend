@@ -34,6 +34,10 @@ const routes: Routes = [
     component: AddSongComponent
   },
   {
+    path: 'update-song/:id',
+    component: UpdateSongComponent
+  },
+  {
     path: 'search',
     component: SearchMusicComponent
   },

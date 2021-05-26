@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtResponse } from 'src/app/interface/jwtResponse';
 import { environment } from '../../../environments/environment';
 
 const AUTH_API = `${environment.apiUrl}` + '/api/';
@@ -15,8 +16,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-login(credentials): Observable<any> {
-  return this.http.post(AUTH_API+'login',credentials)
+login(credentials): Observable<JwtResponse> {
+  return this.http.post<JwtResponse>(AUTH_API+'login',credentials)
 }
 registration(user): Observable<any> {
   return this.http.post(AUTH_API+'registration',{
