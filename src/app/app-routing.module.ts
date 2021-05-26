@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent
   },
+  {
+    path: 'logout',
+    component: HeaderComponent
+  },
   // {
   //   path:'updateUser',
   //   component: UserUpdateComponent

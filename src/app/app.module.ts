@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -54,7 +55,7 @@ import {GenresComponent} from './components/genres/genres.component';
         AngularFireDatabaseModule,
         FormsModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

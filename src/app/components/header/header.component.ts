@@ -9,6 +9,7 @@ import { TokenServiceService } from 'src/app/service/token/token-service.service
 import { UserServiceService } from 'src/app/service/user/user-service.service';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -121,8 +122,9 @@ export class HeaderComponent implements OnInit {
     this.user.email=checkUser.email;
   }
 
-  logout(){
-    
+  logout(user:User){
+    this.userService.logout(user);
+    this.router.navigate(['login']);
   }
 
   showProfile(){

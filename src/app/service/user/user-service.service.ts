@@ -4,6 +4,10 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
+// interface logoutStatus{
+//   success: boolean
+// }
 const API_URL = `${environment.apiUrl}`
 @Injectable({
   providedIn: 'root'
@@ -13,6 +17,7 @@ export class UserServiceService {
 
   constructor(private http: HttpClient) { }
 
+ 
   getPublicContent(): Observable<any> {
     return this.http.get(`${API_URL}/api/all`, {responseType:'text'});
   }
@@ -47,5 +52,7 @@ export class UserServiceService {
   // login(user: User): Observable<User>{
   //   return this.http.post<User>(`${API_URL}/api/login`,user);
   // }
+  logout(user: User):Observable<User>{
+    return this.http.delete<User>(`${API_URL}/api/logout/`);
+  }
 }
-
