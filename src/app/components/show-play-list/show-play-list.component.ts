@@ -4,8 +4,8 @@ import {Playlist} from "../../interface/playlist";
 import {PlayListService} from "../../service/playlist/play-list.service";
 import {ActivatedRoute} from "@angular/router";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import {SongServiceService} from "../../service/song/song-service.service";
 import {PlaymusicService} from "../../service/playmusic.service";
+import {SongService} from "../../service/song/song.service";
 
 @Component({
   selector: 'app-show-play-list',
@@ -16,7 +16,7 @@ export class ShowPlayListComponent implements OnInit {
   playList: Playlist = null;
 
   constructor(private showPlayList: ShowPlayListService, private playListService: PlayListService,
-              private activatedRoute: ActivatedRoute,private songService : SongServiceService , private playMusic:PlaymusicService) {
+              private activatedRoute: ActivatedRoute,private songService : SongService , private playMusic:PlaymusicService) {
   }
 
   ngOnInit() {
