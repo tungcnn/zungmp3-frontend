@@ -71,7 +71,6 @@ export class AddSongComponent implements OnInit {
   }
 
   public async createSong(song: NgForm) {
-    song.reset();
     this.url = await this.uploadSong();
     this.coverUrl = await this.uploadImage();
     this.addSong(song);
@@ -122,6 +121,7 @@ export class AddSongComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      song.reset();
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -129,6 +129,7 @@ export class AddSongComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      song.reset();
     });
   }
 }
