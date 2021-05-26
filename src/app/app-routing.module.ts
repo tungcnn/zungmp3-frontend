@@ -7,8 +7,6 @@ import {SearchMusicComponent} from "./components/search-music/search-music.compo
 import { HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
-import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 import {AlbumComponent} from './components/album/album.component';
 import {SingerComponent} from './components/singer/singer.component';
@@ -56,14 +54,7 @@ const routes: Routes = [
     path: 'logout',
     component: HeaderComponent
   },
-  // {
-  //   path:'updateUser',
-  //   component: UserUpdateComponent
-  // },
-  {
-    path:'deleteUser',
-    component: UserDeleteComponent
-  },
+
   {
     path: 'genres',
     component: GenresComponent
