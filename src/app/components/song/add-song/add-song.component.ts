@@ -57,10 +57,10 @@ export class AddSongComponent implements OnInit {
   ngOnInit() {
     this.themeService.getAllTheme().subscribe(themes => {
       this.themes = themes;
-    })
+    });
     this.genreService.getAllGenre().subscribe(genres => {
       this.genres = genres;
-    })
+    });
     this.countryService.getAllCountry().subscribe(countries => {
       this.countries = countries;
     })
@@ -120,7 +120,7 @@ export class AddSongComponent implements OnInit {
     song.value.url = this.url;
     song.value.user = {
       id: this.currentUser.id
-    }
+    };
     song.value.coverUrl = this.coverUrl;
     this.songService.addSong(song.value).subscribe(() => {
       Swal.fire({
@@ -128,7 +128,7 @@ export class AddSongComponent implements OnInit {
         title: 'Your music has been saved',
         showConfirmButton: false,
         timer: 1500
-      })
+      });
       song.reset();
     }, error => {
       Swal.fire({
@@ -136,7 +136,7 @@ export class AddSongComponent implements OnInit {
         title: 'Your music has not been saved',
         showConfirmButton: false,
         timer: 1500
-      })
+      });
       song.reset();
     });
   }
