@@ -14,6 +14,7 @@ import {AlbumComponent} from './components/album/album.component';
 import {SingerComponent} from './components/singer/singer.component';
 import {ShowPlayListComponent} from "./components/show-play-list/show-play-list.component";
 import {SongListComponent} from "./components/song/song-list/song-list.component";
+import {UpdateSongComponent} from "./components/song/update-song/update-song.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'uploadSong',
     component: AddSongComponent
+  },
+  {
+    path: 'update-song/:id',
+    component: UpdateSongComponent
   },
   {
     path: 'search',

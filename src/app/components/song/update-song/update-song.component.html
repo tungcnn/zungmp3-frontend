@@ -11,6 +11,10 @@
           <h1>Track Information</h1>
         </div>
         <div class="ms_pro_form">
+          <input [(ngModel)]="song.id" type="hidden" name="id">
+          <input [(ngModel)]="song.user" type="hidden" name="user">
+          <input [(ngModel)]="song.url" type="hidden" name="url">
+          <input [(ngModel)]="song.coverUrl" type="hidden" name="coverUrl">
           <div class="form-group">
             <label>Track Name *</label>
             <input type="text" placeholder="Song title" class="form-control" [(ngModel)]="song.name" name="name">
@@ -18,24 +22,27 @@
           <div class="form-group">
             <label>Genre</label>
             <select class="form-control" [(ngModel)]="song.genre" name="genre">
+              <option selected [ngValue]="song.genre">{{song.genre.name}}</option>
               <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Theme</label>
             <select class="form-control" [(ngModel)]="song.theme" name="theme">
+              <option selected [ngValue]="song.theme">{{song.theme.name}}</option>
               <option *ngFor="let theme of themes" [ngValue]="theme">{{theme.name}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Country</label>
             <select class="form-control" [(ngModel)]="song.country" name="country">
+              <option selected [ngValue]="song.country">{{song.country.name}}</option>
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Singers</label>
-            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="singers">
+            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" name="singers">
               <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
             </ng-select>
           </div>
@@ -43,21 +50,18 @@
             <a href="javascript:;" class="ms_btn" (click)="showAddSingerForm()">Add another singer</a>
           </div>
           <div class="form-group">
-            <label>Select your song*</label>
-            <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
-          </div>
-          <div class="form-group">
-            <label>Select song cover</label>
+            <label>Select new song cover</label>
             <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+            <img [src]="song.coverUrl" style="width: 100px; height: 100px">
           </div>
           <div class="form-group">
-          <label>Lyrics</label>
-          <textarea class="form-control" rows="5" cols="10" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
+            <label>Lyrics</label>
+            <textarea class="form-control" rows="5" cols="10" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
           </div>
           <div class="pro-form-btn text-center marger_top15">
             <div class="ms_upload_btn">
-              <a href="javascript:;" class="ms_btn" (click)="createSong(songForm)">Upload Now</a>
-              <a href="javascript:;" [routerLink]="['/song-list']" class="ms_btn">Back</a>
+              <a href="javascript:;" class="ms_btn" (click)="updateConfirm(songForm.value)">Update this song</a>
+              <a href="javascript:;" [routerLink]="['/song-list']" class="ms_btn">Cancel. Back to list</a>
             </div>
           </div>
         </div>
