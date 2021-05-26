@@ -42,7 +42,8 @@
           </div>
           <div class="form-group">
             <label>Singers</label>
-            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" name="singers">
+            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="singers">
+              <ng-option *ngFor="let singer of song.singers" [value]="singer">{{singer.name}}</ng-option>
               <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
             </ng-select>
           </div>
