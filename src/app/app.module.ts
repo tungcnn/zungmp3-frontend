@@ -1,8 +1,6 @@
 import { Observable } from 'rxjs';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MusicplayerComponent } from './components/musicplayer/musicplayer.component';
@@ -26,7 +24,6 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 import { SingerComponent } from './components/singer/singer.component';
 import { AlbumComponent } from './components/album/album.component';
@@ -50,8 +47,6 @@ import { UpdateSongComponent } from './components/song/update-song/update-song.c
     UserComponent,
     AdminComponent,
     ProfileComponent,
-    UserUpdateComponent,
-    UserDeleteComponent,
     GenresComponent,
     SingerComponent,
     AlbumComponent,
