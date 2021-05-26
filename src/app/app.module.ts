@@ -32,6 +32,7 @@ import { SingerComponent } from './components/singer/singer.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 import { SongListComponent } from './components/song/song-list/song-list.component';
+import { SongDetailComponent } from './components/song/song-detail/song-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
     AlbumComponent,
     ShowPlayListComponent,
     SongListComponent,
+    SongDetailComponent,
 
   ],
     imports: [

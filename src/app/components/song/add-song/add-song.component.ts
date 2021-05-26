@@ -4,15 +4,15 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
-import {PlaymusicService} from "../../../service/playmusic.service";
-import {TokenServiceService} from "../../../service/token/token-service.service";
-import {ThemeService} from "../../../service/theme.service";
-import {GenreService} from "../../../service/genre.service";
-import {CountryService} from "../../../service/country.service";
-import {Genre} from "../../../interface/genre";
-import {Theme} from "../../../interface/theme";
-import {Country} from "../../../interface/country";
-import {NgForm} from "@angular/forms";
+import {PlaymusicService} from '../../../service/playmusic.service';
+import {TokenServiceService} from '../../../service/token/token-service.service';
+import {ThemeService} from '../../../service/theme.service';
+import {GenreService} from '../../../service/genre.service';
+import {CountryService} from '../../../service/country.service';
+import {Genre} from '../../../interface/genre';
+import {Theme} from '../../../interface/theme';
+import {Country} from '../../../interface/country';
+import {NgForm} from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -52,13 +52,13 @@ export class AddSongComponent implements OnInit {
   ngOnInit() {
     this.themeService.getAllTheme().subscribe(themes => {
       this.themes = themes;
-    })
+    });
     this.genreService.getAllGenre().subscribe(genres => {
       this.genres = genres;
-    })
+    });
     this.countryService.getAllCountry().subscribe(countries => {
       this.countries = countries;
-    })
+    });
     this.currentUser = this.token.getUser();
   }
 
@@ -112,7 +112,7 @@ export class AddSongComponent implements OnInit {
     song.value.url = this.url;
     song.value.user = {
       id: this.currentUser.id
-    }
+    };
     song.value.coverUrl = this.coverUrl;
     this.songService.addSong(song.value).subscribe(() => {
       Swal.fire({
@@ -120,7 +120,7 @@ export class AddSongComponent implements OnInit {
         title: 'Your music has been saved',
         showConfirmButton: false,
         timer: 1500
-      })
+      });
       song.reset();
     }, error => {
       Swal.fire({
@@ -128,7 +128,7 @@ export class AddSongComponent implements OnInit {
         title: 'Your music has not been saved',
         showConfirmButton: false,
         timer: 1500
-      })
+      });
       song.reset();
     });
   }

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {SongService} from "../../../service/song/song.service";
-import {PlaymusicService} from "../../../service/playmusic.service";
-import {ThemeService} from "../../../service/theme.service";
-import {GenreService} from "../../../service/genre.service";
-import {CountryService} from "../../../service/country.service";
-import {Theme} from "../../../interface/theme";
-import {Genre} from "../../../interface/genre";
-import {Country} from "../../../interface/country";
-import {Song} from "../../../interface/song";
-import {HttpErrorResponse} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {SongService} from '../../../service/song/song.service';
+import {PlaymusicService} from '../../../service/playmusic.service';
+import {ThemeService} from '../../../service/theme.service';
+import {GenreService} from '../../../service/genre.service';
+import {CountryService} from '../../../service/country.service';
+import {Theme} from '../../../interface/theme';
+import {Genre} from '../../../interface/genre';
+import {Country} from '../../../interface/country';
+import {Song} from '../../../interface/song';
+import {HttpErrorResponse} from '@angular/common/http';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import {TokenServiceService} from "../../../service/token/token-service.service";
+import {TokenServiceService} from '../../../service/token/token-service.service';
 
 @Component({
   selector: 'app-song-list',
@@ -33,27 +33,28 @@ export class SongListComponent implements OnInit {
               private themeService: ThemeService,
               private genreService: GenreService,
               private countryService: CountryService,
-              private token: TokenServiceService) { }
+              private token: TokenServiceService) {
+  }
 
   ngOnInit() {
     this.themeService.getAllTheme().subscribe(themes => {
       this.themes = themes;
       for (const theme of themes) {
-        this.themeHtml += `<option value="${theme.id}">${theme.name}</option>`
+        this.themeHtml += `<option value="${theme.id}">${theme.name}</option>`;
       }
-    })
+    });
     this.genreService.getAllGenre().subscribe(genres => {
       this.genres = genres;
       for (const genre of genres) {
-        this.genreHtml += `<option value="${genre.id}">${genre.name}</option>`
+        this.genreHtml += `<option value="${genre.id}">${genre.name}</option>`;
       }
-    })
+    });
     this.countryService.getAllCountry().subscribe(countries => {
       this.countries = countries;
       for (const country of countries) {
-        this.countryHtml += `<option value="${country.id}">${country.name}</option>`
+        this.countryHtml += `<option value="${country.id}">${country.name}</option>`;
       }
-    })
+    });
     this.currentUser = this.token.getUser();
     if (this.currentUser == null) {
 
@@ -61,11 +62,13 @@ export class SongListComponent implements OnInit {
       this.getAllSong(this.currentUser.id);
     }
   }
+
   playmusic(id: number) {
     this.songService.findById(id).subscribe(song => {
       this.playService.playsong(song);
     });
   }
+
   public getAllSong(id: number): void {
     this.songService.getAllSongByUserId(id).subscribe(
       (response: Song[]) => {
@@ -116,19 +119,19 @@ export class SongListComponent implements OnInit {
           'Deleted!',
           'Your music file has been deleted.',
           'success'
-        )
+        );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
           'Your music file is safe :)',
           'error'
-        )
+        );
       }
-    })
+    });
   }
 
   public async showUpdateForm(id: number) {
-    let updateSong: Song = {}
+    let updateSong: Song = {};
     this.songService.findById(id).subscribe(song => {
       updateSong = song;
       Swal.fire({
@@ -171,45 +174,45 @@ export class SongListComponent implements OnInit {
         preConfirm: () => {
           return [
             // @ts-ignore
-            document.getElementById("name").value,
+            document.getElementById('name').value,
             // @ts-ignore
-            document.getElementById("genre").value,
+            document.getElementById('genre').value,
             // @ts-ignore
-            document.getElementById("theme").value,
+            document.getElementById('theme').value,
             // @ts-ignore
-            document.getElementById("country").value,
+            document.getElementById('country').value,
             // @ts-ignore
-            document.getElementById("lyrics").value,
-          ]
+            document.getElementById('lyrics').value,
+          ];
         }
       }).then(async (result) => {
         if (result.value) {
           updateSong.name = result.value[0];
           updateSong.genre = {
             id: result.value[1]
-          }
+          };
           updateSong.theme = {
             id: result.value[2]
-          }
+          };
           updateSong.country = {
             id: result.value[3]
-          }
-          updateSong.lyrics = result.value[4]
+          };
+          updateSong.lyrics = result.value[4];
 
           await this.upDateSong(updateSong);
           Swal.fire(
             'Updated!',
             'Your music file has been updated.',
             'success'
-          )
+          );
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire(
             'Cancelled',
             'Your music file is safe :)',
             'error'
-          )
+          );
         }
-      })
-    })
+      });
+    });
   }
 }

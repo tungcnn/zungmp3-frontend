@@ -3,17 +3,18 @@ import {Routes, RouterModule} from '@angular/router';
 import {AddPlayListComponent} from './components/play_list/add-play-list/add-play-list.component';
 import {DiscoverComponent} from './components/discover/discover.component';
 import {AddSongComponent} from './components/song/add-song/add-song.component';
-import {SearchMusicComponent} from "./components/search-music/search-music.component";
-import { HeaderComponent } from './components/header/header.component';
-import { UserComponent } from './components/user/user.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
-import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import {SearchMusicComponent} from './components/search-music/search-music.component';
+import {HeaderComponent} from './components/header/header.component';
+import {UserComponent} from './components/user/user.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {UserUpdateComponent} from './components/user-update/user-update.component';
+import {UserDeleteComponent} from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 import {AlbumComponent} from './components/album/album.component';
 import {SingerComponent} from './components/singer/singer.component';
-import {ShowPlayListComponent} from "./components/show-play-list/show-play-list.component";
-import {SongListComponent} from "./components/song/song-list/song-list.component";
+import {ShowPlayListComponent} from './components/show-play-list/show-play-list.component';
+import {SongListComponent} from './components/song/song-list/song-list.component';
+import {SongDetailComponent} from './components/song/song-detail/song-detail.component';
 
 const routes: Routes = [
   {
@@ -61,7 +62,7 @@ const routes: Routes = [
   //   component: UserUpdateComponent
   // },
   {
-    path:'deleteUser',
+    path: 'deleteUser',
     component: UserDeleteComponent
   },
   {
@@ -81,13 +82,17 @@ const routes: Routes = [
     component: AlbumComponent
   },
   {
-    path:'showPlayList',
+    path: 'showPlayList',
     component: ShowPlayListComponent
+  },
+  {
+    path: 'songdetail',
+    component: SongDetailComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
