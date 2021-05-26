@@ -42,4 +42,8 @@ export class PlayListService {
   getAllPlayListByUserId(id: number): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(`${API_URL}/playlists/userPlayList/${id}`);
   }
+
+  deleteSong(id , id_playList):Observable<any>{
+    return this.http.delete(`${API_URL}/playlists/deleteSong/${id}/${id_playList}`)
+  }
 }
