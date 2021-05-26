@@ -4,8 +4,8 @@
 <div class="ms_content_wrapper padder_top80" id="main-container">
   <h2>Your Songs</h2>
   <div class="ms_free_download">
-    <div class="ms_heading">
-      <h1><a [routerLink]="['/uploadSong']">Add new song</a></h1>
+    <div class="ms_view_more padder_bottom20" style="float: left">
+      <a [routerLink]="['/uploadSong']" class="ms_btn">Add new song</a>
     </div>
     <div class="album_inner_list">
       <div class="album_list_wrapper">
@@ -27,7 +27,7 @@
             <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
             <td>
               <ng-container *ngIf="s.singers">
-                <span *ngFor="let singer of s.singers">{{singer.name}}</span>
+                <span *ngFor="let singer of s.singers">{{singer.name}} </span>
               </ng-container>
             </td>
             <td><a>{{s.genre.name}}</a></td>
@@ -35,7 +35,7 @@
             <td><a>{{s.theme.name}}</a></td>
             <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="showUpdateForm(s.id)">
+              <a href="#" data-toggle="modal" [routerLink]="['/update-song/', s.id]">
             <span class="ms_close">
                 <img src="assets/images/svg/more.svg" alt="">
             </span>
@@ -51,9 +51,6 @@
           </tr>
         </table>
       </div>
-    </div>
-    <div class="ms_view_more padder_bottom20">
-      <a href="#" class="ms_btn">view more</a>
     </div>
   </div>
 </div>

@@ -29,6 +29,8 @@ import { SingerComponent } from './components/singer/singer.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 import { SongListComponent } from './components/song/song-list/song-list.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { UpdateSongComponent } from './components/song/update-song/update-song.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
     AlbumComponent,
     ShowPlayListComponent,
     SongListComponent,
-    
+    UpdateSongComponent,
 
   ],
     imports: [
@@ -65,6 +67,7 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
         MatButtonModule,
         ReactiveFormsModule,
         CommonModule,
+        NgSelectModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
