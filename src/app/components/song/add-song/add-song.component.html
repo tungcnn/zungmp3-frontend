@@ -1,6 +1,10 @@
 <app-header></app-header>
+
 <!----Upload Start---->
 <div class="ms_upload_wrapper marger_top60">
+  <div class="ms_heading">
+    <h1><a [routerLink]="['/song-list']">Back to your list</a></h1>
+  </div>
   <form #songForm="ngForm">
     <div class=" marger_top60">
       <div class="ms_upload_box">
@@ -35,7 +39,7 @@
           <div class="form-group" >
             <label>Lyrics</label>
             <textarea class="form-control" [rows]="5" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
-          </div>
+          </div><br>
           <div class="form-group">
             <label>Select file *</label>
             <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
@@ -56,113 +60,4 @@
   </form>
 </div>
 
-<!----User Song List---->
-<div class="ms_content_wrapper padder_top80" id="main-container">
-  <div class="ms_free_download">
-    <div class="ms_heading">
-      <h1>List</h1>
-    </div>
-    <div class="album_inner_list">
-      <div class="album_list_wrapper">
-        <table class="album_list_name">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Artists</th>
-            <th>Genre</th>
-            <th>Country</th>
-            <th>Theme</th>
-            <th class="text-center">Add To Favourites</th>
-            <th class="text-center">Edit</th>
-            <th class="text-center">remove</th>
-          </tr>
-          <tr *ngFor="let s of songs; index as idx">
-            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span
-              class="play_hover"></span></a></td>
-            <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
-            <td>
-              <ng-container *ngIf="s.singers !== null">
-                <span *ngFor="let singer of s.singers">{{singer.name}}</span>
-              </ng-container>
-            </td>
-            <td><a>{{s.genre.name}}</a></td>
-            <td><a>{{s.country.name}}</a></td>
-            <td><a>{{s.theme.name}}</a></td>
-            <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
-            <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="showUpdateForm(s.id)">
-            <span class="ms_close">
-                <img src="assets/images/svg/more.svg" alt="">
-            </span>
-              </a>
-            </td>
-            <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="deleteConfirm(s)">
-            <span class="ms_close">
-            <img src="assets/images/svg/close.svg" alt="">
-            </span>
-              </a>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <div class="ms_view_more padder_bottom20">
-      <a href="#" class="ms_btn">view more</a>
-    </div>
-  </div>
-</div>
 
-<!-- Modal Edit -->
-<div class="ms_register_popup">
-  <div id="edit" class="modal  centered-modal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal">
-          <i class="fa_icon form_close"></i>
-        </button>
-        <div class="justify-content-center" style="margin-left: 160px; width: 100%;">
-          <form #editForm="ngForm">
-            <div class="ms_register_form">
-              <h2>Edit</h2>
-              <input type="hidden" ngModel="{{editSong?.id}}" name="id"/>
-              <div class="form-group">
-                <p>Song Title</p>
-                <input type="text" placeholder=" Name" ngModel="{{editSong?.name}}" name="name" class="form-control">
-                <span class="form_icon">
-							</span>
-              </div>
-              <div class="form-group">
-                <p>Genre</p>
-                <select class="form-control" ngModel="{{editSong?.genre}}" name="genre">
-                  <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <p>Theme</p>
-                <select class="form-control" ngModel="{{editSong?.theme}}" name="theme">
-                  <option *ngFor="let theme of themes" [ngValue]="theme">{{theme.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <p>Country</p>
-                <select class="form-control" ngModel="{{editSong?.country}}" name="country">
-                  <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <p>Lyrics</p>
-                <textarea type="text" rows="5" placeholder="Lyrics" ngModel="{{editSong?.lyrics}}" name="lyrics"
-                          class="form-control"></textarea>
-                <span class="form_icon">
-						    </span>
-              </div>
-              <a (click)="upDateSong(editForm)" class="ms_btn" data-dismiss="modal">Saves</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

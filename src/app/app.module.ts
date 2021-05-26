@@ -30,6 +30,7 @@ import {GenresComponent} from './components/genres/genres.component';
 import { SingerComponent } from './components/singer/singer.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
+import { SongListComponent } from './components/song/song-list/song-list.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ShowPlayListComponent } from './components/show-play-list/show-play-lis
     SingerComponent,
     AlbumComponent,
     ShowPlayListComponent,
+    SongListComponent,
 
   ],
     imports: [
