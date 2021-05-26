@@ -24,7 +24,7 @@
       <!-- <a *ngIf="!isSuccessful" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
       <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#register"><span>Register</span></a>
       <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#login"><span>Login</span></a>
-      <a (click)="logout()" *ngIf="isLoggedIn" href="javascript:;" class="ms_btn logout_btn"><span>Logout</span></a>
+      <a (click)="logout()" style="cursor:pointer" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>
       <a  *ngIf="isLoggedIn" href="javascript:;" class="ms_btn profile_btn" data-toggle="modal" data-target="#profile"><span>{{user.username}}'s pf</span></a>
     </div>
   </div>
@@ -271,10 +271,6 @@
                   <strong>Username:</strong>
                   {{ user.username }}
                 </p>
-                <!-- <p>
-                  <strong>Password:</strong>
-                  {{ user.password }}
-                </p> -->
                 <p>
                   <strong>Email:</strong>
                   {{ user.email }}
@@ -340,3 +336,36 @@
         </div>
       </div>
     </div> -->
+
+<!--logout-->
+    <div class="ms_profile_popup">
+      <!--  Profile Modal-->
+      <div id="logout" class="modal  centered-modal" role="dialog">
+        <div class="modal-dialog logout_dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa_icon form_close"></i>
+            </button>
+            <div class="modal-body">
+              <div class="col-12">
+                <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+                <div class="col-12" >
+                  <div class="container" *ngIf="user; else loggedOut">
+                    
+                    <p>
+                      <strong>Are you sure to logout {{user.username}}?</strong>
+                    </p>
+                    <a data-dismiss="modal" (click)="logout()" ><button>Yes</button></a>
+                    
+                    
+                      <!-- <a *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
+                      <!-- <a routerLink="updateUser" >Update</a> -->
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -65,7 +66,7 @@ import { ShowPlayListComponent } from './components/show-play-list/show-play-lis
         BrowserAnimationsModule,
         MatButtonModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
