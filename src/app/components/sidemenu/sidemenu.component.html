@@ -23,12 +23,21 @@
 						</span>
         </a>
         </li>
-        <li><a *ngIf="user != null" [routerLink]="'album'" title="Albums">
+        <li><a [routerLink]="'search'" title="Search">
+						<span class="nav_icon">
+							<span class="icon icon_music"></span>
+						</span>
+          <span class="nav_text">
+							Search
+						</span>
+        </a>
+        </li>
+        <li><a routerLink="showTopPlayList" title="Featured Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
           <span class="nav_text">
-							albums
+							featured playlist
 						</span>
         </a>
         </li>
@@ -41,58 +50,14 @@
 						</span>
         </a>
         </li>
-        <li>
-          <a *ngIf="user != null" [routerLink]="'genres'" title="Genres">
-						<span class="nav_icon">
-							<span class="icon icon_genres"></span>
-						</span>
-          <span class="nav_text">
-							genres
-						</span>
-        </a>
-        </li>
-        <li><a title="Top Tracks">
-						<span class="nav_icon">
-							<span class="icon icon_tracks"></span>
-						</span>
-          <span class="nav_text">
-							top tracks
-						</span>
-        </a>
-        </li>
-        <li><a title="Free Music">
-						<span class="nav_icon">
-							<span class="icon icon_music"></span>
-						</span>
-          <span class="nav_text">
-							free music
-						</span>
-        </a>
-        </li>
-        <li><a title="Song">
-						<span class="nav_icon">
-							<span class="icon icon_station"></span>
-						</span>
-          <span class="nav_text"> Song </span>
-        </a>
-        </li>
       </ul>
       <ul class="nav_downloads">
         <li *ngIf="user!= null">
           <a [routerLink]="'song-list'" title="Your songs">
 						<span class="nav_icon">
-							<span class="icon icon_tracks"></span>
+							<span class="icon icon_download"></span>
 						</span>
           <span class="nav_text">Upload</span>
-        </a>
-        </li>
-        <li><a title="Purchased">
-						<span class="nav_icon">
-							<span class="icon icon_purchased"></span>
-						</span>
-          <span class="nav_text">
-							purchased
-						</span>
         </a>
         </li>
         <li><a title="Favourites">
@@ -101,26 +66,6 @@
 						</span>
           <span class="nav_text">
 							favourites
-						</span>
-        </a>
-        </li>
-        <li><a title="History">
-						<span class="nav_icon">
-							<span class="icon icon_history"></span>
-						</span>
-          <span class="nav_text">
-							history
-						</span>
-        </a>
-        </li>
-      </ul>
-      <ul class="nav_playlist">
-        <li><a routerLink="showTopPlayList" title="Featured Playlist">
-						<span class="nav_icon">
-							<span class="icon icon_fe_playlist"></span>
-						</span>
-          <span class="nav_text">
-							featured playlist
 						</span>
         </a>
         </li>
