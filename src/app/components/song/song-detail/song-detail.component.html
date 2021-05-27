@@ -1,16 +1,20 @@
 <div class="ms_album_single_wrapper ms_artist_single">
   <div class="album_single_data">
     <div class="album_single_img">
-      <img [src]="singer.avatarUrl" alt="" class="img-fluid">
+      <img [src]="song.coverUrl" alt="" class="img-fluid">
     </div>
     <div class="album_single_text">
-      <h2>{{singer.name}}</h2>
-      <div class="about_artist">
-        {{singer.description}}
-      </div>
+      <h2>{{song.name}}</h2>
+      <span>Genre: {{song.genre.name}}</span><br>
+      <span>Theme: {{song.theme.name}}</span><br>
+      <span>Country: {{song.country.name}}</span><br>
+      <ng-container *ngIf="song.singers">
+        <a href="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
+      </ng-container>
+      <br>
       <div class="album_btn">
-        <a class="ms_btn play_btn"><span class="play_all"><img
-          src="assets/images/svg/play_all.svg" alt="">Play All</span><span
+        <a (click)="playSong(songid)" class="ms_btn play_btn"><span class="play_all"><img
+          src="assets/images/svg/play_all.svg" alt="">Play</span><span
           class="pause_all"><img src="assets/images/svg/pause_all.svg" alt="">Pause</span></a>
       </div>
     </div>
@@ -36,9 +40,9 @@
       </ul>
 
       <ul>
-        <li><a (click)="playSong(songid)"><span class="play_no"  >{{songid}}</span><span class="play_hover"></span></a>
+        <li><a (click)="playSong(songid)"><span class="play_no">1</span><span class="play_hover"></span></a>
         </li>
-        <li><a>{{singer.name}}</a></li>
+        <li><a>{{song.name}}</a></li>
         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
         <li class="text-center ms_more_icon"><a href="javascript:"><span class="ms_icon1 ms_active_icon"></span></a>
           <ul class="more_option">
@@ -53,45 +57,26 @@
       </ul>
     </div>
   </div>
-  <div class="ms_view_more padder_bottom20">
-    <a href="#" class="ms_btn">view more</a>
-  </div>
 
   <!----Comment Form section Start---->
   <div class="ms_cmnt_wrapper">
-    <div class="ms_heading">
-      <h1>List Comment</h1>
-    </div>
-    <div class="ms_cmnt_form">
-        <div class="ms_input_group">
-          <div class="album_list_wrapper">
-            <ul class="album_list_name">
-              <li>User</li>
-              <li>Comment</li>
-            </ul>
-            <ul *ngFor="let cm of songcomment">
-              <li>
-                <a>{{cm.user.username}}</a>
-              </li>
-              <li>
-                <a>{{cm.comment}}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <form #from="ngForm" *ngIf="currentUser != null">
-          <div class="ms_input_group1">
-            <div class="ms_input">
-              <textarea name="comment" [(ngModel)]="comment.comment" class="form-control" placeholder="Enter Your Comment Here.."></textarea>
-            </div>
-          </div>
-          <div class="ms_input_group2">
-            <div class="ms_input">
-              <button class="ms_btn" (click)="createComment(from)">post your comment</button>
-            </div>
-          </div>
-        </form>
 
+
+  </div>
+  <div class="comment-section">
+    <div class="ms_heading">
+      <h1>Comments({{songcomment.length}})</h1>
+    </div>
+    <form #from="ngForm" *ngIf="currentUserId != null">
+          <textarea name="comment" [(ngModel)]="comment.comment" class="form-control"
+                    placeholder="Enter Your Comment Here.." style="height: 100px"></textarea>
+      <br>
+      <a class="ms_btn" (click)="createComment(from)">post</a>
+    </form>
+    <div class="comment" *ngFor="let comment of songcomment">
+      <h5>{{comment.user.username}}</h5>
+      <span class="comment-date">{{comment.date | date}}</span>
+      <p>{{comment.comment}}</p>
     </div>
   </div>
 </div>

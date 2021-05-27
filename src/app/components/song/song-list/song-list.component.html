@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!--<app-header></app-header>-->
 
 <!----User Song List---->
 <div class="ms_content_wrapper padder_top80" id="main-container">
@@ -21,18 +21,18 @@
             <th class="text-center">Edit</th>
             <th class="text-center">Remove</th>
           </tr>
-          <tr *ngFor="let s of songs; index as idx">
-            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span
+          <tr *ngFor="let s of songs; let i = index">
+            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{i + 1}}</span><span
               class="play_hover"></span></a></td>
-            <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
+            <td><a href="javascript:;" [routerLink]="['/singer', s.id]">{{s.name}}</a></td>
             <td>
               <ng-container *ngIf="s.singers">
-                <span *ngFor="let singer of s.singers">{{singer.name}} </span>
+                <span *ngFor="let singer of s.singers">{{singer.name}}   </span>
               </ng-container>
             </td>
-            <td><a>{{s.genre.name}}</a></td>
-            <td><a>{{s.country.name}}</a></td>
-            <td><a>{{s.theme.name}}</a></td>
+            <td><a *ngIf="s.genre">{{s.genre.name}}</a></td>
+            <td><a *ngIf="s.country">{{s.country.name}}</a></td>
+            <td><a *ngIf="s.theme">{{s.theme.name}}</a></td>
             <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
             <td class="text-center">
               <a href="#" data-toggle="modal" [routerLink]="['/update-song/', s.id]">

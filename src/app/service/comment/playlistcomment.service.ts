@@ -7,18 +7,17 @@ import {Songcomment} from '../../interface/songcomment';
 @Injectable({
   providedIn: 'root'
 })
-export class CommentService {
+export class PlaylistcommentService {
   private apiSongServiceUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
 
-  public getAllCommentBySongId(id: number): Observable<Songcomment[]> {
-    return this.http.get<Songcomment[]>(`${this.apiSongServiceUrl}/comments/${id}`);
+  public getAllCommentPlaylist(id: number): Observable<Songcomment[]> {
+    return this.http.get<Songcomment[]>(`${this.apiSongServiceUrl}/playlistcomments/${id}`);
   }
 
-  public addComment(newcomment: Songcomment): Observable<Songcomment> {
-    return this.http.post<Songcomment>(`${this.apiSongServiceUrl}/comments`, newcomment);
+  public addCommentPlaylist(newcomment: Songcomment): Observable<Songcomment> {
+    return this.http.post<Songcomment>(`${this.apiSongServiceUrl}/playlistcomments`, newcomment);
   }
-
 }
