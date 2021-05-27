@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {PlaymusicService} from '../../service/playmusic.service';
 import {SongService} from '../../service/song/song.service';
-import {Playcomment} from '../../interface/playcomment';
+import {Playcomment} from '../../interface/playListcomment';
 import {PlaylistcommentService} from '../../service/comment/playlistcomment.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
@@ -19,11 +19,10 @@ import {TokenServiceService} from '../../service/token/token-service.service';
   styleUrls: ['./show-play-list.component.css']
 })
 export class ShowPlayListComponent implements OnInit {
-  playList: Playlist = null;
-  public commentpl: Playcomment[] = [];
-  public currentUser: any = null;
-  public songid = 1;
-  public comments: Playcomment;
+  public playList: Playlist = null;
+  public playlistcomment: Playcomment[];
+  public currentUser;
+  public comments: Playcomment = {playlist: undefined, user: undefined};
 
   constructor(private showPlayList: ShowPlayListService,
               private playListService: PlayListService,
@@ -43,7 +42,7 @@ export class ShowPlayListComponent implements OnInit {
       }
     });
     this.getCommentPlaylist();
-    this.currentUser = this.token.getUser();
+    this.currentUser = this.token.getId();
   }
 
   show(id: number) {
@@ -88,24 +87,30 @@ export class ShowPlayListComponent implements OnInit {
   }
 
   public getCommentPlaylist(): void {
-    this.seviceCommentPlaylist.getAllCommentPlaylist().subscribe(
-      (response: Playcomment[]) => {
-        this.commentpl = response;
-        console.log(this.commentpl);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error);
+    this.activatedRoute.queryParams.subscribe(params => {
+      let searchValue = params.q;
+      if (searchValue != null) {
+        let id = params['q'];
+        this.seviceCommentPlaylist.getAllCommentPlaylist(id).subscribe(
+          (response: Playcomment[]) => {
+            this.playlistcomment = response;
+            console.log(this.playlistcomment);
+          },
+          (error: HttpErrorResponse) => {
+            alert(error);
+          }
+        );
       }
-    );
+    });
   }
 
   public createCommentPlaylist(comment: NgForm) {
     comment.value.user = {
-      id: this.currentUser.id
+      id: this.currentUser,
     };
-    comment.value.song = {
-      id: this.songid
-    };
+    comment.value.playlist = {
+      id: this.playList.id
+    }
     this.seviceCommentPlaylist.addCommentPlaylist(comment.value).subscribe(
       (response: Songcomment) => {
         console.log(response);
