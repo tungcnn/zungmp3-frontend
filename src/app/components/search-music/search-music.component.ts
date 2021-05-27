@@ -8,6 +8,8 @@ import {Singer} from "../../interface/singer";
 import {ShowPlayListService} from "../../service/show-play-list.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SongService} from "../../service/song/song.service";
+import {LikePlayListService} from "../../service/like/like-play-list.service";
+import {LikeSongService} from "../../service/like/like-song.service";
 
 @Component({
   selector: 'app-search-music',
@@ -30,7 +32,9 @@ export class SearchMusicComponent implements OnInit, OnChanges {
               private activatedRoute: ActivatedRoute,
               private token: TokenServiceService,
               private playMusic: PlaymusicService,
-              private showPlayList: ShowPlayListService) {
+              private showPlayList: ShowPlayListService,
+              private likeService : LikePlayListService,
+              private likeSong : LikeSongService) {
     this.currentUserId = this.token.getId();
   }
 
@@ -51,7 +55,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   getAllPlayList() {
-    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response => {
+    this.playListService.getAllPlayListByUserId(this.currentUser).subscribe(response => {
       this.playLists = response;
     });
   }
@@ -73,6 +77,16 @@ export class SearchMusicComponent implements OnInit, OnChanges {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];
+      this.likeService.checkLike(this.currentUser).subscribe((data:any) =>{
+        for (let i = 0; i < this.playlists.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+            if (data[j].playlist.id==this.playlists[i].id){
+              this.playlists[i].checkLike = true;
+            }
+          }
+        }
+      })
+      this.checkLikeSong()
     })
   }
 
@@ -84,5 +98,63 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   nextSearch(id) {
     this.showPlayList.checkPlayList(id);
+  }
+
+  like(id: number) {
+    this.likeService.addLike(this.currentUser,id).subscribe(data =>{
+      this.activatedRoute.queryParams.subscribe(params => {
+        let searchValue = params.q;
+        if(searchValue!=null){
+          this.getSongByName(params['q']);
+        }
+      });
+    })
+  }
+
+  unLike(id: number) {
+      this.likeService.unLike(id).subscribe(() =>{
+        this.activatedRoute.queryParams.subscribe(params => {
+          let searchValue = params.q;
+          if(searchValue!=null){
+            this.getSongByName(params['q']);
+          }
+        });
+      })
+  }
+
+  checkLikeSong(){
+    this.likeSong.checkLike(this.currentUser).subscribe((data:any) =>{
+      for (let i = 0; i < this.songs.length; i++) {
+        for (let j = 0; j < data.length; j++) {
+          if (data[j].song.id==this.songs[i].id){
+            this.songs[i].checkLike = true;
+          }
+        }
+      }
+    })
+  }
+
+  addLikeSong(id: number) {
+    this.likeSong.addLike(this.currentUser , id).subscribe(data =>{
+      console.log(data)
+      this.activatedRoute.queryParams.subscribe(params => {
+        let searchValue = params.q;
+        if(searchValue!=null){
+          this.getSongByName(params['q']);
+        }
+      });
+    })
+  }
+
+  unLikeSong(id: number) {
+
+    this.likeSong.unLike(id).subscribe(()=>{
+      this.activatedRoute.queryParams.subscribe(params => {
+        let searchValue = params.q;
+        if(searchValue!=null){
+          this.getSongByName(params['q']);
+        }
+      });
+    })
   }
 }
