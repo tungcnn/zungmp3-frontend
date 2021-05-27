@@ -24,6 +24,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   song: Song = {};
   playLists: Playlist[] = [];
   idSong: number = -1;
+  currentUser = this.token.getId();
 
   constructor(private songServiceService: SongService,
               private playListService: PlayListService,
@@ -51,7 +52,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   getAllPlayList() {
-    this.playListService.getAllPlayListByUserId(this.token.getUser().id).subscribe(response => {
+    this.playListService.getAllPlayListByUserId(this.currentUser).subscribe(response => {
       this.playLists = response;
     });
   }
@@ -73,7 +74,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];
-      this.likeService.checkLike(this.token.getUser().id).subscribe((data:any) =>{
+      this.likeService.checkLike(this.currentUser).subscribe((data:any) =>{
         for (let i = 0; i < this.playlists.length; i++) {
           for (let j = 0; j < data.length; j++) {
             if (data[j].playlist.id==this.playlists[i].id){
@@ -97,8 +98,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   like(id: number) {
-    this.likeService.addLike(this.token.getUser().id,id).subscribe(data =>{
-      console.log(data)
+    this.likeService.addLike(this.currentUser,id).subscribe(data =>{
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
         if(searchValue!=null){
@@ -120,7 +120,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   checkLikeSong(){
-    this.likeSong.checkLike(this.token.getUser().id).subscribe((data:any) =>{
+    this.likeSong.checkLike(this.currentUser).subscribe((data:any) =>{
       for (let i = 0; i < this.songs.length; i++) {
         for (let j = 0; j < data.length; j++) {
           if (data[j].song.id==this.songs[i].id){
@@ -128,12 +128,11 @@ export class SearchMusicComponent implements OnInit, OnChanges {
           }
         }
       }
-      console.log(data)
     })
   }
 
   addLikeSong(id: number) {
-    this.likeSong.addLike(this.token.getUser().id , id).subscribe(data =>{
+    this.likeSong.addLike(this.currentUser , id).subscribe(data =>{
       console.log(data)
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
