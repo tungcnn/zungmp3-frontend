@@ -64,6 +64,7 @@ export class ShowPlayListComponent implements OnInit {
     })
   }
 
+
   PlaySong(id: number) {
     this.songService.findById(id).subscribe(data => {
       this.playMusic.playsong(data);
