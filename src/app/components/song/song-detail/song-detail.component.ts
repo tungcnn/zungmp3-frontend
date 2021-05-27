@@ -21,7 +21,7 @@ export class SongDetailComponent implements OnInit {
   public songid = 1;
   public singer: Singer;
   public songcomment: Songcomment[];
-  public comment: Songcomment = {};
+  public comments: Songcomment = {};
   public currentUser: any = null;
   public songs: Song[] = [];
 
@@ -72,7 +72,7 @@ export class SongDetailComponent implements OnInit {
 
 
   public getComment(): void {
-    this.commentService.getAllSongId().subscribe(
+    this.commentService.getAllComment().subscribe(
       (response: Songcomment[]) => {
         this.songcomment = response;
         console.log(this.songcomment);

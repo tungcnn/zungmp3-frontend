@@ -36,7 +36,7 @@
       </ul>
 
       <ul>
-        <li><a (click)="playSong(songid)"><span class="play_no"  >{{songid}}</span><span class="play_hover"></span></a>
+        <li><a (click)="playSong(songid)"><span class="play_no">{{songid}}</span><span class="play_hover"></span></a>
         </li>
         <li><a>{{singer.name}}</a></li>
         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
@@ -82,7 +82,7 @@
         <form #from="ngForm" *ngIf="currentUser != null">
           <div class="ms_input_group1">
             <div class="ms_input">
-              <textarea name="comment" [(ngModel)]="comment.comment" class="form-control" placeholder="Enter Your Comment Here.."></textarea>
+              <textarea name="comment" [(ngModel)]="comments.comment" class="form-control" placeholder="Enter Your Comment Here.."></textarea>
             </div>
           </div>
           <div class="ms_input_group2">
