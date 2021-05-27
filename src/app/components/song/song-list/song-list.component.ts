@@ -24,7 +24,7 @@ export class SongListComponent implements OnInit {
   public genreHtml: string;
   public countries: Country[];
   public countryHtml: string;
-  public currentUser: any = null;
+  public currentUserId: number;
   public songs: Song[] = [];
   song: Song = {};
 
@@ -55,11 +55,11 @@ export class SongListComponent implements OnInit {
         this.countryHtml += `<option value="${country.id}">${country.name}</option>`;
       }
     });
-    this.currentUser = this.token.getUser();
-    if (this.currentUser == null) {
+    this.currentUserId = this.token.getId();
+    if (this.currentUserId == null) {
 
     } else {
-      this.getAllSong(this.currentUser.id);
+      this.getAllSong(this.currentUserId);
     }
   }
 
@@ -84,19 +84,7 @@ export class SongListComponent implements OnInit {
     this.songService.deleteSong(id).subscribe(
       (response: void) => {
         console.log(response);
-        this.getAllSong(this.currentUser.id);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public upDateSong(song: Song): void {
-    this.songService.editSong(song).subscribe(
-      (response: Song) => {
-        console.log(response);
-        this.getAllSong(this.currentUser.id);
+        this.getAllSong(this.currentUserId);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -127,92 +115,6 @@ export class SongListComponent implements OnInit {
           'error'
         );
       }
-    });
-  }
-
-  public async showUpdateForm(id: number) {
-    let updateSong: Song = {};
-    this.songService.findById(id).subscribe(song => {
-      updateSong = song;
-      Swal.fire({
-        title: `Update Song`,
-        showCancelButton: true,
-        confirmButtonText: 'Yes, update it!',
-        cancelButtonText: 'No, keep it',
-        html:
-          `<table>
-            <tr>
-              <td><label>Song Title *</label></td>
-              <td><input class="swal2-input" id="name" value="${song.name}"><br></td>
-            </tr>
-            <tr>
-              <td><label>Genre</label></td>
-              <td><select class="swal2-select" id="genre" style="float:left">
-                       <option selected value="${song.genre.id}">${song.genre.name}</option>
-                       ${this.genreHtml}
-                       </select></td>
-            </tr>
-            <tr>
-              <td><label>Theme</label></td>
-              <td><select class="swal2-select" id="theme" style="float:left">
-                       <option selected value="${song.theme.id}">${song.theme.name}</option>
-                       ${this.themeHtml}
-                       </select></td>
-            </tr>
-            <tr>
-              <td><label>Country</label></td>
-              <td><select class="swal2-select" id="country" style="float:left">
-                       <option selected value="${song.country.id}">${song.country.name}</option>
-                       ${this.countryHtml}
-                       </select></td>
-            </tr>
-            <tr>
-              <td><label>Lyrics</label></td>
-              <td><textarea class="swal2-input" id="lyrics" class="swal2-textarea">"${song.lyrics}"</textarea></td>
-            </tr>
-            </table>`,
-        preConfirm: () => {
-          return [
-            // @ts-ignore
-            document.getElementById('name').value,
-            // @ts-ignore
-            document.getElementById('genre').value,
-            // @ts-ignore
-            document.getElementById('theme').value,
-            // @ts-ignore
-            document.getElementById('country').value,
-            // @ts-ignore
-            document.getElementById('lyrics').value,
-          ];
-        }
-      }).then(async (result) => {
-        if (result.value) {
-          updateSong.name = result.value[0];
-          updateSong.genre = {
-            id: result.value[1]
-          };
-          updateSong.theme = {
-            id: result.value[2]
-          };
-          updateSong.country = {
-            id: result.value[3]
-          };
-          updateSong.lyrics = result.value[4];
-
-          await this.upDateSong(updateSong);
-          Swal.fire(
-            'Updated!',
-            'Your music file has been updated.',
-            'success'
-          );
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire(
-            'Cancelled',
-            'Your music file is safe :)',
-            'error'
-          );
-        }
-      });
     });
   }
 }
