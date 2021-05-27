@@ -2,7 +2,8 @@
 <div class="ms_album_single_wrapper ms_artist_single">
   <div class="album_single_data">
     <div class="album_single_img">
-      <img [src]="viewSinger.avatarUrl" alt="" class="img-fluid">
+      <img *ngIf="viewSinger.avatarUrl" [src]="viewSinger.avatarUrl" alt="" class="img-fluid">
+      <img *ngIf="!viewSinger.avatarUrl" src="assets/images/blankava.png" alt="" class="img-fluid">
     </div>
     <div class="album_single_text">
       <h2>{{viewSinger.name}}</h2>
@@ -53,8 +54,5 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="ms_view_more padder_bottom20">
-    <a href="#" class="ms_btn">view more</a>
   </div>
 </div>
