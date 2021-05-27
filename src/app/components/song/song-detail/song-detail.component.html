@@ -5,6 +5,13 @@
     </div>
     <div class="album_single_text">
       <h2>{{song.name}}</h2>
+      <span>Genre: {{song.genre.name}}</span><br>
+      <span>Theme: {{song.theme.name}}</span><br>
+      <span>Country: {{song.country.name}}</span><br>
+      <ng-container *ngIf="song.singers">
+        <a href="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
+      </ng-container>
+      <br>
       <div class="album_btn">
         <a (click)="playSong(songid)" class="ms_btn play_btn"><span class="play_all"><img
           src="assets/images/svg/play_all.svg" alt="">Play</span><span
