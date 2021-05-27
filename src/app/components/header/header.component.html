@@ -45,11 +45,11 @@
               name="form"
               (ngSubmit)="reg.form.valid && registration(reg)"
               #reg="ngForm"
-              novalidate>  
+              novalidate>
             <div class="form-group">
-              <input 
+              <input
               name="fullName"
-              [(ngModel)]="user.fullName" 
+              [(ngModel)]="user.fullName"
               type="text"
               placeholder="Enter Your Full Name"
               #fullName="ngModel"
@@ -63,7 +63,7 @@
                name="username"
                [(ngModel)]="user.username"
                type="text"
-               
+
                #username="ngModel"
                placeholder="Enter Username"
                class="form-control">
@@ -86,7 +86,7 @@
               [(ngModel)]="user.password"
               type="password"
               placeholder="Enter Password"
-              
+
               #password="ngModel"
               class="form-control">
               <span class="form_icon">
@@ -105,7 +105,7 @@
               [(ngModel)]="user.email"
               type="text"
               placeholder="Enter Your Email"
-              
+
               #email="ngModel"
               class="form-control">
               <span class="form_icon">
@@ -125,7 +125,7 @@
           <div class="alert alert-warning" *ngIf="reg.submitted && isRegistrationFailed">
             Signup failed!<br />{{ errorMessageRegistration }}
           </div>
-            </form> 
+            </form>
             <div class="alert alert-success" *ngIf="isSuccessful">
               Your registration is successful!
             </div>
@@ -159,8 +159,7 @@
               name="username"
               [(ngModel)]="user.username"
               type="text"
-              placeholder="Enter Your Full name"
-              
+              placeholder="Enter Your username"
               #username="ngModel"
               class="form-control">
               <span class="form_icon">
@@ -182,7 +181,7 @@
               [(ngModel)]="user.password"
               type="password"
               placeholder="Enter Password"
-              
+
               #password="ngModel"
               class="form-control">
               <span class="form_icon">
@@ -305,7 +304,7 @@
                     <td><input type="submit" value="Update"></td>
                   </tr>
                 </table>
-              </form> 
+              </form>
               <div class="alert alert-success" *ngIf="isSuccessful">
                 Your updating is successful!
               </div>
@@ -326,9 +325,16 @@
               <div class="col-12">
                 <img src="assets/images/register_img.png" alt="" class="img-fluid" />
                 <div class="col-12" >
-                  <div class="container" *ngIf="user; else loggedOut"> 
-                    <p><strong>Are you sure to logout {{user.username}}?</strong></p>
+                  <div class="container" *ngIf="user; else loggedOut">
+
+                    <p>
+                      <strong>Are you sure to logout {{user.username}}?</strong>
+                    </p>
                     <a data-dismiss="modal" (click)="logout()" ><button>Yes</button></a>
+
+
+                      <!-- <a *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
+                      <!-- <a routerLink="updateUser" >Update</a> -->
                   </div>
                 </div>
               </div>

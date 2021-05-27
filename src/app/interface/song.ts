@@ -17,4 +17,5 @@ export interface Song {
   theme?: Theme;
   country?: Country;
   user?: User;
+  checkLike?:boolean;
 }

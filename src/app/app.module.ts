@@ -25,13 +25,14 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {GenresComponent} from './components/genres/genres.component';
-import {SingerComponent} from './components/singer/singer.component';
-import {AlbumComponent} from './components/album/album.component';
-import {ShowPlayListComponent} from './components/show-play-list/show-play-list.component';
-import {SongListComponent} from './components/song/song-list/song-list.component';
-import {SongDetailComponent} from './components/song/song-detail/song-detail.component';
-import {NgSelectModule} from '@ng-select/ng-select';
-import {UpdateSongComponent} from './components/song/update-song/update-song.component';
+import { SingerComponent } from './components/singer/singer.component';
+import { AlbumComponent } from './components/album/album.component';
+import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
+import { SongListComponent } from './components/song/song-list/song-list.component';
+import { SongDetailComponent } from './components/song/song-detail/song-detail.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { UpdateSongComponent } from './components/song/update-song/update-song.component';
+import { SingerListComponent } from './components/singer/singer-list/singer-list.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {UpdateSongComponent} from './components/song/update-song/update-song.com
     SongListComponent,
     SongDetailComponent,
     UpdateSongComponent,
+    SingerListComponent,
 
   ],
   imports: [

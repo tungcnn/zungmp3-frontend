@@ -44,11 +44,11 @@
           </div>
           <div class="form-group">
             <label>Select your song*</label>
-            <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
+            <input class="swal2-file" type="file" #fileInput (change)="onFileSelected($event)"/>
           </div>
           <div class="form-group">
             <label>Select song cover</label>
-            <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+            <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
           </div>
           <div class="form-group">
           <label>Lyrics</label>

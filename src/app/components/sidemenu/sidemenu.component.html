@@ -25,14 +25,14 @@
         </li>
         <li><a *ngIf="user != null" [routerLink]="'album'" title="Albums">
 						<span class="nav_icon">
-							<span class="icon icon_albums"></span>
+							<span class="icon icon_fe_playlist"></span>
 						</span>
           <span class="nav_text">
 							albums
 						</span>
         </a>
         </li>
-        <li><a title="Artists">
+        <li><a title="Artists" [routerLink]="['/singer-list']">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
 						</span>

@@ -34,6 +34,12 @@ export class SongListComponent implements OnInit {
               private genreService: GenreService,
               private countryService: CountryService,
               private token: TokenServiceService) {
+    this.currentUserId = this.token.getId();
+    if (this.currentUserId == null) {
+
+    } else {
+      this.getAllSong(this.currentUserId);
+    }
   }
 
   ngOnInit() {
@@ -55,12 +61,6 @@ export class SongListComponent implements OnInit {
         this.countryHtml += `<option value="${country.id}">${country.name}</option>`;
       }
     });
-    this.currentUserId = this.token.getId();
-    if (this.currentUserId == null) {
-
-    } else {
-      this.getAllSong(this.currentUserId);
-    }
   }
 
   playmusic(id: number) {
