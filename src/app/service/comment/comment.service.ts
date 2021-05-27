@@ -13,8 +13,8 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  public getAllSongId(): Observable<Songcomment[]> {
-    return this.http.get<Songcomment[]>(`${this.apiSongServiceUrl}/comments`);
+  public getAllCommentBySongId(id: number): Observable<Songcomment[]> {
+    return this.http.get<Songcomment[]>(`${this.apiSongServiceUrl}/comments/${id}`);
   }
 
   public addComment(newcomment: Songcomment): Observable<Songcomment> {

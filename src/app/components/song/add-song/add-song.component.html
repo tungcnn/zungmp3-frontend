@@ -34,25 +34,27 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Singers</label>
-            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="singers">
+            <label>Singers. <a href="javascript:;" (click)="showAddSingerForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
+                       name="singers">
               <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
             </ng-select>
           </div>
           <div class="form-group">
-            <a href="javascript:;" class="ms_btn" (click)="showAddSingerForm()">Add another singer</a>
+            <label>Tags. <a href="javascript:;" (click)="showAddTagForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.tags" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="tags">
+              <ng-option *ngFor="let tag of tags" [value]="tag">{{tag.name}}</ng-option>
+            </ng-select>
           </div>
           <div class="form-group">
             <label>Select your song*</label>
-            <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
-          </div>
-          <div class="form-group">
+            <input class="swal2-file" type="file" #fileInput (change)="onFileSelected($event)"/>
             <label>Select song cover</label>
-            <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+            <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
           </div>
           <div class="form-group">
-          <label>Lyrics</label>
-          <textarea class="form-control" rows="5" cols="10" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
+            <label>Lyrics</label>
+            <textarea class="form-control" style="height: 200px" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
           </div>
           <div class="pro-form-btn text-center marger_top15">
             <div class="ms_upload_btn">

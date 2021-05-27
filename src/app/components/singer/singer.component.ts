@@ -5,6 +5,7 @@ import {Singer} from '../../interface/singer';
 import {SongService} from '../../service/song/song.service';
 import {PlaymusicService} from '../../service/playmusic.service';
 import {Song} from '../../interface/song';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-singer',
@@ -12,7 +13,7 @@ import {Song} from '../../interface/song';
   styleUrls: ['./singer.component.css']
 })
 export class SingerComponent implements OnInit {
-  public singerid = 3;
+  public singerid;
   public lisSong = 3;
 
   public singers: Singer[] = [];
@@ -22,7 +23,12 @@ export class SingerComponent implements OnInit {
 
   constructor(private singerService: SingerService,
               private songService: SongService,
-              private playService: PlaymusicService) {
+              private playService: PlaymusicService,
+              private activeRoute: ActivatedRoute) {
+    this.activeRoute.paramMap.subscribe(paramMap=>{
+      this.singerid = +paramMap.get("id");
+      this.lisSong = +paramMap.get("id");
+    })
   }
 
   ngOnInit() {

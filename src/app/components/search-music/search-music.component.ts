@@ -19,29 +19,32 @@ import {LikeSongService} from "../../service/like/like-song.service";
 export class SearchMusicComponent implements OnInit, OnChanges {
 
   songs: Song[] = [];
-  singers : Singer[] = [];
-  playlists : Playlist[] = [];
+  singers: Singer[] = [];
+  playlists: Playlist[] = [];
   song: Song = {};
   playLists: Playlist[] = [];
   idSong: number = -1;
-  currentUser = this.token.getId();
+  currentUserId;
 
   constructor(private songServiceService: SongService,
               private playListService: PlayListService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private token: TokenServiceService
-    , private playMusic: PlaymusicService
-    , private showPlayList : ShowPlayListService
-  ,private likeService : LikePlayListService
-  , private likeSong : LikeSongService) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private token: TokenServiceService,
+              private playMusic: PlaymusicService,
+              private showPlayList: ShowPlayListService,
+              private likeService: LikePlayListService,
+              private likeSong: LikeSongService) {
+    this.currentUserId = this.token.getId();
   }
 
   ngOnInit() {
-    if (this.token.getUser()!=null){this.getAllPlayList()}
+    if (this.token.getUser() != null) {
+      this.getAllPlayList()
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       let searchValue = params.q;
-      if(searchValue!=null){
+      if (searchValue != null) {
         this.getSongByName(params['q']);
       }
     });
@@ -52,7 +55,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   getAllPlayList() {
-    this.playListService.getAllPlayListByUserId(this.currentUser).subscribe(response => {
+    this.playListService.getAllPlayListByUserId(this.currentUserId).subscribe(response => {
       this.playLists = response;
     });
   }
@@ -70,14 +73,14 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   getSongByName(value) {
     this.song.name = value
     this.router.navigate(['/search'], {queryParams: {q: value}});
-    this.songServiceService.findByName(this.song).subscribe((response:any) => {
+    this.songServiceService.findByName(this.song).subscribe((response: any) => {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];
-      this.likeService.checkLike(this.currentUser).subscribe((data:any) =>{
+      this.likeService.checkLike(this.currentUserId).subscribe((data: any) => {
         for (let i = 0; i < this.playlists.length; i++) {
           for (let j = 0; j < data.length; j++) {
-            if (data[j].playlist.id==this.playlists[i].id){
+            if (data[j].playlist.id == this.playlists[i].id) {
               this.playlists[i].checkLike = true;
             }
           }
@@ -98,10 +101,10 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   like(id: number) {
-    this.likeService.addLike(this.currentUser,id).subscribe(data =>{
+    this.likeService.addLike(this.currentUserId, id).subscribe(data => {
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
-        if(searchValue!=null){
+        if (searchValue != null) {
           this.getSongByName(params['q']);
         }
       });
@@ -109,21 +112,21 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   unLike(id: number) {
-      this.likeService.unLike(id , this.currentUser).subscribe(() =>{
-        this.activatedRoute.queryParams.subscribe(params => {
-          let searchValue = params.q;
-          if(searchValue!=null){
-            this.getSongByName(params['q']);
-          }
-        });
-      })
+    this.likeService.unLike(id, this.currentUserId).subscribe(() => {
+      this.activatedRoute.queryParams.subscribe(params => {
+        let searchValue = params.q;
+        if (searchValue != null) {
+          this.getSongByName(params['q']);
+        }
+      });
+    })
   }
 
-  checkLikeSong(){
-    this.likeSong.checkLike(this.currentUser).subscribe((data:any) =>{
+  checkLikeSong() {
+    this.likeSong.checkLike(this.currentUserId).subscribe((data: any) => {
       for (let i = 0; i < this.songs.length; i++) {
         for (let j = 0; j < data.length; j++) {
-          if (data[j].song.id==this.songs[i].id){
+          if (data[j].song.id == this.songs[i].id) {
             this.songs[i].checkLike = true;
           }
         }
@@ -132,10 +135,10 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   addLikeSong(id: number) {
-    this.likeSong.addLike(this.currentUser , id).subscribe(data =>{
+    this.likeSong.addLike(this.currentUserId, id).subscribe(data => {
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
-        if(searchValue!=null){
+        if (searchValue != null) {
           this.getSongByName(params['q']);
         }
       });
@@ -143,11 +146,10 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   unLikeSong(id: number) {
-
-    this.likeSong.unLike(id,this.currentUser).subscribe(()=>{
+    this.likeSong.unLike(id, this.currentUserId).subscribe(() => {
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
-        if(searchValue!=null){
+        if (searchValue != null) {
           this.getSongByName(params['q']);
         }
       });
