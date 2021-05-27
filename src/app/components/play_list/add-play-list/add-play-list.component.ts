@@ -73,7 +73,7 @@ export class AddPlayListComponent implements OnInit {
 
   PlayPlayList(id: number) {
     this.playListService.getPlayListById(id).subscribe(data => {
-      this.playMusic.playPlayList(data.songs);
+      this.playMusic.playPlayList(data.songs , id);
     });
   }
 }
