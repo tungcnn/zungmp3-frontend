@@ -5,6 +5,7 @@ export interface Playlist {
   name?: string;
   songs?: Song[];
   views?:number;
-  description?:string
-  checkLike?:boolean
+  description?:string;
+  checkLike?:boolean;
+  LikeTotal?: number;
 }
