@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Song} from "../interface/song";
 import {SongService} from "./song/song.service";
+import {PlayListService} from "./playlist/play-list.service";
 
 
 declare var $: any;
@@ -10,7 +11,7 @@ declare var jPlayerPlaylist: any;
 })
 export class PlaymusicService {
 
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService , private  playList : PlayListService) { }
   playsong(song: Song) {
     song.views +=1;
     this.songService.editSong(song).subscribe(()=>{});
@@ -149,7 +150,13 @@ export class PlaymusicService {
       }
     });
   }
-  playPlayList(songs: Song[]) {
+  playPlayList(songs: Song[], ...idPlayList:number[]) {
+    this.playList.getPlayListById(idPlayList[0]).subscribe(data => {
+      data.views +=1;
+      this.playList.editPlayList(idPlayList[0] , data).subscribe(()=>{
+
+      })
+    })
     $("#jquery_jplayer_1").jPlayer("destroy");
     $(function () {
       "use strict";

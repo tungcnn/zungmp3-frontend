@@ -123,4 +123,8 @@ export class ShowPlayListComponent implements OnInit {
       }
     );
   }
+
+  playAllplayList() {
+    this.playMusic.playPlayList(this.playList.songs)
+  }
 }

@@ -20,7 +20,12 @@ export class LikePlayListService {
     return this.http.post(`${API_URL}/LikePlayList/${idUser}`,idPlayList);
   }
 
-  unLike( idPlayList:number):Observable<any>{
-    return this.http.delete(`${API_URL}/LikePlayList/${idPlayList}`)
+  unLike( idPlayList:number , idUser : number):Observable<any>{
+    return this.http.delete(`${API_URL}/LikePlayList/${idPlayList}/${idUser}`)
   }
+
+  top10():Observable<any>{
+    return this.http.get(`${API_URL}/LikePlayList`)
+  }
+
 }

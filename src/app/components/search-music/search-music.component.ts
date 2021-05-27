@@ -112,7 +112,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   unLike(id: number) {
-      this.likeService.unLike(id).subscribe(() =>{
+      this.likeService.unLike(id , this.currentUser).subscribe(() =>{
         this.activatedRoute.queryParams.subscribe(params => {
           let searchValue = params.q;
           if(searchValue!=null){
@@ -136,7 +136,6 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   addLikeSong(id: number) {
     this.likeSong.addLike(this.currentUser , id).subscribe(data =>{
-      console.log(data)
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
         if(searchValue!=null){
@@ -148,7 +147,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
 
   unLikeSong(id: number) {
 
-    this.likeSong.unLike(id).subscribe(()=>{
+    this.likeSong.unLike(id,this.currentUser).subscribe(()=>{
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
         if(searchValue!=null){

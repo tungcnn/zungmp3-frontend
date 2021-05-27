@@ -50,4 +50,8 @@ export class SongService {
   public getListSongId(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiSongServiceUrl}/songs/list/${id}`);
   }
+
+  public getTop15Likes():Observable<Song[]>{
+    return this.http.get<Song[]>(`${this.apiSongServiceUrl}/songs/top15Likes`)
+  }
 }
