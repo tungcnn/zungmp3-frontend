@@ -70,7 +70,7 @@ const routes: Routes = [
     component: GenresComponent
   },
   {
-    path: 'singer',
+    path: 'singer/:id',
     component: SingerComponent
   },
   {
@@ -82,7 +82,7 @@ const routes: Routes = [
     component: ShowPlayListComponent
   },
   {
-    path: 'songdetail',
+    path: 'songdetail/:id',
     component: SongDetailComponent
   },
   {

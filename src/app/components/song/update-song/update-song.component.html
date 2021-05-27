@@ -51,13 +51,13 @@
             <a href="javascript:;" class="ms_btn" (click)="showAddSingerForm()">Add another singer</a>
           </div>
           <div class="form-group">
-            <label>Select new song cover</label>
-            <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+            <label>Current cover. You can select new one</label>
             <img [src]="song.coverUrl" style="width: 100px; height: 100px">
+            <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
           </div>
           <div class="form-group">
             <label>Lyrics</label>
-            <textarea class="form-control" [(ngModel)]="song.lyrics" name="lyrics" style=""></textarea>
+            <textarea class="form-control" [(ngModel)]="song.lyrics" name="lyrics" style="height: 200px"></textarea>
           </div>
           <div class="pro-form-btn text-center marger_top15">
             <div class="ms_upload_btn">

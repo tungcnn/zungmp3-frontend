@@ -17,26 +17,30 @@ import {SongService} from "../../service/song/song.service";
 export class SearchMusicComponent implements OnInit, OnChanges {
 
   songs: Song[] = [];
-  singers : Singer[] = [];
-  playlists : Playlist[] = [];
+  singers: Singer[] = [];
+  playlists: Playlist[] = [];
   song: Song = {};
   playLists: Playlist[] = [];
   idSong: number = -1;
+  currentUserId;
 
   constructor(private songServiceService: SongService,
               private playListService: PlayListService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private token: TokenServiceService
-    , private playMusic: PlaymusicService
-    , private showPlayList : ShowPlayListService) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private token: TokenServiceService,
+              private playMusic: PlaymusicService,
+              private showPlayList: ShowPlayListService) {
+    this.currentUserId = this.token.getId();
   }
 
   ngOnInit() {
-    if (this.token.getUser()!=null){this.getAllPlayList()}
+    if (this.token.getUser() != null) {
+      this.getAllPlayList()
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       let searchValue = params.q;
-      if(searchValue!=null){
+      if (searchValue != null) {
         this.getSongByName(params['q']);
       }
     });
@@ -65,7 +69,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   getSongByName(value) {
     this.song.name = value
     this.router.navigate(['/search'], {queryParams: {q: value}});
-    this.songServiceService.findByName(this.song).subscribe((response:any) => {
+    this.songServiceService.findByName(this.song).subscribe((response: any) => {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];

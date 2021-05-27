@@ -122,24 +122,22 @@
   <div class="album_inner_list">
     <div class="album_list_wrapper">
       <ul class="album_list_name">
+        <li>#</li>
         <li>Song Title</li>
         <li>singer</li>
         <li class="text-center">views</li>
-        <li class="text-center">Album</li>
-        <li class="text-center">Like</li>
-        <li class="text-center">Add To Play List</li>
+        <li *ngIf="currentUserId" class="text-center">Like</li>
+        <li *ngIf="currentUserId" class="text-center">Add To Play List</li>
       </ul>
-      <ul *ngFor="let song of songs">
-        <li><a (click)="PlaySong(song.id)" ><span class="play_no">{{song.name}}</span><span class="play_hover"></span></a></li>
-        <li><ng-container *ngIf="song.singers!=null"><a href ="#" *ngFor="let singer of song.singers">{{singer.name}}</a></ng-container></li>
-        <li class="text-center"><a href="#">{{song.views}}</a></li>
-        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-        <li data-toggle="modal" data-target="#showPlayList" class="text-center" (click)="addProfileSong(song.id)"><span class="ms_icon1 ms_active_icon"></span></li>
+      <ul *ngFor="let song of songs; let i = index">
+        <li><a (click)="PlaySong(song.id)" ><span class="play_no">{{i+1}}</span><span class="play_hover"></span></a></li>
+        <li><a href="javascript:;" [routerLink]="['/songdetail', song.id]">{{song.name}}</a></li>
+        <li><ng-container *ngIf="song.singers!=null"><a href ="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}} </a></ng-container></li>
+        <li class="text-center"><a href="javascript:;">{{song.views}}</a></li>
+        <li *ngIf="currentUserId" [formGroup]=""  class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li *ngIf="currentUserId" data-toggle="modal" data-target="#showPlayList" class="text-center" (click)="addProfileSong(song.id)"><span class="ms_icon1 ms_active_icon"></span></li>
       </ul>
     </div>
-  </div>
-  <div class="ms_view_more padder_bottom20">
-    <a href="#" class="ms_btn">view more</a>
   </div>
 </div>
 <div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
@@ -152,21 +150,18 @@
         <li>Play</li>
         <li class="text-center">PlayList Name</li>
         <li class="text-center">views</li>
-        <li class="text-center">Like</li>
-        <li class="text-center">more</li>
+        <li *ngIf="currentUserId" class="text-center">Like</li>
+        <li *ngIf="currentUserId" class="text-center">more</li>
       </ul>
 
       <ul *ngFor="let playlist of playlists, let i = index">
         <li><a><span class="play_no">{{i+1}}</span><span class="play_hover"></span></a></li>
         <li class="text-center"><a href="javascript:;" (click)="nextSearch(playlist.id)">{{playlist.name}}</a></li>
-        <li class="text-center"><a href="#">{{playlist.views}}</a></li>
-        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-        <li class="text-center"><span class="ms_icon1 ms_active_icon"></span></li>
+        <li class="text-center"><a href="javascript:;">{{playlist.views}}</a></li>
+        <li *ngIf="currentUserId" class="text-center"><a href="javascript:;"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li *ngIf="currentUserId" class="text-center"><span class="ms_icon1 ms_active_icon"></span></li>
       </ul>
     </div>
-  </div>
-  <div class="ms_view_more padder_bottom20">
-    <a href="#" class="ms_btn">view more</a>
   </div>
 </div>
 <div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
@@ -176,23 +171,18 @@
   <div class="album_inner_list">
     <div class="album_list_wrapper">
       <ul class="album_list_name">
+        <li>#</li>
         <li>singer Title</li>
         <li class="text-center">Date</li>
         <li class="text-center">Description</li>
-        <li class="text-center">Like</li>
-        <li class="text-center">more</li>
       </ul>
-      <ul *ngFor="let singer of singers">
-        <li><a><span class="play_no">{{singer.name}}</span><span class="play_hover"></span></a></li>
-        <li class="text-center"><a href="#">{{singer.date}}</a></li>
-        <li class="text-center"><a href="#" >{{singer.description}}</a></li>
-        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-        <li class="text-center" ><span class="ms_icon1 ms_active_icon"></span></li>
+      <ul *ngFor="let singer of singers; let i = index">
+        <li>{{i+1}}</li>
+        <li><a href="javascript:;" [routerLink]="['/singer', singer.id]">{{singer.name}} </a></li>
+        <li class="text-center"><a href="javascript:;">{{singer.date}}</a></li>
+        <li class="text-center"><a href="javascript:;" >{{singer.description}}</a></li>
       </ul>
     </div>
-  </div>
-  <div class="ms_view_more padder_bottom20">
-    <a href="#" class="ms_btn">view more</a>
   </div>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="showPlayList" style="color: black ">

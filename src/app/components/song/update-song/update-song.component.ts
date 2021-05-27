@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Theme} from "../../../interface/theme";
 import {Genre} from "../../../interface/genre";
 import {Country} from "../../../interface/country";
@@ -47,6 +47,9 @@ export class UpdateSongComponent implements OnInit {
 
   private newSinger: Singer = {};
 
+  @ViewChild('coverInput', {static: false})
+  myCoverInput: ElementRef;
+
   constructor(private songService: SongService,
               private playService: PlaymusicService,
               private themeService: ThemeService,
@@ -80,12 +83,21 @@ export class UpdateSongComponent implements OnInit {
     this.currentUserId = this.token.getId();
   }
 
-  public async updateSong(song: Song) {
-
-  }
-
   public onCoverSelected(event) {
-    this.cover = event.target.files[0];
+    const file = event.target.files[0];
+    console.log(file.type);
+    if (file.type !== "image/jpeg" ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid format',
+        text: 'You did not upload a valid image file',
+        showConfirmButton: false,
+        timer: 2000
+      });
+      this.myCoverInput.nativeElement.value = '';
+    } else {
+      this.cover = event.target.files[0];
+    }
   }
 
   public async uploadImage() {
