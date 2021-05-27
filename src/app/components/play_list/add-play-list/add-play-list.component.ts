@@ -19,13 +19,14 @@ export class AddPlayListComponent implements OnInit {
   PlayLists: Playlist[] = [];
   songs: Song[] = [];
   song: Song = {};
+  currentUser = this.token.getId()
 
   constructor(private playListService: PlayListService, private songService: SongService,
               private token: TokenServiceService, private playMusic: PlaymusicService) {
   }
 
   ngOnInit() {
-    if (this.token.getUser().id == null) {
+    if (this.currentUser == null) {
 
     } else {
       this.getAllPlayList();
@@ -35,7 +36,7 @@ export class AddPlayListComponent implements OnInit {
 
 
   createPlayList(CreateForm: NgForm) {
-    this.playListService.createPlayList(this.token.getUser().id,CreateForm.value).subscribe(()=>{
+    this.playListService.createPlayList(this.currentUser,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
     },() =>{
       Swal.fire("Invalid characters!", "Please only use letters and/or numbers", "warning");
@@ -44,7 +45,7 @@ export class AddPlayListComponent implements OnInit {
 
 
   getAllPlayList() {
-    let id: number = this.token.getUser().id;
+    let id: number = this.token.getId();
     this.playListService.getAllPlayListByUserId(id).subscribe(data => {
       this.PlayLists = data;
     });

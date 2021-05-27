@@ -10,7 +10,7 @@
             <h1>Your Playlists</h1>
           </div>
         </div>
-        <div *ngFor="let PlayList of PlayLists as i" class="col-lg-2 col-md-6" >
+        <div *ngFor="let PlayList of PlayLists" class="col-lg-2 col-md-6" >
           <div class="ms_rcnt_box marger_bottom25">
             <div class="ms_rcnt_box_img">
               <img src="assets/images/radio/img1.jpg" alt="" class="img-fluid">
@@ -730,6 +730,7 @@
         <div class="form-group">
           <input [(ngModel)]="playList.name" name="name" type="text" placeholder="Enter Your PlayList Name"
                  class="form-control" required #create = "ngModel">
+          <input [(ngModel)]="playList.description" name="description" type="text" placeholder="Enter description" class="form-control">
           <div *ngIf="create.invalid && (create.dirty || create.touched)"
                class="alert" style="color: red">Trường này không được để trống</div>
         </div>
@@ -752,6 +753,7 @@
         <div class="form-group">
           <input [(ngModel)]="playListProfile.name" name="name" type="text" placeholder="Enter Your PlayList Name"
                  class="form-control" #edit = "ngModel" required>
+          <input [(ngModel)]="playListProfile.description" name="description" placeholder="Enter description" class="form-control">
           <div *ngIf="edit.invalid && (edit.dirty || edit.touched)"
                class="alert" style="color: red">Trường này không được để trống</div>
         </div>
