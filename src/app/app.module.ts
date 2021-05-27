@@ -32,6 +32,7 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
 import { SongDetailComponent } from './components/song/song-detail/song-detail.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import { UpdateSongComponent } from './components/song/update-song/update-song.component';
+import { ShowTopPlayListComponent } from './components/show-top-play-list/show-top-play-list.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UpdateSongComponent } from './components/song/update-song/update-song.c
     SongListComponent,
     SongDetailComponent,
     UpdateSongComponent,
+    ShowTopPlayListComponent,
 
   ],
     imports: [

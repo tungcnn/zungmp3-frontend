@@ -19,7 +19,7 @@ export class LikeSongService {
     return this.http.post(`${API_URL}/LikeSong/${idUser}`,idPlayList);
   }
 
-  unLike( idSong:number):Observable<any>{
-    return this.http.delete(`${API_URL}/LikeSong/${idSong}`)
+  unLike( idSong:number , idUser:number):Observable<any>{
+    return this.http.delete(`${API_URL}/LikeSong/${idSong}/${idUser}`)
   }
 }

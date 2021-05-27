@@ -69,6 +69,6 @@ export class SingerComponent implements OnInit {
 
   playAllSong() {
     console.log(this.songs);
-    this.playService.playPlayList(this.songs);
+    this.playService.playPlayList(this.songs );
   }
 }

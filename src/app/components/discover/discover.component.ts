@@ -21,6 +21,7 @@ export class DiscoverComponent implements OnInit {
 
   top15Songs: Song[] = [];
 
+  top15Likes : Song[] ;
 
   constructor(private playService: PlaymusicService,
               private songService: SongService) {
@@ -29,6 +30,7 @@ export class DiscoverComponent implements OnInit {
   ngOnInit() {
     this.getListSong();
     this.getTop15();
+    this.getTop15Likes()
   }
 
   selectSong(id: number) {
@@ -57,5 +59,11 @@ export class DiscoverComponent implements OnInit {
       this.top10Songs = songs.slice(5, 10);
       this.top15Songs = songs.slice(10, 15);
     });
+  }
+
+  getTop15Likes(){
+    this.songService.getTop15Likes().subscribe(data =>{
+      this.top15Likes = data
+    })
   }
 }

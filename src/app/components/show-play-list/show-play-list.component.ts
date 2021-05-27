@@ -69,4 +69,8 @@ export class ShowPlayListComponent implements OnInit {
       this.playMusic.playsong(data);
     })
   }
+
+  playAllplayList() {
+    this.playMusic.playPlayList(this.playList.songs)
+  }
 }
