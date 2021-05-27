@@ -24,10 +24,10 @@
           <tr *ngFor="let s of songs; let i = index">
             <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{i + 1}}</span><span
               class="play_hover"></span></a></td>
-            <td><a href="javascript:;" [routerLink]="['/singer', s.id]">{{s.name}}</a></td>
+            <td><a href="javascript:;" [routerLink]="['/songdetail', s.id]">{{s.name}}</a></td>
             <td>
               <ng-container *ngIf="s.singers">
-                <span *ngFor="let singer of s.singers">{{singer.name}}   </span>
+                <a href="javascript:;" *ngFor="let singer of s.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
               </ng-container>
             </td>
             <td><a *ngIf="s.genre">{{s.genre.name}}</a></td>
@@ -35,14 +35,14 @@
             <td><a *ngIf="s.theme">{{s.theme.name}}</a></td>
             <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" [routerLink]="['/update-song/', s.id]">
+              <a href="javascript:;" data-toggle="modal" [routerLink]="['/update-song/', s.id]">
             <span class="ms_close">
                 <img src="assets/images/svg/more.svg" alt="">
             </span>
               </a>
             </td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="deleteConfirm(s)">
+              <a href="javascript:;" data-toggle="modal" (click)="deleteConfirm(s)">
             <span class="ms_close">
             <img src="assets/images/svg/close.svg" alt="">
             </span>

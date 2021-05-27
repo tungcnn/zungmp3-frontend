@@ -14,6 +14,8 @@ import {NgForm} from "@angular/forms";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {Singer} from "../../../interface/singer";
 import {SingerService} from "../../../service/singer/singer.service";
+import {Tag} from "../../../interface/tag";
+import {TagService} from "../../../service/tag.service";
 
 @Component({
   selector: 'app-add-song',
@@ -21,9 +23,9 @@ import {SingerService} from "../../../service/singer/singer.service";
   styleUrls: ['./add-song.component.css']
 })
 export class AddSongComponent implements OnInit {
-  file: File;
+  file: File = null;
 
-  cover: File;
+  cover: File = null;
 
   public url: string;
 
@@ -45,6 +47,10 @@ export class AddSongComponent implements OnInit {
 
   private newSinger: Singer = {};
 
+  private tags: Tag[];
+
+  private newTag: Tag = {};
+
   @ViewChild('coverInput', {static: false})
   myCoverInput: ElementRef;
 
@@ -57,7 +63,8 @@ export class AddSongComponent implements OnInit {
               private themeService: ThemeService,
               private genreService: GenreService,
               private countryService: CountryService,
-              private singerService: SingerService) {
+              private singerService: SingerService,
+              private tagService: TagService) {
   }
 
   ngOnInit() {
@@ -72,6 +79,9 @@ export class AddSongComponent implements OnInit {
     })
     this.singerService.getAllSinger().subscribe(singers => {
       this.singers = singers;
+    })
+    this.tagService.getAll().subscribe(tags => {
+      this.tags = tags;
     })
     this.currentUserId = this.token.getId();
   }
@@ -111,9 +121,29 @@ export class AddSongComponent implements OnInit {
   }
 
   public async createSong(song: NgForm) {
-    this.url = await this.uploadSong();
-    this.coverUrl = await this.uploadImage();
-    this.addSong(song);
+    if (!this.file) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'You havent chosen an audio file',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    } else if (song.value.name == undefined || song.value.name == ''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'You havent given your song a name',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    } else {
+      this.url = await this.uploadSong();
+      if (this.cover) {
+        this.coverUrl = await this.uploadImage();
+      }
+      this.addSong(song);
+    }
   }
 
   public async uploadSong() {
@@ -243,5 +273,53 @@ export class AddSongComponent implements OnInit {
           )
         }
       })
+  }
+
+  public async showAddTagForm() {
+    Swal.fire({
+      title: `Create new tag`,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, add this tag!',
+      cancelButtonText: 'No, I changed my mind',
+      html:
+        `<table>
+            <tr>
+              <td><label>Name</label></td>
+              <td><input class="swal2-input" id="name" style="float: left"></td>
+            </tr>
+            </table>`,
+      preConfirm: () => {
+        return [
+          // @ts-ignore
+          document.getElementById("name").value,
+        ]
+      }
+    }).then(async (result) => {
+      if (result.value) {
+        this.newTag.name = result.value[0];
+        this.tagService.addTag(this.newTag).subscribe(() => {
+          Swal.fire(
+            'Added new tag!',
+            'This tag has been added to our system',
+            'success'
+          )
+          this.tagService.getAll().subscribe(tags => {
+            this.tags = tags;
+          })
+        }, error => {
+          Swal.fire(
+            'Couldnt add new tag!',
+            'This tag has not been added to our system',
+            'error'
+          )
+        })
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Maybe next time',
+          'error'
+        )
+      }
+    })
   }
 }

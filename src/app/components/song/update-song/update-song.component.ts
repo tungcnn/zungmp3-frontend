@@ -16,6 +16,8 @@ import {Singer} from "../../../interface/singer";
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {SingerService} from "../../../service/singer/singer.service";
+import {Tag} from "../../../interface/tag";
+import {TagService} from "../../../service/tag.service";
 
 @Component({
   selector: 'app-update-song',
@@ -47,6 +49,10 @@ export class UpdateSongComponent implements OnInit {
 
   private newSinger: Singer = {};
 
+  private tags: Tag[];
+
+  private newTag: Tag = {};
+
   @ViewChild('coverInput', {static: false})
   myCoverInput: ElementRef;
 
@@ -58,7 +64,8 @@ export class UpdateSongComponent implements OnInit {
               private token: TokenServiceService,
               private activeRoute: ActivatedRoute,
               private storage: AngularFireStorage,
-              private singerService: SingerService) {
+              private singerService: SingerService,
+              private tagService: TagService) {
     this.activeRoute.paramMap.subscribe(paramMap=>{
       const id = +paramMap.get("id");
       this.songService.findById(id).subscribe(song => {
@@ -79,6 +86,9 @@ export class UpdateSongComponent implements OnInit {
     })
     this.singerService.getAllSinger().subscribe(singers => {
       this.singers = singers;
+    })
+    this.tagService.getAll().subscribe(tags => {
+      this.tags = tags;
     })
     this.currentUserId = this.token.getId();
   }
@@ -197,7 +207,7 @@ export class UpdateSongComponent implements OnInit {
       cancelButtonText: 'No, keep it',
     }).then(async (result) => {
       if (result.value) {
-        if (this.cover !== null) {
+        if (this.cover != null) {
           song.coverUrl = await this.uploadImage();
         }
         this.songService.editSong(song).subscribe(() => {
@@ -219,6 +229,54 @@ export class UpdateSongComponent implements OnInit {
         Swal.fire(
           'Cancelled',
           'Your music file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
+
+  public async showAddTagForm() {
+    Swal.fire({
+      title: `Create new tag`,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, add this tag!',
+      cancelButtonText: 'No, I changed my mind',
+      html:
+        `<table>
+            <tr>
+              <td><label>Name</label></td>
+              <td><input class="swal2-input" id="name" style="float: left"></td>
+            </tr>
+            </table>`,
+      preConfirm: () => {
+        return [
+          // @ts-ignore
+          document.getElementById("name").value,
+        ]
+      }
+    }).then(async (result) => {
+      if (result.value) {
+        this.newTag.name = result.value[0];
+        this.tagService.addTag(this.newTag).subscribe(() => {
+          Swal.fire(
+            'Added new tag!',
+            'This tag has been added to our system',
+            'success'
+          )
+          this.tagService.getAll().subscribe(tags => {
+            this.tags = tags;
+          })
+        }, error => {
+          Swal.fire(
+            'Couldnt add new tag!',
+            'This tag has not been added to our system',
+            'error'
+          )
+        })
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Maybe next time',
           'error'
         )
       }

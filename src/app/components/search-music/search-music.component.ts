@@ -55,7 +55,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   getAllPlayList() {
-    this.playListService.getAllPlayListByUserId(this.currentUser).subscribe(response => {
+    this.playListService.getAllPlayListByUserId(this.currentUserId).subscribe(response => {
       this.playLists = response;
     });
   }
@@ -77,7 +77,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];
-      this.likeService.checkLike(this.currentUser).subscribe((data:any) =>{
+      this.likeService.checkLike(this.currentUserId).subscribe((data:any) =>{
         for (let i = 0; i < this.playlists.length; i++) {
           for (let j = 0; j < data.length; j++) {
             if (data[j].playlist.id==this.playlists[i].id){
@@ -101,7 +101,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   like(id: number) {
-    this.likeService.addLike(this.currentUser,id).subscribe(data =>{
+    this.likeService.addLike(this.currentUserId,id).subscribe(data =>{
       this.activatedRoute.queryParams.subscribe(params => {
         let searchValue = params.q;
         if(searchValue!=null){
@@ -123,7 +123,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   checkLikeSong(){
-    this.likeSong.checkLike(this.currentUser).subscribe((data:any) =>{
+    this.likeSong.checkLike(this.currentUserId).subscribe((data:any) =>{
       for (let i = 0; i < this.songs.length; i++) {
         for (let j = 0; j < data.length; j++) {
           if (data[j].song.id==this.songs[i].id){
