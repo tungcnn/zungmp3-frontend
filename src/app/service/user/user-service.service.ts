@@ -52,7 +52,7 @@ export class UserServiceService {
   // login(user: User): Observable<User>{
   //   return this.http.post<User>(`${API_URL}/api/login`,user);
   // }
-  logout(user: User):Observable<User>{
+  logout(id:number,user: User):Observable<User>{
     return this.http.delete<User>(`${API_URL}/api/logout/`);
   }
 }

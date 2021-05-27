@@ -1,43 +1,35 @@
 <div class="ms_header">
-  <div class="ms_top_left">
     <div class="ms_top_search" style="height: 40px">
       <form>
-      <a routerLink="/search"><span class="search_icon" style="position: absolute ; left: 80px ; right: 100px ; border-radius: 5px">
+        <a routerLink="/search">
+          <span class="search_icon" style="position: absolute ; left: 80px ; right: 100px ; border-radius: 5px">
 							<img src="assets/images/svg/search.svg" alt="" style="margin-left: 24px">
-						</span></a>
+					</span></a>
       </form>
     </div>
-    <div class="ms_top_trend">
-      <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
+    <div class="row" margin="300px">
+      <div class="col-3" *ngIf="isLoggedIn; else loggedOut">
+        <span name="username" style="color: #3F51B5"> Welcome  <strong style="color: #9C27B0">{{fullName}}</strong></span>
+      </div>
+      <div class="col-3">
+        <a *ngIf="isLoggedIn" href="javascript:;"  data-toggle="modal" data-target="#profile"><span>Profile of {{fullName}}</span></a>
+      </div>
+      <div class="col-2">
+        <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#register"><span>Register</span></a>
+      </div>
+      <div class="col-2">
+        <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#login"><span>Login</span></a>
+      </div>
+      <div class="col-2">
+        <a (click)="logout()" style="cursor:pointer; float:right" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>     
+      </div>
     </div>
-  </div>
-  <div class="ms_top_right">
+</div> 
 
-    <div *ngIf="isLoggedIn; else loggedOut">
-      <span name="username" style="color: #3F51B5">Welcome: <strong style="color: #9C27B0">{{user.username}}</strong></span>
-    </div>
-
-    <div class="ms_top_lang">
-      <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
-    </div>
-    <div class="ms_top_btn">
-      <!-- <a *ngIf="!isSuccessful" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
-      <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#register"><span>Register</span></a>
-      <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#login"><span>Login</span></a>
-      <a (click)="logout()" style="cursor:pointer" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>
-      <a  *ngIf="isLoggedIn" href="javascript:;" class="ms_btn profile_btn" data-toggle="modal" data-target="#profile"><span>{{user.username}}'s pf</span></a>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Modal -->
+<!-- Registration popup -->
 <div class="ms_register_popup">
-  <!--  Regiser Modal-->
   <div id="register" class="modal  centered-modal" role="dialog">
     <div class="modal-dialog register_dialog">
-      <!-- Modal content-->
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal">
           <i class="fa_icon form_close"></i>
@@ -142,10 +134,10 @@
       </div>
     </div>
   </div>
-  <!----Login Popup Start---->
+
+<!----Login Popup Start---->
   <div id="login" class="modal  centered-modal" role="dialog">
     <div class="modal-dialog login_dialog">
-      <!-- Modal content-->
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal">
           <i class="fa_icon form_close"></i>
@@ -156,7 +148,6 @@
           </div>
           <div class="ms_register_form">
             <h2>login / Sign in</h2>
-            <!-- <ng-template #loggedOut>  -->
           <form
             *ngIf="!isLoggedIn"
             name="form"
@@ -169,19 +160,18 @@
               [(ngModel)]="user.username"
               type="text"
               placeholder="Enter Your username"
-
               #username="ngModel"
               class="form-control">
               <span class="form_icon">
                 <i class="fa_icon form-user" aria-hidden="true"></i>
                 </span>
                 <div class="alert-danger" *ngIf="lg.submitted && username.invalid">
-                  <div *ngIf="username.errors.required">Username is required</div>
+                  <div *ngIf="username.errors.required">User name is required</div>
                   <div *ngIf="username.errors.minlength">
-                    Username must be at least 3 characters
+                    User name must be at least 3 characters
                   </div>
                   <div *ngIf="username.errors.maxlength">
-                    Username must be at most 20 characters
+                    User name must be at most 20 characters
                   </div>
                 </div>
             </div>
@@ -215,7 +205,6 @@
               </label>
             </div>
             <input type="submit" value="Login now">
-            <!-- <a routerLink="/playlist" class="ms_btn" target="_blank">login now</a> -->
             <div class="popup_forgot">
               <a href="#">Forgot Password ?</a>
             </div>
@@ -233,7 +222,6 @@
               Login Failed please Check username of password -> {{status}}
             </div>
           </form>
-          <!-- </ng-template> -->
           </div>
         </div>
       </div>
@@ -241,13 +229,10 @@
   </div>
 </div>
 
-<!--Profile-->
-<!-- Modal -->
-<div class="ms_profile_popup">
-  <!--  Profile Modal-->
+<!--Profile popup-->
+<div class="ms_profile_popup" data-dismiss="modal">
   <div id="profile" class="modal  centered-modal" role="dialog">
     <div class="modal-dialog profile_dialog">
-      <!-- Modal content-->
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal">
           <i class="fa_icon form_close"></i>
@@ -257,9 +242,6 @@
             <img src="assets/images/register_img.png" alt="" class="img-fluid" />
             <div class="col-12" >
               <div class="container" *ngIf="user; else loggedOut">
-                <!-- <header class="jumbotron">
-                  <h3> <strong>{{ user.username }}</strong> Profile</h3>
-                </header> -->
                 <p>
                   <strong>Profile of {{user.fullName}}</strong>
                 </p>
@@ -276,22 +258,18 @@
                   {{ user.email }}
                 </p>
                   <a *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a>
-                  <!-- <a routerLink="updateUser" >Update</a> -->
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 
-<!--updateUser-->
+<!--updateUser popup-->
   <div class="ms_update_popup">
-    <!--  Update Modal-->
-    <div id="updateUser" class="modal  centered-modal" role="dialog">
+    <div id="updateUser" class="modal  centered-modal" role="dialog" data-dismiss="modal">
       <div class="modal-dialog update_dialog">
-        <!-- Modal content-->
         <div class="modal-content">
           <button type="button" class="close" data-dismiss="modal">
             <i class="fa_icon form_close"></i>
@@ -302,7 +280,7 @@
             </div>
             <div class="ms_update_form" >
               <h2>Update User information</h2>
-              <form [formGroup]="updateUserForm" (ngSubmit)="updateUser(id)">
+              <form [formGroup]="userForm" (ngSubmit)="updateUser(id)">
                 <table>
                   <tr hidden>
                     <td>Id</td>
@@ -325,7 +303,6 @@
                     <td></td>
                     <td><input type="submit" value="Update"></td>
                   </tr>
-
                 </table>
               </form>
               <div class="alert alert-success" *ngIf="isSuccessful">
@@ -337,16 +314,13 @@
       </div>
     </div> -->
 
-<!--logout-->
+<!--logout popup-->
     <div class="ms_profile_popup">
-      <!--  Profile Modal-->
       <div id="logout" class="modal  centered-modal" role="dialog">
         <div class="modal-dialog logout_dialog">
-          <!-- Modal content-->
           <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal">
-              <i class="fa_icon form_close"></i>
-            </button>
+              <i class="fa_icon form_close"></i></button>
             <div class="modal-body">
               <div class="col-12">
                 <img src="assets/images/register_img.png" alt="" class="img-fluid" />
@@ -364,7 +338,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

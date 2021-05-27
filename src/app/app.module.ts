@@ -1,8 +1,6 @@
 import { Observable } from 'rxjs';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MusicplayerComponent } from './components/musicplayer/musicplayer.component';
@@ -26,12 +24,14 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {GenresComponent} from './components/genres/genres.component';
 import { SingerComponent } from './components/singer/singer.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ShowPlayListComponent } from './components/show-play-list/show-play-list.component';
 import { SongListComponent } from './components/song/song-list/song-list.component';
+import { SongDetailComponent } from './components/song/song-detail/song-detail.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { UpdateSongComponent } from './components/song/update-song/update-song.component';
 
 @NgModule({
   declarations: [
@@ -48,13 +48,13 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
     UserComponent,
     AdminComponent,
     ProfileComponent,
-    UserUpdateComponent,
-    UserDeleteComponent,
     GenresComponent,
     SingerComponent,
     AlbumComponent,
     ShowPlayListComponent,
     SongListComponent,
+    SongDetailComponent,
+    UpdateSongComponent,
 
   ],
     imports: [
@@ -69,6 +69,7 @@ import { SongListComponent } from './components/song/song-list/song-list.compone
         MatButtonModule,
         ReactiveFormsModule,
         CommonModule,
+        NgSelectModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
