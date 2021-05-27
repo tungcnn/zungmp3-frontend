@@ -14,6 +14,7 @@ import {ShowPlayListComponent} from './components/show-play-list/show-play-list.
 import {SongListComponent} from './components/song/song-list/song-list.component';
 import {SongDetailComponent} from './components/song/song-detail/song-detail.component';
 import {UpdateSongComponent} from "./components/song/update-song/update-song.component";
+import {SingerListComponent} from "./components/singer/singer-list/singer-list.component";
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
   {
     path: 'songdetail',
     component: SongDetailComponent
+  },
+  {
+    path: 'singer-list',
+    component: SingerListComponent
   }
 ];
 

@@ -35,7 +35,7 @@ export class UpdateSongComponent implements OnInit {
 
   public songs: Song[];
 
-  private currentUser: any = null;
+  private currentUserId: string;
 
   public genres: Genre[];
 
@@ -77,7 +77,7 @@ export class UpdateSongComponent implements OnInit {
     this.singerService.getAllSinger().subscribe(singers => {
       this.singers = singers;
     })
-    this.currentUser = this.token.getUser();
+    this.currentUserId = this.token.getId();
   }
 
   public async updateSong(song: Song) {

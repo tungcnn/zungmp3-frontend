@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {SongService} from '../../../service/song/song.service';
 import {Song} from '../../../interface/song';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -33,7 +33,7 @@ export class AddSongComponent implements OnInit {
 
   public songs: Song[];
 
-  private currentUser: any = null;
+  private currentUserId: string;
 
   public genres: Genre[];
 
@@ -44,6 +44,12 @@ export class AddSongComponent implements OnInit {
   public singers: Singer[];
 
   private newSinger: Singer = {};
+
+  @ViewChild('coverInput', {static: false})
+  myCoverInput: ElementRef;
+
+  @ViewChild('fileInput', {static: false})
+  myFileInput: ElementRef;
 
   constructor(private songService: SongService,
               private storage: AngularFireStorage,
@@ -67,15 +73,41 @@ export class AddSongComponent implements OnInit {
     this.singerService.getAllSinger().subscribe(singers => {
       this.singers = singers;
     })
-    this.currentUser = this.token.getUser();
+    this.currentUserId = this.token.getId();
   }
 
   public onFileSelected(event) {
-    this.file = event.target.files[0];
+    const file = event.target.files[0];
+    console.log(file.type);
+    if (file.type !== "audio/mpeg") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid format',
+        text: 'You did not upload a valid audio file',
+        showConfirmButton: false,
+        timer: 2000
+      });
+      this.myFileInput.nativeElement.value = '';
+    } else {
+      this.file = event.target.files[0];
+    }
   }
 
   public onCoverSelected(event) {
-    this.cover = event.target.files[0];
+    const file = event.target.files[0];
+    console.log(file.type);
+    if (file.type !== "image/jpeg" ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid format',
+        text: 'You did not upload a valid image file',
+        showConfirmButton: false,
+        timer: 2000
+      });
+      this.myCoverInput.nativeElement.value = '';
+    } else {
+      this.cover = event.target.files[0];
+    }
   }
 
   public async createSong(song: NgForm) {
@@ -119,7 +151,7 @@ export class AddSongComponent implements OnInit {
   public addSong(song: NgForm) {
     song.value.url = this.url;
     song.value.user = {
-      id: this.currentUser.id
+      id: this.currentUserId
     };
     song.value.coverUrl = this.coverUrl;
     this.songService.addSong(song.value).subscribe(() => {
