@@ -112,7 +112,7 @@ export class ShowPlayListComponent implements OnInit {
       id: this.playList.id
     }
     this.seviceCommentPlaylist.addCommentPlaylist(comment.value).subscribe(
-      (response: Songcomment) => {
+      (response: Playcomment) => {
         console.log(response);
         this.getCommentPlaylist();
         comment.reset();
