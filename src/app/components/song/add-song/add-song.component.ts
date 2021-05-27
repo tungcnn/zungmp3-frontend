@@ -227,12 +227,6 @@ export class AddSongComponent implements OnInit {
                 <textarea class="swal2-textarea" id="description" style="float:left"></textarea>
               </td>
             </tr>
-<!--            <tr>-->
-<!--              <td><label>Avatar</label></td>-->
-<!--              <td>-->
-<!--                <input type="file" class="swal2-file" onchange="onCoverSelected(event)">-->
-<!--              </td>-->
-<!--            </tr>-->
             </table>`,
         preConfirm: () => {
           return [

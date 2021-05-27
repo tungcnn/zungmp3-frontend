@@ -36,7 +36,7 @@
           <div class="form-group">
             <label>Singers. <a href="javascript:;" (click)="showAddSingerForm()"><strong>Or add a new one</strong></a></label>
             <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
-                       name="singers">
+                       >
               <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
             </ng-select>
           </div>
