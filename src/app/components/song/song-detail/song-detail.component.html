@@ -1,0 +1,83 @@
+<div class="ms_album_single_wrapper ms_artist_single">
+  <div class="album_single_data">
+    <div class="album_single_img">
+      <img [src]="song.coverUrl" alt="" class="img-fluid">
+    </div>
+    <div class="album_single_text">
+      <h2>{{song.name}}</h2>
+      <span>Genre: {{song.genre.name}}</span><br>
+      <span>Theme: {{song.theme.name}}</span><br>
+      <span>Country: {{song.country.name}}</span><br>
+      <ng-container *ngIf="song.singers">
+        <a href="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
+      </ng-container>
+      <br>
+      <div class="album_btn">
+        <a (click)="playSong(songid)" class="ms_btn play_btn"><span class="play_all"><img
+          src="assets/images/svg/play_all.svg" alt="">Play</span><span
+          class="pause_all"><img src="assets/images/svg/pause_all.svg" alt="">Pause</span></a>
+      </div>
+    </div>
+    <div class="album_more_optn ms_more_icon">
+      <span><img src="assets/images/svg/more.svg" alt=""></span>
+    </div>
+    <ul class="more_option">
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+    </ul>
+  </div>
+  <!----Song List---->
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>#</li>
+        <li>Name Song</li>
+        <li class="text-center">Add To Favourites</li>
+        <li class="text-center">More</li>
+      </ul>
+
+      <ul>
+        <li><a (click)="playSong(songid)"><span class="play_no">1</span><span class="play_hover"></span></a>
+        </li>
+        <li><a>{{song.name}}</a></li>
+        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li class="text-center ms_more_icon"><a href="javascript:"><span class="ms_icon1 ms_active_icon"></span></a>
+          <ul class="more_option">
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+            </li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!----Comment Form section Start---->
+  <div class="ms_cmnt_wrapper">
+
+
+  </div>
+  <div class="comment-section">
+    <div class="ms_heading">
+      <h1>Comments({{songcomment.length}})</h1>
+    </div>
+    <form #from="ngForm" *ngIf="currentUserId != null">
+          <textarea name="comment" [(ngModel)]="comment.comment" class="form-control"
+                    placeholder="Enter Your Comment Here.." style="height: 100px"></textarea>
+      <br>
+      <a class="ms_btn" (click)="createComment(from)">post</a>
+    </form>
+    <div class="comment" *ngFor="let comment of songcomment">
+      <h5>{{comment.user.username}}</h5>
+      <span class="comment-date">{{comment.date | date}}</span>
+      <p>{{comment.comment}}</p>
+    </div>
+  </div>
+</div>
+

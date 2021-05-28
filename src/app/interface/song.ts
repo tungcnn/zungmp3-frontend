@@ -3,6 +3,7 @@ import {Genre} from './genre';
 import {Theme} from './theme';
 import {Country} from './country';
 import {User} from './user';
+import {Tag} from './tag';
 
 export interface Song {
   id?: number;
@@ -17,4 +18,7 @@ export interface Song {
   theme?: Theme;
   country?: Country;
   user?: User;
+  checkLike?: boolean;
+  tags?: Tag[];
+  LikeTotal?: number;
 }

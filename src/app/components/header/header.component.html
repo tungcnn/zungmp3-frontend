@@ -21,10 +21,10 @@
         <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#login"><span>Login</span></a>
       </div>
       <div class="col-2">
-        <a (click)="logout()" style="cursor:pointer; float:right" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>     
+        <a (click)="logout()" style="cursor:pointer; float:right" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>
       </div>
     </div>
-</div> 
+</div>
 
 <!-- Registration popup -->
 <div class="ms_register_popup">
@@ -45,11 +45,11 @@
               name="form"
               (ngSubmit)="reg.form.valid && registration(reg)"
               #reg="ngForm"
-              novalidate>  
+              novalidate>
             <div class="form-group">
-              <input 
+              <input
               name="fullName"
-              [(ngModel)]="user.fullName" 
+              [(ngModel)]="user.fullName"
               type="text"
               placeholder="Enter Your Full Name"
               #fullName="ngModel"
@@ -107,8 +107,7 @@
               name="email"
               [(ngModel)]="user.email"
               type="text"
-              placeholder="Enter Your Email"
-              
+              placeholder="Enter Your Email"              
               email
               #email="ngModel"
               class="form-control">
@@ -130,7 +129,7 @@
           <div class="alert alert-warning" *ngIf="reg.submitted && isRegistrationFailed">
             Signup failed!<br />{{ errorMessageRegistration }}
           </div>
-            </form> 
+            </form>
             <div class="alert alert-success" *ngIf="isSuccessful">
               Your registration is successful!
             </div>
@@ -164,7 +163,7 @@
               name="username"
               [(ngModel)]="user.username"
               type="text"
-              placeholder="Enter Your Full name"
+              placeholder="Enter Your username"
               required
               #username="ngModel"
               class="form-control">
@@ -355,7 +354,7 @@
         </div>
         </div>
       </div>
-</div> -->
+</div>
 
 <!--logout popup-->
 <div class="ms_profile_popup">
@@ -368,9 +367,16 @@
               <div class="col-12">
                 <img src="assets/images/register_img.png" alt="" class="img-fluid" />
                 <div class="col-12" >
-                  <div class="container" *ngIf="user; else loggedOut"> 
-                    <p><strong>Are you sure to logout {{user.username}}?</strong></p>
+                  <div class="container" *ngIf="user; else loggedOut">
+
+                    <p>
+                      <strong>Are you sure to logout {{user.username}}?</strong>
+                    </p>
                     <a data-dismiss="modal" (click)="logout()" ><button>Yes</button></a>
+
+
+                      <!-- <a *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
+                      <!-- <a routerLink="updateUser" >Update</a> -->
                   </div>
                 </div>
               </div>
@@ -429,8 +435,3 @@
     </div>
   </div>
 </div>
-
-
-  
-
-      

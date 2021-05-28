@@ -1,11 +1,11 @@
-<app-header></app-header>
+<!--<app-header></app-header>-->
 
 <!----User Song List---->
 <div class="ms_content_wrapper padder_top80" id="main-container">
   <h2>Your Songs</h2>
   <div class="ms_free_download">
-    <div class="ms_heading">
-      <h1><a [routerLink]="['/uploadSong']">Add new song</a></h1>
+    <div class="ms_view_more padder_bottom20" style="float: left">
+      <a [routerLink]="['/uploadSong']" class="ms_btn">Add new song</a>
     </div>
     <div class="album_inner_list">
       <div class="album_list_wrapper">
@@ -21,28 +21,28 @@
             <th class="text-center">Edit</th>
             <th class="text-center">Remove</th>
           </tr>
-          <tr *ngFor="let s of songs; index as idx">
-            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{idx + 1}}</span><span
+          <tr *ngFor="let s of songs; let i = index">
+            <td><a href="javascript:;" (click)="playmusic(s.id)"><span class="play_no">{{i + 1}}</span><span
               class="play_hover"></span></a></td>
-            <td><a href="javascript:;" (click)="playmusic(s.id)">{{s.name}}</a></td>
+            <td><a href="javascript:;" [routerLink]="['/songdetail', s.id]">{{s.name}}</a></td>
             <td>
               <ng-container *ngIf="s.singers">
-                <span *ngFor="let singer of s.singers">{{singer.name}}</span>
+                <a href="javascript:;" *ngFor="let singer of s.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
               </ng-container>
             </td>
-            <td><a>{{s.genre.name}}</a></td>
-            <td><a>{{s.country.name}}</a></td>
-            <td><a>{{s.theme.name}}</a></td>
+            <td><a *ngIf="s.genre">{{s.genre.name}}</a></td>
+            <td><a *ngIf="s.country">{{s.country.name}}</a></td>
+            <td><a *ngIf="s.theme">{{s.theme.name}}</a></td>
             <td class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="showUpdateForm(s.id)">
+              <a href="javascript:;" data-toggle="modal" [routerLink]="['/update-song/', s.id]">
             <span class="ms_close">
                 <img src="assets/images/svg/more.svg" alt="">
             </span>
               </a>
             </td>
             <td class="text-center">
-              <a href="#" data-toggle="modal" (click)="deleteConfirm(s)">
+              <a href="javascript:;" data-toggle="modal" (click)="deleteConfirm(s)">
             <span class="ms_close">
             <img src="assets/images/svg/close.svg" alt="">
             </span>
@@ -51,9 +51,6 @@
           </tr>
         </table>
       </div>
-    </div>
-    <div class="ms_view_more padder_bottom20">
-      <a href="#" class="ms_btn">view more</a>
     </div>
   </div>
 </div>

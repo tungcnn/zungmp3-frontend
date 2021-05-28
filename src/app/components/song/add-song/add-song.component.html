@@ -2,9 +2,6 @@
 
 <!----Upload Start---->
 <div class="ms_upload_wrapper marger_top60">
-  <div class="ms_heading">
-    <h1><a [routerLink]="['/song-list']">Back to your list</a></h1>
-  </div>
   <form #songForm="ngForm">
     <div class=" marger_top60">
       <div class="ms_upload_box">
@@ -36,22 +33,32 @@
               <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
             </select>
           </div>
-          <div class="form-group" >
-            <label>Lyrics</label>
-            <textarea class="form-control" [rows]="5" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
-          </div><br>
           <div class="form-group">
-            <label>Select file *</label>
-            <input class="swal2-file" type="file" (change)="onFileSelected($event)"/>
+            <label>Singers. <a href="javascript:;" (click)="showAddSingerForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="singers">
+              <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
+            </ng-select>
           </div>
           <div class="form-group">
-            <label>Select avatar *</label>
-            <input class="swal2-file" type="file" (change)="onCoverSelected($event)"/>
+            <label>Tags. <a href="javascript:;" (click)="showAddTagForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.tags" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="tags">
+              <ng-option *ngFor="let tag of tags" [value]="tag">{{tag.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <label>Select your song*</label>
+            <input class="swal2-file" type="file" #fileInput (change)="onFileSelected($event)"/>
+            <label>Select song cover</label>
+            <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
+          </div>
+          <div class="form-group">
+            <label>Lyrics</label>
+            <textarea class="form-control" style="height: 200px" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
           </div>
           <div class="pro-form-btn text-center marger_top15">
             <div class="ms_upload_btn">
               <a href="javascript:;" class="ms_btn" (click)="createSong(songForm)">Upload Now</a>
-              <a href="javascript:;" (click)="songForm.reset()" class="ms_btn">Cancel</a>
+              <a href="javascript:;" [routerLink]="['/song-list']" class="ms_btn">Back</a>
             </div>
           </div>
         </div>
