@@ -55,7 +55,7 @@
           <div class="form-group">
             <label>Select song cover</label>
             <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
-            <img [src]="song.coverUrl" style="width: 100px; height: 100px">
+            <img *ngIf="song.coverUrl" [src]="songCover" style="width: 100px; height: 100px">
           </div>
           <div class="form-group">
             <label>Lyrics</label>
