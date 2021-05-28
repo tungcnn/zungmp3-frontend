@@ -138,11 +138,58 @@ export class AddSongComponent implements OnInit {
         timer: 2000
       });
     } else {
-      this.url = await this.uploadSong();
-      if (this.cover) {
-        this.coverUrl = await this.uploadImage();
-      }
-      this.addSong(song);
+      Swal.fire({
+        title: `Are you sure want to add this song?`,
+        text: 'You will be able to update its info later!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, upload it!',
+        cancelButtonText: 'No, I changed my mind',
+      }).then(async (result) => {
+        if (result.value) {
+          let timerInterval;
+          Swal.fire({
+            title: 'Uploading!',
+            html: 'Please wait for about 10 seconds',
+            timer: 10000,
+            toast: true,
+            position: 'top-right',
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              timerInterval = setInterval(() => {
+                const content = Swal.getHtmlContainer()
+                if (content) {
+                  const b = content.querySelector('b')
+                  if (b) {
+                    // @ts-ignore
+                    b.textContent = Swal.getTimerLeft()
+                  }
+                }
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
+          this.url = await this.uploadSong();
+          if (this.cover) {
+            this.coverUrl = await this.uploadImage();
+          }
+          this.addSong(song);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Cancelled',
+            'Come back soon :)',
+            'error'
+          );
+        }
+      });
     }
   }
 
@@ -185,13 +232,15 @@ export class AddSongComponent implements OnInit {
     };
     song.value.coverUrl = this.coverUrl;
     this.songService.addSong(song.value).subscribe(() => {
+      this.myCoverInput.nativeElement.value = '';
+      this.myFileInput.nativeElement.value = '';
+      song.reset();
       Swal.fire({
         icon: 'success',
         title: 'Your music has been saved',
         showConfirmButton: false,
         timer: 1500
       });
-      song.reset();
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -199,7 +248,6 @@ export class AddSongComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
-      song.reset();
     });
   }
 

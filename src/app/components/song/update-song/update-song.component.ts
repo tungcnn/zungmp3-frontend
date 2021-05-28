@@ -53,6 +53,8 @@ export class UpdateSongComponent implements OnInit {
 
   private newTag: Tag = {};
 
+  public songCover: string;
+
   @ViewChild('coverInput', {static: false})
   myCoverInput: ElementRef;
 
@@ -70,6 +72,7 @@ export class UpdateSongComponent implements OnInit {
       const id = +paramMap.get("id");
       this.songService.findById(id).subscribe(song => {
         this.song = song;
+        this.songCover = this.song.coverUrl;
       })
     })
   }
@@ -208,6 +211,36 @@ export class UpdateSongComponent implements OnInit {
     }).then(async (result) => {
       if (result.value) {
         if (this.cover != null) {
+          let timerInterval;
+          Swal.fire({
+            title: 'Uploading Image!',
+            html: 'Please wait for about 5 seconds',
+            timer: 5000,
+            toast: true,
+            position: 'top-right',
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              timerInterval = setInterval(() => {
+                const content = Swal.getHtmlContainer()
+                if (content) {
+                  const b = content.querySelector('b')
+                  if (b) {
+                    // @ts-ignore
+                    b.textContent = Swal.getTimerLeft()
+                  }
+                }
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
           song.coverUrl = await this.uploadImage();
         }
         this.songService.editSong(song).subscribe(() => {
@@ -216,6 +249,7 @@ export class UpdateSongComponent implements OnInit {
               'Your music file has been updated.',
               'success'
             )
+            this.songCover = song.coverUrl;
           },
           (error: HttpErrorResponse) => {
             Swal.fire(
