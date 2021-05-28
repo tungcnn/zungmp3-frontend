@@ -309,7 +309,7 @@
                     <tr hidden>
                       <td>Id</td>
                       <td><input type="number" formControlName="id"></td>
-                      <td *ngIf="id?.errors?.required && id?.touched">Input data is required</td>
+                      <td *ngIf="userForm.controls.id?.errors?.required && userForm.controls.id?.touched">Input data is required</td>
                     </tr>
 
                     <div class="input-group mb-3">
@@ -408,7 +408,7 @@
                         <tr hidden>
                           <td>Id</td>
                           <td><input type="number" formControlName="id"></td>
-                          <td *ngIf="id?.errors?.required && id?.touched">Input data is required</td>
+                          <td *ngIf="updatePasswordUserForm.controls.id?.errors?.required && updatePasswordUserForm.controls.id?.touched">Input data is required</td>
                         </tr>
                         <tr>
                           <td>User name</td>

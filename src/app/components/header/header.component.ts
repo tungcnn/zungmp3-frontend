@@ -119,13 +119,13 @@ export class HeaderComponent implements OnInit {
     if(this.tokenStorage.getToken()){
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
-      this.userForm.setValue(this.user); 
+      this.userForm.setValue(this.user);
       this.updatePasswordUser=this.tokenStorage.getUpdatePassword();
       this.updatePasswordUserForm.setValue(this.updatePasswordUser);
     }
     this.checkUser();
     this.checkUpdatePasswordUser();
-  
+
   }
   registration(value : NgForm){
     this.authService.registration(value.value).subscribe(
@@ -190,12 +190,11 @@ export class HeaderComponent implements OnInit {
   logout(){
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, log me out!'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(

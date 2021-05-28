@@ -47,11 +47,11 @@ export class UpdateSongComponent implements OnInit {
 
   public singers: Singer[];
 
-  private newSinger: Singer = {};
+  public newSinger: Singer = {};
 
-  private tags: Tag[];
+  public tags: Tag[];
 
-  private newTag: Tag = {};
+  public newTag: Tag = {};
 
   public songCover: string;
 

@@ -31,7 +31,7 @@ export class SearchMusicComponent implements OnInit, OnChanges {
               private playListService: PlayListService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private token: TokenServiceService,
+              public token: TokenServiceService,
               private playMusic: PlaymusicService,
               private showPlayList: ShowPlayListService,
               private likeSong: LikeSongService ,

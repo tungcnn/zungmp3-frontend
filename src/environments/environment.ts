@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080',
+  apiUrl: 'https://zungwebmusic.herokuapp.com',
   firebaseConfig: {
     apiKey: 'AIzaSyDTvSWVvpKHs1jBgfzaNfcWVXyPrKg-hEY',
     authDomain: 'webmusic-cc387.firebaseapp.com',

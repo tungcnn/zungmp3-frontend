@@ -35,7 +35,7 @@ export class AddSongComponent implements OnInit {
 
   public songs: Song[];
 
-  private currentUserId: string;
+  public currentUserId: string;
 
   public genres: Genre[];
 
@@ -45,11 +45,11 @@ export class AddSongComponent implements OnInit {
 
   public singers: Singer[];
 
-  private newSinger: Singer = {};
+  public newSinger: Singer = {};
 
-  private tags: Tag[];
+  public tags: Tag[];
 
-  private newTag: Tag = {};
+  public newTag: Tag = {};
 
   @ViewChild('coverInput', {static: false})
   myCoverInput: ElementRef;
