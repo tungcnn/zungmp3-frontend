@@ -247,4 +247,34 @@
       </div>
     </div>
   </div>
+<!--  top 15 playList -->
+  <div class="ms_rcnt_slider">
+    <div class="ms_heading">
+      <h1>Latest Release</h1>
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let playlist of top15DatePlayList">
+          <div class="ms_rcnt_box">
+            <div class="ms_rcnt_box_img">
+<!--              <img *ngIf="song.coverUrl" [src]="song.coverUrl" alt="" style="width: 297px; height: 297px">-->
+              <img src="assets/images/coverBlank.png" alt="" style="width: 297px; height: 297px">
+              <div class="ms_main_overlay">
+                <div class="ms_box_overlay"></div>
+                <div class="ms_play_icon">
+                  <img src="assets/images/svg/play.svg" alt="" >
+                </div>
+              </div>
+            </div>
+            <div class="ms_rcnt_box_text">
+              <h3><a href="#">{{playlist.name}}</a><span><h3>{{playlist.releaseDate | date}}</h3></span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next slider_nav_next"></div>
+    <div class="swiper-button-prev slider_nav_prev"></div>
+  </div>
 </div>

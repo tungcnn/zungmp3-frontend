@@ -54,4 +54,8 @@ export class PlayListService {
   getTop15likes():Observable<Playlist[]>{
     return this.http.get<Playlist[]>(`${API_URL}/playlists/top15likes`)
   }
+
+  getTop15Date():Observable<Playlist[]>{
+    return this.http.get<Playlist[]>(`${API_URL}/playlists/top15Date`)
+  }
 }
