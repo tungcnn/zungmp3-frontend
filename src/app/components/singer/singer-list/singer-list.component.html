@@ -11,7 +11,8 @@
         <div class="col-lg-2 col-md-6" *ngFor="let sg of singers">
           <div class="ms_rcnt_box marger_bottom30">
             <div class="ms_rcnt_box_img">
-              <img [src]="sg.avatarUrl" alt="" class="img-fluid">
+              <img *ngIf="sg.avatarUrl" [src]="sg.avatarUrl" alt="" class="img-fluid">
+              <img *ngIf="!sg.avatarUrl"  src="assets/images/blankava.png" alt="" class="img-fluid">
               <div class="ms_main_overlay">
                 <div class="ms_box_overlay"></div>
                 <div class="ms_play_icon">
@@ -20,7 +21,7 @@
               </div>
             </div>
             <div class="ms_rcnt_box_text">
-              <h3><a href="javascript:" [routerLink]="['/singer',sg.id]" >Claire Hudson</a></h3>
+              <h3><a href="javascript:" [routerLink]="['/singer',sg.id]" >{{sg.name}}</a></h3>
             </div>
           </div>
         </div>

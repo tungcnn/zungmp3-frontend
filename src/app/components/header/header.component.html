@@ -9,10 +9,10 @@
     </div>
     <div class="row" margin="300px">
       <div class="col-3" *ngIf="isLoggedIn; else loggedOut">
-        <span name="username" style="color: #3F51B5"> Welcome  <strong style="color: #9C27B0">{{fullName}}</strong></span>
+        <span name="username" style="color: #3F51B5"> Welcome  <strong style="color: #9C27B0">{{user.username}}</strong></span>
       </div>
       <div class="col-3">
-        <a *ngIf="isLoggedIn" href="javascript:;"  data-toggle="modal" data-target="#profile"><span>Profile of {{fullName}}</span></a>
+        <a *ngIf="isLoggedIn" href="javascript:;"  data-toggle="modal" data-target="#profile"><span>Profile of {{user.username}}</span></a>
       </div>
       <div class="col-2">
         <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#register"><span>Register</span></a>
@@ -107,7 +107,7 @@
               name="email"
               [(ngModel)]="user.email"
               type="text"
-              placeholder="Enter Your Email"              
+              placeholder="Enter Your Email"
               email
               #email="ngModel"
               class="form-control">
@@ -318,7 +318,7 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Fullname</span>
                       </div>
                       <input formControlName="fullName" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                      
+
                     </div>
 
                     <div class="input-group mb-3">
@@ -343,8 +343,8 @@
                   <!-- <button type="button" class="btn btn-ms">Update</button> -->
                   <!-- <p> <a *ngIf="!isLoggedIn" href="javascript:;"  class="btn btn_ms" ><span>Update</span></a></p> -->
                 </table>
-                  </form> 
-              </div>    
+                  </form>
+              </div>
               <div class="alert alert-success" *ngIf="isSuccessful">
                 Your updating is successful!
               </div>
@@ -399,7 +399,7 @@
             <div class="modal-body">
               <div class="ms_changePassword_img"><img src="assets/images/register_img.png" alt="" class="img-fluid" /></div>
             </div>
-          </div>  
+          </div>
           <div class="col-6">
             <div class="ms_update_form" >
                 <h2>Update User information</h2>
@@ -427,10 +427,10 @@
                           <td><input type="submit" value="Update"></td>
                         </tr>
                       </table>
-                </form> 
+                </form>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
     </div>
   </div>

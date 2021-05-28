@@ -20,5 +20,5 @@ export interface Song {
   user?: User;
   checkLike?: boolean;
   tags?: Tag[];
-  LikeTotal?: number;
+  likeTotalSong?: number;
 }
