@@ -1,3 +1,4 @@
+import { UpdatePasswordService } from './../../service/user/update-password.service';
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SongService} from "../../service/song/song.service";
 import {FormControl, FormGroup, NgForm} from "@angular/forms";
@@ -13,6 +14,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { UpdatePassword } from 'src/app/interface/updatePassword';
 
 const API_URL = `${environment.apiUrl}` + '/api/';
 @Component({
@@ -28,6 +30,8 @@ export class HeaderComponent implements OnInit {
   formRegistration: any = {};
   user:User={};
   fullName: string = '';
+  currentPassword ='';
+  newPassword = '';
 
   isSuccessful =false;
   isRegistrationFailed = false;
@@ -49,9 +53,19 @@ export class HeaderComponent implements OnInit {
     fullName: new FormControl,
     username: new FormControl,
     password: new FormControl,
-    email: new FormControl
+    email: new FormControl,
   });
+  updatePasswordUserForm: FormGroup= new FormGroup({
+    id: new FormControl(),
+    username:new FormControl,
+    currentPassword:new FormControl,
+    newPassword:new FormControl,
+    fullName:new FormControl,
+    email:new FormControl
+
+  })
   id=-1;
+  updatePasswordUser: UpdatePassword={};
 
   constructor(
               private http: HttpClient,
@@ -59,11 +73,14 @@ export class HeaderComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private tokenStorage: TokenServiceService,
+              private updatePasswordService: UpdatePasswordService,
               private userService: UserServiceService) {
         this.activatedRoute.paramMap.subscribe(
           paramMap=>{
           this.id=+paramMap.get('id');
+          this.id=this.tokenStorage.getId();
           this.getUserById(this.id);
+          this.getUserByIdUP(this.id);
         })
        }
   getUserById(id: number) {
@@ -74,25 +91,40 @@ export class HeaderComponent implements OnInit {
         fullName:new FormControl(user.fullName),
         username:new FormControl(user.username),
         password:new FormControl(user.password),
-        email:new FormControl(user.email)
+        email:new FormControl(user.email),
       })
     });
     if(this.tokenStorage.getUser()){
       this.fullName = this.tokenStorage.getUser();
     }
   }
+  getUserByIdUP(id: number) {
+    this.updatePasswordService.getUserByIdUP(this.tokenStorage.getId()).subscribe(updatePasswordUser=>{
+      this.updatePasswordUser = updatePasswordUser;
+      this.updatePasswordUserForm=new FormGroup({
+        id:new FormControl(updatePasswordUser.id),
+        username:new FormControl(updatePasswordUser.username),
+        currentPassword:new FormControl(updatePasswordUser.currentPassword),
+        newPassword:new FormControl(updatePasswordUser.newPassword),
+        fullName: new FormControl(updatePasswordUser.fullName),
+        email: new FormControl(updatePasswordUser.email)
+      })
+    });
+    if(this.tokenStorage.getUpdatePassword()){
+      this.fullName = this.tokenStorage.getUpdatePassword();
+    }
+  }
+
   ngOnInit() {
     if(this.tokenStorage.getToken()){
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
-      this.userForm.setValue(this.user);
-     
-    
-      
-      // this.roles = this.tokenStorage.getUser().roles;
+      this.userForm.setValue(this.user); 
+      this.updatePasswordUser=this.tokenStorage.getUpdatePassword();
+      this.updatePasswordUserForm.setValue(this.updatePasswordUser);
     }
     this.checkUser();
-    // this.id=this.tokenStorage.getId
+    this.checkUpdatePasswordUser();
   
   }
   registration(value : NgForm){
@@ -133,14 +165,22 @@ export class HeaderComponent implements OnInit {
     this.user.password=checkUser.password;
     this.user.email=checkUser.email;
   }
+  checkUpdatePasswordUser(){
+    let checkPWU=this.tokenStorage.getUpdatePassword();
+    this.updatePasswordUser.id=checkPWU.id;
+    this.updatePasswordUser.fullName=checkPWU.fullName;
+    this.updatePasswordUser.username=checkPWU.username;
+    this.updatePasswordUser.newPassword=checkPWU.newPassword;
+    this.updatePasswordUser.currentPassword=checkPWU.currentPassword
+  }
   // logout() {
-  //   this.http.post(`${API_URL}/api/logout`, this.tokenStorage,
-  //     {responseType: 'text'})
-  //     .subscribe(data => {
-  //       console.log(data);
-  //     }, error => {
-  //       throwError(error);
-  //     });
+    // this.http.post(`${API_URL}/api/logout`, this.tokenStorage,
+    //   {responseType: 'text'})
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   }, error => {
+    //     throwError(error);
+    //   });
   //   window.sessionStorage.removeItem('auth-user');
   //   window.sessionStorage.removeItem('auth-token');
   //   window.sessionStorage.removeItem('auth-id');
@@ -196,4 +236,28 @@ export class HeaderComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
+
+  changePassword(id:number){
+    let changePW=this.updatePasswordUserForm.value;
+      this.updatePasswordService.changePassword(id,changePW).subscribe(
+        data => {
+          Swal.fire({
+            title: 'Success',
+            text: 'Your password have been updated!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        },
+        err => {
+          Swal.fire({
+            title: 'Failed',
+            text: 'Your password have been updated!',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        }
+      )
+    }
 }

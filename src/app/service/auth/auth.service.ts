@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs';
+import { UpdatePassword } from './../../interface/updatePassword';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { JwtResponse } from 'src/app/interface/jwtResponse';
 import { environment } from '../../../environments/environment';
 
@@ -34,5 +35,14 @@ updateUser(user): Observable<any> {
     password: user.password,
     email: user.email
   }, httpOptions)
+}
+updatePassword(updatePasswordUser): Observable<any>{
+  return this.http.put(AUTH_API+'updatePassword',{
+    username: updatePasswordUser.username,
+    currentPassword: updatePasswordUser.currentPassword,
+    newPassword: updatePasswordUser.newPassword,
+    fullName: updatePasswordUser.fullName,
+    email: updatePasswordUser.email
+  })
 }
 }
