@@ -22,7 +22,7 @@ export class ShowTopPlayListComponent implements OnInit {
   ngOnInit() {
     this.playListService.getTop15likes().subscribe(data => {
       this.top15Likes = data;
-      console.log(data)
+      console.log(data[0].likeTotalPlayList)
     })
     this.playListService.getTop15views().subscribe(data => {
       this.top15views = data

@@ -7,6 +7,6 @@ export interface Playlist {
   views?:number;
   description?:string;
   checkLike?:boolean;
-  LikeTotal?: number;
+  likeTotalPlayList?: number;
   releaseDate ?: string;
 }
