@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Songcomment} from '../../interface/songcomment';
-import {Playcomment} from "../../interface/playListcomment";
+import {Playcomment} from '../../interface/playListcomment';
 
 @Injectable({
   providedIn: 'root'
