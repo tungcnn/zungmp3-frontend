@@ -1,0 +1,58 @@
+<!----Album Single Section Start---->
+<div class="ms_album_single_wrapper ms_artist_single">
+  <div class="album_single_data">
+    <div class="album_single_img">
+      <img *ngIf="viewSinger.avatarUrl" [src]="viewSinger.avatarUrl" alt="" class="img-fluid">
+      <img *ngIf="!viewSinger.avatarUrl" src="assets/images/blankava.png" alt="" class="img-fluid">
+    </div>
+    <div class="album_single_text">
+      <h2>{{viewSinger.name}}</h2>
+      <div class="about_artist">
+        {{viewSinger.description}}
+      </div>
+      <div class="album_btn">
+        <a (click)="playAllSong()" class="ms_btn play_btn"><span class="play_all"><img
+          src="assets/images/svg/play_all.svg" alt="">Play All</span><span
+          class="pause_all"><img src="assets/images/svg/pause_all.svg" alt="">Pause</span></a>
+      </div>
+    </div>
+    <div class="album_more_optn ms_more_icon">
+      <span><img src="assets/images/svg/more.svg" alt=""></span>
+    </div>
+    <ul class="more_option">
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+      <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+    </ul>
+  </div>
+  <!----Song List---->
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>#</li>
+        <li>Name Song</li>
+        <li class="text-center">Add To Favourites</li>
+        <li class="text-center">More</li>
+      </ul>
+
+      <ul *ngFor="let sl of songList, let i = index">
+        <li><a (click)="playSong(sl[1])"><span class="play_no">{{i + 1}}</span><span class="play_hover"></span></a>
+        </li>
+        <li><a>{{sl[0]}}</a></li>
+        <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+        <li class="text-center ms_more_icon"><a href="javascript:"><span class="ms_icon1 ms_active_icon"></span></a>
+          <ul class="more_option">
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a>
+            </li>
+            <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

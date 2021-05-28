@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<div class="ms_content_wrapper padder_top90">
+
+  <!----Top PlayList by view Section---->
+  <div class="ms_top_artist">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ms_heading">
+            <h1>Most viewed Playlists</h1>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6" *ngFor="let playlist of top15views">
+          <div class="ms_rcnt_box marger_bottom30">
+            <div class="ms_rcnt_box_img">
+              <img src="assets/images/coverBlank.png" alt="" class="img-fluid">
+              <div class="ms_main_overlay">
+                <div class="ms_box_overlay"></div>
+                <div class="ms_play_icon">
+                  <img src="assets/images/svg/play.svg" alt="" (click)="playAllplayList(playlist.id)">
+                </div>
+              </div>
+            </div>
+            <div class="ms_rcnt_box_text">
+              <h3><a href="javascript:;" (click)="nextSearch(playlist.id)">{{playlist.name}}</a></h3>
+              <span>{{playlist.views}} views</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!----Top PlayList by view Section---->
+  <div class="ms_top_artist">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ms_heading">
+            <h1>Most liked Playlists</h1>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6" *ngFor="let playlist of top15Likes">
+          <div class="ms_rcnt_box marger_bottom30">
+            <div class="ms_rcnt_box_img">
+              <img src="assets/images/coverBlank.png" alt="" class="img-fluid">
+              <div class="ms_main_overlay">
+                <div class="ms_box_overlay"></div>
+                <div class="ms_play_icon">
+                  <img src="assets/images/svg/play.svg" alt="" (click)="playAllplayList(playlist.id)">
+                </div>
+              </div>
+            </div>
+            <div class="ms_rcnt_box_text">
+              <h3><a href="javascript:;" (click)="nextSearch(playlist.id)">{{playlist.name}}</a></h3>
+              <span>{{playlist.likeTotalPlayList}} likes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

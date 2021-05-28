@@ -3919,9 +3919,9 @@ ul.pro_dropdown_menu li a:hover {
 }
 .ms_upload_box span {
 	font-size: 18px;
-	color: #fff;
+	/*color: #fff;*/
 	text-transform: capitalize;
-	margin: 19px 0px 10px;
+	/*margin: 19px 0px 10px;*/
 	display: inline-block;
 	font-weight: 600;
 }

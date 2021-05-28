@@ -1,0 +1,437 @@
+<div class="ms_header">
+    <div class="ms_top_search" style="height: 40px">
+      <form>
+        <a routerLink="/search">
+          <span class="search_icon" style="position: absolute ; left: 80px ; right: 100px ; border-radius: 5px">
+							<img src="assets/images/svg/search.svg" alt="" style="margin-left: 24px">
+					</span></a>
+      </form>
+    </div>
+    <div class="row" margin="300px">
+      <div class="col-3" *ngIf="isLoggedIn; else loggedOut">
+        <span name="username" style="color: #3F51B5"> Welcome  <strong style="color: #9C27B0">{{user.username}}</strong></span>
+      </div>
+      <div class="col-3">
+        <a *ngIf="isLoggedIn" href="javascript:;"  data-toggle="modal" data-target="#profile"><span>Profile of {{user.username}}</span></a>
+      </div>
+      <div class="col-2">
+        <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data-toggle="modal" data-target="#register"><span>Register</span></a>
+      </div>
+      <div class="col-2">
+        <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn login_btn" data-toggle="modal" data-target="#login"><span>Login</span></a>
+      </div>
+      <div class="col-2">
+        <a (click)="logout()" style="cursor:pointer; float:right" *ngIf="isLoggedIn" href="javascript:;" class="nav-link" data-toggle="modal" data-target="#logout"><span>Logout</span></a>
+      </div>
+    </div>
+</div>
+
+<!-- Registration popup -->
+<div class="ms_register_popup">
+  <div id="register" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog register_dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="modal-body">
+          <div class="ms_register_img">
+            <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+          </div>
+          <div class="ms_register_form" >
+            <h2>Register / Sign Up</h2>
+            <form
+              *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="reg.form.valid && registration(reg)"
+              #reg="ngForm"
+              novalidate>
+            <div class="form-group">
+              <input
+              name="fullName"
+              [(ngModel)]="user.fullName"
+              type="text"
+              placeholder="Enter Your Full Name"
+              #fullName="ngModel"
+              class="form-control"/>
+              <span class="form_icon">
+							<i class="fa_icon form-user" aria-hidden="true"></i>
+							</span>
+            </div>
+            <div class="form-group">
+               <input
+               name="username"
+               [(ngModel)]="user.username"
+               type="text"
+               required
+               minlength="3"
+               maxlength="20"
+               #username="ngModel"
+               placeholder="Enter Username"
+               class="form-control">
+              <span class="form_icon">
+							<i class="fa_icon form-user" aria-hidden="true"></i>
+							</span>
+              <div class="alert-danger" *ngIf="reg.submitted && username.invalid">
+                <div *ngIf="username.errors.required">Username is required</div>
+                <div *ngIf="username.errors.minlength">
+                  Username must be at least 3 characters
+                </div>
+                <div *ngIf="username.errors.maxlength">
+                  Username must be at most 20 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+              name="password"
+              [(ngModel)]="user.password"
+              type="password"
+              placeholder="Enter Password"
+              required
+              minlength="6"
+              #password="ngModel"
+              class="form-control">
+              <span class="form_icon">
+						<i class="fa_icon form-lock" aria-hidden="true"></i>
+						</span>
+            <div class="alert-danger" *ngIf="reg.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">
+                Password must be at least 6 characters
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <input
+              name="email"
+              [(ngModel)]="user.email"
+              type="text"
+              placeholder="Enter Your Email"
+              email
+              #email="ngModel"
+              class="form-control">
+              <span class="form_icon">
+							<i class="fa_icon form-envelope" aria-hidden="true"></i>
+						</span>
+            <div class="alert-danger" *ngIf="reg.submitted && email.invalid">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
+            </div>
+            <div>
+              <input data-toggle="modal" class="ms_modal1 hideCurrentModel ms_btn" type="submit" value="Register now" style="width: 150px; height:40px;font-size: large;">
+            <p>Already Have An Account? <a *ngIf="!isLoggedIn" href="javascript:;" data_dismiss="modal" class="" data-toggle="modal" data-target="#login"><span>Login</span></a></p>
+            <!-- <p>Already Have An Account? <a routerLink="/login" data-toggle="modal" class="ms_modal hideCurrentModel">login here</a></p> -->
+          </div>
+          <div class="alert alert-warning" *ngIf="reg.submitted && isRegistrationFailed">
+            Signup failed!<br />{{ errorMessageRegistration }}
+          </div>
+            </form>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+              Your registration is successful!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!----Login Popup Start---->
+<div id="login" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog login_dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="modal-body">
+          <div class="ms_register_img">
+            <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+          </div>
+          <div class="ms_register_form">
+            <h2>login / Sign in</h2>
+          <form
+            *ngIf="!isLoggedIn"
+            name="form"
+            (ngSubmit)="lg.form.valid && login(lg)"
+            #lg="ngForm"
+            >
+            <div class="form-group">
+              <input
+              name="username"
+              [(ngModel)]="user.username"
+              type="text"
+              placeholder="Enter Your username"
+              required
+              #username="ngModel"
+              class="form-control">
+              <span class="form_icon">
+                <i class="fa_icon form-user" aria-hidden="true"></i>
+                </span>
+                <div class="alert-danger" *ngIf="lg.submitted && username.invalid">
+                  <div *ngIf="username.errors.required">User name is required</div>
+                  <div *ngIf="username.errors.minlength">
+                    User name must be at least 3 characters
+                  </div>
+                  <div *ngIf="username.errors.maxlength">
+                    User name must be at most 20 characters
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <input
+              name="password"
+              [(ngModel)]="user.password"
+              type="password"
+              placeholder="Enter Password"
+              required
+              minlength="6"
+              #password="ngModel"
+              class="form-control">
+              <span class="form_icon">
+						<i class="fa_icon form-lock" aria-hidden="true"></i>
+						</span>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="lg.submitted && password.invalid"
+                >
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="remember_checkbox">
+              <label>Keep me signed in
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <input type="submit" value="Login now">
+            <div class="popup_forgot">
+              <a href="#">Forgot Password ?</a>
+            </div>
+            <!-- <p>Don't Have An Account? <a routerLink="/registration" data-toggle="modal" class="ms_modal1 hideCurrentModel">register here</a></p> -->
+            <p>Don't Have An Account? <a *ngIf="!isLoggedIn" href="javascript:;" class="ms_btn reg_btn" data_dismiss="modal" data-toggle="modal" data-target="#register"><span>Register</span></a></p>
+            <div class="form-group">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="lg.submitted && isLoginFailed"
+              >
+                Login failed: {{ errorMessageLogin }}
+              </div>
+            </div>
+            <div *ngIf="lg.submitted&&isLoginFailed" class="alert alert-warning">
+              Login Failed please Check username of password -> {{status}}
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Profile popup-->
+<div class="ms_profile_popup" data-dismiss="modal">
+  <div id="profile" class="modal  centered-modal" role="dialog">
+    <div class="modal-dialog profile_dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="modal-body">
+          <div class="row">
+            <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+            <div class="col-6" >
+              <div class="container" *ngIf="user; else loggedOut">
+                <p style="font-size: x-large; width: 450px;">
+                  <strong>Profile of {{user.fullName}}</strong>
+                </p>
+                <br>
+                <br>
+                <br>
+                <p style="font-size:x-large;width: 450px">
+                  <strong>Full name:</strong>
+                  {{ user.fullName }}
+                </p>
+                <br>
+                <p style="font-size:x-large;width: 450px">
+                  <strong>Username:</strong>
+                  {{ user.username }}
+                </p>
+                <br>
+                <p style="font-size:x-large;width: 450px">
+                  <strong>Email:</strong>
+                  {{ user.email }}
+                </p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                  <a style="width: 300px;" *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update Profile</span></a>
+                  <br>
+                  <br>
+                  <a style="width: 300px;" *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#changePassword"><span>Change password?</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--updateUser popup-->
+<div class="ms_update_popup">
+    <div id="updateUser" class="modal  centered-modal" role="dialog" data-dismiss="modal">
+      <div class="modal-dialog update_dialog">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal">
+            <i class="fa_icon form_close"></i>
+          </button>
+          <div class="row">
+            <div class="modal-body">
+              <div class="col-12">
+                <div class="ms_register_img">
+                  <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="ms_update_form" >
+                 <h2>Update User information</h2>
+                  <form [formGroup]="userForm" (ngSubmit)="updateUser(id)">
+                  <table>
+                    <tr hidden>
+                      <td>Id</td>
+                      <td><input type="number" formControlName="id"></td>
+                      <td *ngIf="id?.errors?.required && id?.touched">Input data is required</td>
+                    </tr>
+
+                    <div class="input-group mb-3">
+                      <td>FullName</td>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Fullname</span>
+                      </div>
+                      <input formControlName="fullName" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+                    </div>
+
+                    <div class="input-group mb-3">
+                      <td>Username</td>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Username</span>
+                      </div>
+                      <input formControlName="username" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+
+                  <div class="input-group mb-3">
+                    <td>Email</td>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                    </div>
+                    <input formControlName="email" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <tr>
+                    <td></td>
+                    <td><input type="submit" value="Update"></td>
+                  </tr>
+                  <!-- <button type="button" class="btn btn-ms">Update</button> -->
+                  <!-- <p> <a *ngIf="!isLoggedIn" href="javascript:;"  class="btn btn_ms" ><span>Update</span></a></p> -->
+                </table>
+                  </form>
+              </div>
+              <div class="alert alert-success" *ngIf="isSuccessful">
+                Your updating is successful!
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+</div>
+
+<!--logout popup-->
+<div class="ms_profile_popup">
+      <div  class="modal  centered-modal" role="dialog">
+        <div class="modal-dialog logout_dialog">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa_icon form_close"></i></button>
+            <div class="modal-body">
+              <div class="col-12">
+                <img src="assets/images/register_img.png" alt="" class="img-fluid" />
+                <div class="col-12" >
+                  <div class="container" *ngIf="user; else loggedOut">
+
+                    <p>
+                      <strong>Are you sure to logout {{user.username}}?</strong>
+                    </p>
+                    <a data-dismiss="modal" (click)="logout()" ><button>Yes</button></a>
+
+
+                      <!-- <a *ngIf="!isSuccessful" href="javascript:;" data-dismiss="modal" class="ms_btn reg_btn" data-toggle="modal" data-target="#updateUser"><span>Update</span></a> -->
+                      <!-- <a routerLink="updateUser" >Update</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<!--change password-->
+<div class="ms_changePassword_popup">
+  <div id="changePassword" class="modal  centered-modal" role="dialog" data-dismiss="modal">
+    <div class="modal-dialog update_dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal">
+          <i class="fa_icon form_close"></i>
+        </button>
+        <div class="row">
+          <div class="col-6">
+            <div class="modal-body">
+              <div class="ms_changePassword_img"><img src="assets/images/register_img.png" alt="" class="img-fluid" /></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="ms_update_form" >
+                <h2>Update User information</h2>
+                <form [formGroup]="updatePasswordUserForm" (ngSubmit)="changePassword(id)">
+                      <table>
+                        <tr hidden>
+                          <td>Id</td>
+                          <td><input type="number" formControlName="id"></td>
+                          <td *ngIf="id?.errors?.required && id?.touched">Input data is required</td>
+                        </tr>
+                        <tr>
+                          <td>User name</td>
+                          <td><input type="text" formControlName="username"></td>
+                        </tr>
+                        <tr>
+                          <td>Current Password</td>
+                          <td><input type="password" formControlName="currentPassword"></td>
+                        </tr>
+                        <tr>
+                          <td>New Password</td>
+                          <td><input type="password" formControlName="newPassword"></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><input type="submit" value="Update"></td>
+                        </tr>
+                      </table>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

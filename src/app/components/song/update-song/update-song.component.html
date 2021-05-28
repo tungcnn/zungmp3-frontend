@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+<!----Upload Start---->
+<div class="ms_upload_wrapper marger_top60">
+  <form #songForm="ngForm">
+    <div class=" marger_top60">
+      <div class="ms_upload_box">
+        <h2>Upload & Share Your Music With The World</h2>
+        <img src="assets/images/svg/upload.svg" alt="">
+        <div class="ms_heading">
+          <h1>Track Information</h1>
+        </div>
+        <div class="ms_pro_form">
+          <input [(ngModel)]="song.id" type="hidden" name="id">
+          <input [(ngModel)]="song.user" type="hidden" name="user">
+          <input [(ngModel)]="song.url" type="hidden" name="url">
+          <input [(ngModel)]="song.coverUrl" type="hidden" name="coverUrl">
+          <div class="form-group">
+            <label>Track Name *</label>
+            <input type="text" placeholder="Song title" class="form-control" [(ngModel)]="song.name" name="name">
+          </div>
+          <div class="form-group">
+            <label>Genre</label>
+            <select class="form-control" [(ngModel)]="song.genre" name="genre">
+              <option *ngFor="let genre of genres" [ngValue]="genre">{{genre.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Theme</label>
+            <select class="form-control" [(ngModel)]="song.theme" name="theme">
+              <option *ngFor="let theme of themes" [ngValue]="theme">{{theme.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select class="form-control" [(ngModel)]="song.country" name="country">
+              <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Singers. <a href="javascript:;" (click)="showAddSingerForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.singers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
+                       name="singers">
+              <ng-option *ngFor="let singer of song.singers" [value]="singer">{{singer.name}}</ng-option>
+              <ng-option *ngFor="let singer of singers" [value]="singer">{{singer.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <label>Tags. <a href="javascript:;" (click)="showAddTagForm()"><strong>Or add a new one</strong></a></label>
+            <ng-select [(ngModel)]="song.tags" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" name="tags">
+              <ng-option *ngFor="let tag of song.tags" [value]="tag">{{tag.name}}</ng-option>
+              <ng-option *ngFor="let tag of tags" [value]="tag">{{tag.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <label>Select song cover</label>
+            <input class="swal2-file" type="file" #coverInput (change)="onCoverSelected($event)"/>
+            <img *ngIf="song.coverUrl" [src]="songCover" style="width: 100px; height: 100px">
+          </div>
+          <div class="form-group">
+            <label>Lyrics</label>
+            <textarea class="form-control" style="height: 148px" [(ngModel)]="song.lyrics" name="lyrics"></textarea>
+          </div>
+          <div class="pro-form-btn text-center marger_top15">
+            <div class="ms_upload_btn">
+              <a href="javascript:;" class="ms_btn" (click)="updateConfirm(songForm.value)">Update Now</a>
+              <a href="javascript:;" [routerLink]="['/song-list']" class="ms_btn">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+

@@ -1,0 +1,75 @@
+<div class="ms_sidemenu_wrapper">
+
+  <div class="ms_nav_close">
+    <i class="fa fa-angle-right" aria-hidden="true"></i>
+  </div>
+  <div class="ms_sidemenu_inner">
+    <div class="ms_logo_inner">
+      <div class="ms_logo">
+        <a [routerLink]="''"><img src="../../../assets/images/logo.png" alt="" class="img-fluid"/></a>
+      </div>
+      <div class="ms_logo_open">
+        <a [routerLink]="''"><img src="../../../assets/images/open_logo.png" alt="" class="img-fluid"/></a>
+      </div>
+    </div>
+    <div class="ms_nav_wrapper">
+      <ul>
+        <li><a [routerLink]="''" class="active" title="Discover">
+						<span class="nav_icon">
+							<span class="icon icon_discover"></span>
+						</span>
+          <span class="nav_text">
+							discover
+						</span>
+        </a>
+        </li>
+        <li><a [routerLink]="'search'" title="Search">
+						<span class="nav_icon">
+							<span class="icon icon_music"></span>
+						</span>
+          <span class="nav_text">
+							Search
+						</span>
+        </a>
+        </li>
+        <li><a routerLink="showTopPlayList" title="Featured Playlist">
+						<span class="nav_icon">
+							<span class="icon icon_fe_playlist"></span>
+						</span>
+          <span class="nav_text">
+							featured playlist
+						</span>
+        </a>
+        </li>
+        <li><a title="Artists" [routerLink]="['/singer-list']">
+						<span class="nav_icon">
+							<span class="icon icon_artists"></span>
+						</span>
+          <span class="nav_text">
+							artists
+						</span>
+        </a>
+        </li>
+      </ul>
+      <ul class="nav_downloads">
+        <li *ngIf="user">
+          <a [routerLink]="'song-list'" title="Your songs">
+						<span class="nav_icon">
+							<span class="icon icon_download"></span>
+						</span>
+            <span class="nav_text">Upload</span>
+          </a>
+        </li>
+        <li *ngIf="user"><a routerLink="playList" title="Create Playlist">
+						<span class="nav_icon">
+							<span class="icon icon_c_playlist"></span>
+						</span>
+          <span class="nav_text">
+							create playlist
+						</span>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

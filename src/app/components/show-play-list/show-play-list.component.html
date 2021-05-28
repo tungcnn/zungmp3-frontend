@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="ms_main_wrapper">
+  <!----Album Single Section Start---->
+  <div class="ms_album_single_wrapper">
+    <div class="album_single_data">
+      <div class="album_single_img">
+        <img src="assets/images/coverBlank.png" alt="" class="img-fluid">
+      </div>
+      <div class="album_single_text">
+        <h2 *ngIf="playList!=null">{{playList.name}}</h2>
+        <div class="album_feature">
+          <a *ngIf="playList.songs!=null" href="#" class="album_date">{{playList.songs.length}} songs</a>
+          <a *ngIf="playList.description" href="#" class="album_date">{{playList.description}}</a>
+        </div>
+        <div class="album_btn">
+          <a href="javascript:;" (click)="playAllplayList()" class="ms_btn play_btn"><span class="play_all"><img src="assets/images/svg/play_all.svg" alt="">Play All</span><span class="pause_all"><img src="assets/images/svg/pause_all.svg" alt="">Pause</span></a>
+        </div>
+      </div>
+    </div>
+    <!----Song List---->
+    <div class="album_inner_list">
+      <div class="album_list_wrapper">
+        <ul class="album_list_name">
+          <li>#</li>
+          <li>Song Title</li>
+          <li>singer</li>
+          <li class="text-center">views</li>
+          <li class="text-center">like</li>
+          <li class="text-center">Delete</li>
+        </ul>
+        <ng-container *ngIf="playList">
+          <ul *ngFor="let song of playList.songs , let i = index">
+            <li><a (click)="PlaySong(song.id)"><span class="play_no">{{i+1}}</span><span
+              class="play_hover"></span></a>
+            </li>
+            <li><a href="javascript:;" [routerLink]="['/songdetail', song.id]">{{song.name}}</a></li>
+            <li>
+              <ng-container *ngIf="song.singers!=null">
+                <a href="javascript:;"*ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}</a>
+              </ng-container>
+            </li>
+            <li class="text-center"><a href="javascript:;">{{song.views}}</a></li>
+            <li class="text-center"><a href="javascript:;"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+            <li class="text-center"><span class="ms_icon1 ms_active_icon"
+                                          (click)="DeteleMusic(song.id , playList.id)"></span></li>
+          </ul>
+        </ng-container>
+      </div>
+    </div>
+    <br>
+
+    <div class="ms_cmnt_wrapper">
+      <div class="comment-section">
+        <div class="ms_heading">
+          <h1>Comments({{playlistcomment.length}})</h1>
+        </div>
+        <form #from="ngForm">
+          <textarea class="form-control" name="comment" [(ngModel)]="comments.comment" placeholder="Enter Your Comment Here.." style="height: 100px"></textarea>
+          <a class="ms_btn" href="javascript:;" (click)="createCommentPlaylist(from)" style="margin-top: 30px; margin-bottom: 30px">post</a>
+        </form>
+        <div class="comment" *ngFor="let comment of playlistcomment">
+          <h5>{{comment.user.username}}</h5>
+          <span class="comment-date">{{comment.date | date}}</span>
+          <p>{{comment.comment}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

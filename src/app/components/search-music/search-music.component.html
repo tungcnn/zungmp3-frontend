@@ -1,0 +1,99 @@
+
+<div class="ms_top_search" style="margin-left: 16% ; margin-bottom: 40px">
+  <form>
+    <input type="text" class="form-control" placeholder="Search Music Here.." #q>
+    <a><span class="search_icon">
+							<img src="assets/images/svg/search.svg" alt="" (click)="getSongByName(q.value)">
+						</span></a>
+  </form>
+</div>
+
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>Song List</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>#</li>
+        <li>Song Title</li>
+        <li class="text-center">singer</li>
+        <li class="text-center">views</li>
+        <li *ngIf="currentUserId" class="text-center">Like</li>
+        <li *ngIf="currentUserId" class="text-center">Add To Play List</li>
+      </ul>
+      <ul *ngFor="let song of songs; let i = index">
+        <li><a (click)="PlaySong(song.id)" ><span class="play_no">{{i+1}}</span><span class="play_hover"></span></a></li>
+        <li><a href="javascript:;" [routerLink]="['/songdetail', song.id]">{{song.name}}</a></li>
+        <li><ng-container *ngIf="song.singers!=null"><a href ="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}} </a></ng-container></li>
+        <li class="text-center"><a href="javascript:;">{{song.views}}</a></li>
+        <li *ngIf="song.checkLike==false && currentUserId" class="text-center"><a (click)="addLikeSong(song.id)"><img [src]="'assets/images/unlike.png'"></a></li>
+        <li *ngIf="song.checkLike==true && currentUserId" class="text-center"><a href="javascript:;" (click)="unLikeSong(song.id)"><img [src]="'assets/images/like.png'"></a></li>
+        <li *ngIf="currentUserId" data-toggle="modal" data-target="#showPlayList" class="text-center" (click)="addProfileSong(song.id)"><span class="ms_icon1 ms_active_icon"></span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>PlayList</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>Play</li>
+        <li class="text-center">PlayList Name</li>
+        <li class="text-center">views</li>
+        <li *ngIf="currentUserId" class="text-center">Like</li>
+        <li *ngIf="currentUserId" class="text-center">more</li>
+      </ul>
+
+      <ul *ngFor="let playlist of playlists, let i = index">
+        <li><a><span class="play_no">{{i+1}}</span><span class="play_hover"></span></a></li>
+        <li class="text-center"><a href="javascript:;" (click)="nextSearch(playlist.id)">{{playlist.name}}</a></li>
+        <li class="text-center"><a href="#">{{playlist.views}}</a></li>
+        <li *ngIf="playlist.checkLike==false && currentUserId" class="text-center"><a (click)="like(playlist.id)" ><img [src]="'assets/images/unlike.png'"></a></li>
+        <li *ngIf="playlist.checkLike==true && currentUserId" class="text-center"><a href="javascript:;" (click)="unLike(playlist.id)"><img [src]="'assets/images/like.png'"></a></li>
+
+        <li class="text-center"><span class="ms_icon1 ms_active_icon"></span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="ms_free_download ms_purchase_wrapper" style="margin-left: 240px">
+  <div class="ms_heading">
+    <h1>Singer List</h1>
+  </div>
+  <div class="album_inner_list">
+    <div class="album_list_wrapper">
+      <ul class="album_list_name">
+        <li>#</li>
+        <li>singer Title</li>
+        <li class="text-center">Date</li>
+        <li class="text-center">Description</li>
+      </ul>
+      <ul *ngFor="let singer of singers; let i = index">
+        <li>{{i+1}}</li>
+        <li><a href="javascript:;" [routerLink]="['/singer', singer.id]">{{singer.name}} </a></li>
+        <li class="text-center"><a href="javascript:;">{{singer.date}}</a></li>
+        <li class="text-center"><a href="javascript:;" >{{singer.description}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="showPlayList" style="color: black ">
+  <div class="modal-dialog" role="document" style="width: 500px">
+    <div class="modal-content">
+      <p style="position: absolute; top: 10px; left: 130px; color: aliceblue;font-size: 24px">Edit your PlayList</p>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 13px">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div data-dismiss="modal" *ngIf="token.getUser()!=null">
+        <a href="javascript:;"><p style="background-color: #2ec8e6 ;
+         text-align: center ; color: red ; margin-bottom: 10px" *ngFor="let PlayList of playLists" (click)="addSongToPlayList(PlayList.id)">PlayList : {{PlayList.name}}</p></a>
+      </div>
+      <div class="ms_upload_btn" style="height: 30px">
+      </div>
+    </div>
+  </div>
+</div>
