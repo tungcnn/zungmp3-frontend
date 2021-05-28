@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const ID_KEY = 'auth-id';
+// const UPDATE_PASSWORD='auth-updatePassword';
+const U_P_KEY='auth-up';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +38,12 @@ export class TokenServiceService {
   }
   public getId(){
     return JSON.parse(sessionStorage.getItem(ID_KEY));
+  }
+  public saveUpdatePassword(updatePassword){
+    window.sessionStorage.removeItem(U_P_KEY);
+    window.sessionStorage.setItem(U_P_KEY, JSON.stringify(updatePassword));
+  }
+  getUpdatePassword(){
+    return JSON.parse(sessionStorage.getItem(U_P_KEY));
   }
 }
