@@ -23,6 +23,12 @@ export class DiscoverComponent implements OnInit {
 
   top15Likes : Song[] ;
 
+  top5SongsLike: Song[] = [];
+
+  top10SongsLike: Song[] = [];
+
+  top15SongsLike: Song[] = [];
+
   constructor(private playService: PlaymusicService,
               private songService: SongService) {
   }
@@ -45,6 +51,7 @@ export class DiscoverComponent implements OnInit {
     if (this.songs.length == 0) {
       this.songService.getLatestSong().subscribe(songs => {
         this.songs = songs;
+        console.log(this.songs);
       });
     }
   }
@@ -62,8 +69,10 @@ export class DiscoverComponent implements OnInit {
   }
 
   getTop15Likes(){
-    this.songService.getTop15Likes().subscribe(data =>{
-      this.top15Likes = data
+    this.songService.getTop15Likes().subscribe(songs =>{
+      this.top5SongsLike = songs.slice(0, 5);
+      this.top10SongsLike = songs.slice(5, 10);
+      this.top15SongsLike = songs.slice(10, 15);
     })
   }
 }

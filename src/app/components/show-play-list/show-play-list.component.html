@@ -4,35 +4,24 @@
   <div class="ms_album_single_wrapper">
     <div class="album_single_data">
       <div class="album_single_img">
-        <img src="assets/images/album/single_album.jpg" alt="" class="img-fluid">
+        <img src="assets/images/coverBlank.png" alt="" class="img-fluid">
       </div>
       <div class="album_single_text">
         <h2 *ngIf="playList!=null">{{playList.name}}</h2>
-        <p class="singer_name">By - Ava Cornish, Brian Hill</p>
         <div class="album_feature">
-          <a *ngIf="playList.songs!=null" href="#" class="album_date">{{playList.songs.length}}Songs</a>
-          <a *ngIf="playList!=null" href="#" class="album_date">Released March 23, 2018 | {{playList.description}}</a>
+          <a *ngIf="playList.songs!=null" href="#" class="album_date">{{playList.songs.length}} songs</a>
+          <a *ngIf="playList.description" href="#" class="album_date">{{playList.description}}</a>
         </div>
         <div class="album_btn">
-          <a href="javascript:;" (click)="playAllplayList()" class="ms_btn play_btn"><span class="play_all"><img src="images/svg/play_all.svg" alt="">Play All</span><span class="pause_all"><img src="images/svg/pause_all.svg" alt="">Pause</span></a>
-          <a href="#" class="ms_btn"><span class="play_all"><img src="images/svg/add_q.svg" alt="">Add To Queue</span></a>
+          <a href="javascript:;" (click)="playAllplayList()" class="ms_btn play_btn"><span class="play_all"><img src="assets/images/svg/play_all.svg" alt="">Play All</span><span class="pause_all"><img src="assets/images/svg/pause_all.svg" alt="">Pause</span></a>
         </div>
       </div>
-      <div class="album_more_optn ms_more_icon">
-        <span><img src="assets/images/svg/more.svg" alt=""></span>
-      </div>
-      <ul class="more_option">
-        <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-        <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-        <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-        <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-        <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-      </ul>
     </div>
     <!----Song List---->
     <div class="album_inner_list">
       <div class="album_list_wrapper">
         <ul class="album_list_name">
+          <li>#</li>
           <li>Song Title</li>
           <li>singer</li>
           <li class="text-center">views</li>
@@ -41,16 +30,17 @@
         </ul>
         <ng-container *ngIf="playList">
           <ul *ngFor="let song of playList.songs , let i = index">
-            <li><a (click)="PlaySong(song.id)"><span class="play_no">{{song.name}}</span><span
+            <li><a (click)="PlaySong(song.id)"><span class="play_no">{{i+1}}</span><span
               class="play_hover"></span></a>
             </li>
+            <li><a href="javascript:;" [routerLink]="['/songdetail', song.id]">{{song.name}}</a></li>
             <li>
-              <ng-container *ngIf="song.singers!=null"><a href="#"
-                                                          *ngFor="let singer of song.singers">{{singer.name}}</a>
+              <ng-container *ngIf="song.singers!=null">
+                <a href="javascript:;"*ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}</a>
               </ng-container>
             </li>
-            <li class="text-center"><a href="#">{{song.views}}</a></li>
-            <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
+            <li class="text-center"><a href="javascript:;">{{song.views}}</a></li>
+            <li class="text-center"><a href="javascript:;"><span class="ms_icon1 ms_fav_icon"></span></a></li>
             <li class="text-center"><span class="ms_icon1 ms_active_icon"
                                           (click)="DeteleMusic(song.id , playList.id)"></span></li>
           </ul>
@@ -65,8 +55,8 @@
           <h1>Comments({{playlistcomment.length}})</h1>
         </div>
         <form #from="ngForm">
-          <textarea class="form-control-file" name="comment" [(ngModel)]="comments.comment" placeholder="Enter Your Comment Here.." style="height: 100px"></textarea>
-          <a class="ms_btn" (click)="createCommentPlaylist(from)">post</a>
+          <textarea class="form-control" name="comment" [(ngModel)]="comments.comment" placeholder="Enter Your Comment Here.." style="height: 100px"></textarea>
+          <a class="ms_btn" href="javascript:;" (click)="createCommentPlaylist(from)" style="margin-top: 30px; margin-bottom: 30px">post</a>
         </form>
         <div class="comment" *ngFor="let comment of playlistcomment">
           <h5>{{comment.user.username}}</h5>
@@ -74,9 +64,7 @@
           <p>{{comment.comment}}</p>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>
 
