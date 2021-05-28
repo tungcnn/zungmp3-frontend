@@ -5,7 +5,7 @@ import {Singer} from '../../interface/singer';
 import {SongService} from '../../service/song/song.service';
 import {PlaymusicService} from '../../service/playmusic.service';
 import {Song} from '../../interface/song';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-singer',
@@ -14,7 +14,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SingerComponent implements OnInit {
   public singerid;
-  public lisSong = 3;
+  public songid;
 
   public singers: Singer[] = [];
   public songList: any [] = [];
@@ -25,15 +25,15 @@ export class SingerComponent implements OnInit {
               private songService: SongService,
               private playService: PlaymusicService,
               private activeRoute: ActivatedRoute) {
-    this.activeRoute.paramMap.subscribe(paramMap=>{
-      this.singerid = +paramMap.get("id");
-      this.lisSong = +paramMap.get("id");
-    })
+    this.activeRoute.paramMap.subscribe(paramMap => {
+      this.singerid = +paramMap.get('id');
+      this.songid = +paramMap.get('id');
+    });
   }
 
   ngOnInit() {
     this.getByIdSinger(this.singerid);
-    this.getListSongId(this.lisSong);
+    this.getListSongId(this.songid);
   }
 
   public getByIdSinger(id): void {
@@ -75,6 +75,6 @@ export class SingerComponent implements OnInit {
 
   playAllSong() {
     console.log(this.songs);
-    this.playService.playPlayList(this.songs );
+    this.playService.playPlayList(this.songs);
   }
 }
