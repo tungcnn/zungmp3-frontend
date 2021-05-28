@@ -8,13 +8,13 @@ import {TokenServiceService} from '../../service/token/token-service.service';
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
-  user: User = null;
+  user: string = null;
 
   constructor(private token: TokenServiceService) {
   }
 
   ngOnInit() {
-    this.user = this.token.getUser();
+    this.user = this.token.getId();
   }
 
 }

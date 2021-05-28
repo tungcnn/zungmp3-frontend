@@ -11,6 +11,9 @@
       <ng-container *ngIf="song.singers">
         <a href="javascript:;" *ngFor="let singer of song.singers" [routerLink]="['/singer', singer.id]">{{singer.name}}   </a>
       </ng-container>
+      <ng-container *ngIf="song.tags">
+        <a href="javascript:;" *ngFor="let tag of song.tags">{{tag.name}}   </a>
+      </ng-container>
       <br>
       <div class="album_btn">
         <a (click)="playSong(songid)" class="ms_btn play_btn"><span class="play_all"><img
