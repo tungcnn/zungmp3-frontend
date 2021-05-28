@@ -8,4 +8,5 @@ export interface Playlist {
   description?:string;
   checkLike?:boolean;
   LikeTotal?: number;
+  releaseDate ?: string;
 }

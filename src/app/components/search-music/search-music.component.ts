@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SongService} from "../../service/song/song.service";
 import {LikePlayListService} from "../../service/like/like-play-list.service";
 import {LikeSongService} from "../../service/like/like-song.service";
+import {LikeService} from "../../service/like.service";
 
 @Component({
   selector: 'app-search-music',
@@ -33,8 +34,8 @@ export class SearchMusicComponent implements OnInit, OnChanges {
               private token: TokenServiceService,
               private playMusic: PlaymusicService,
               private showPlayList: ShowPlayListService,
-              private likeService: LikePlayListService,
-              private likeSong: LikeSongService) {
+              private likeSong: LikeSongService ,
+              private likeService :LikeService) {
     this.currentUserId = this.token.getId();
   }
 
@@ -77,16 +78,8 @@ export class SearchMusicComponent implements OnInit, OnChanges {
       this.songs = response[0];
       this.playlists = response[1];
       this.singers = response[2];
-      this.likeService.checkLike(this.currentUserId).subscribe((data: any) => {
-        for (let i = 0; i < this.playlists.length; i++) {
-          for (let j = 0; j < data.length; j++) {
-            if (data[j].playlist.id == this.playlists[i].id) {
-              this.playlists[i].checkLike = true;
-            }
-          }
-        }
-      })
-      this.checkLikeSong()
+      this.songs = this.likeService.checkLikeSong(this.currentUserId , this.songs)
+      this.playlists = this.likeService.checkLikePlayList(this.currentUserId , this.playlists)
     })
   }
 
@@ -101,58 +94,43 @@ export class SearchMusicComponent implements OnInit, OnChanges {
   }
 
   like(id: number) {
-    this.likeService.addLike(this.currentUserId, id).subscribe(data => {
-      this.activatedRoute.queryParams.subscribe(params => {
-        let searchValue = params.q;
-        if (searchValue != null) {
-          this.getSongByName(params['q']);
-        }
-      });
-    })
+    this.likeService.likePlayList(id , this.currentUserId);
+    this.activatedRoute.queryParams.subscribe(params => {
+      let searchValue = params.q;
+      if (searchValue != null) {
+        this.getSongByName(params['q']);
+      }
+    });
   }
 
   unLike(id: number) {
-    this.likeService.unLike(id, this.currentUserId).subscribe(() => {
-      this.activatedRoute.queryParams.subscribe(params => {
-        let searchValue = params.q;
-        if (searchValue != null) {
-          this.getSongByName(params['q']);
-        }
-      });
-    })
+    this.likeService.unLikePlayList(id , this.currentUserId);
+    this.activatedRoute.queryParams.subscribe(params => {
+      let searchValue = params.q;
+      if (searchValue != null) {
+        this.getSongByName(params['q']);
+      }
+    });
   }
 
-  checkLikeSong() {
-    this.likeSong.checkLike(this.currentUserId).subscribe((data: any) => {
-      for (let i = 0; i < this.songs.length; i++) {
-        for (let j = 0; j < data.length; j++) {
-          if (data[j].song.id == this.songs[i].id) {
-            this.songs[i].checkLike = true;
-          }
-        }
-      }
-    })
-  }
 
   addLikeSong(id: number) {
-    this.likeSong.addLike(this.currentUserId, id).subscribe(data => {
-      this.activatedRoute.queryParams.subscribe(params => {
-        let searchValue = params.q;
-        if (searchValue != null) {
-          this.getSongByName(params['q']);
-        }
-      });
-    })
+    this.likeService.likeSongs(this.currentUserId , id)
+    this.activatedRoute.queryParams.subscribe(params => {
+      let searchValue = params.q;
+      if (searchValue != null) {
+        this.getSongByName(params['q']);
+      }
+    });
   }
 
   unLikeSong(id: number) {
-    this.likeSong.unLike(id, this.currentUserId).subscribe(() => {
-      this.activatedRoute.queryParams.subscribe(params => {
-        let searchValue = params.q;
-        if (searchValue != null) {
-          this.getSongByName(params['q']);
-        }
-      });
-    })
+    this.likeService.unLikeSongs(id , this.currentUserId);
+    this.activatedRoute.queryParams.subscribe(params => {
+      let searchValue = params.q;
+      if (searchValue != null) {
+        this.getSongByName(params['q']);
+      }
+    });
   }
 }
