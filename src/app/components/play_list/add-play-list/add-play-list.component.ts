@@ -38,6 +38,7 @@ export class AddPlayListComponent implements OnInit {
   createPlayList(CreateForm: NgForm) {
     this.playListService.createPlayList(this.currentUser,CreateForm.value).subscribe(()=>{
       this.getAllPlayList()
+      Swal.fire('Saved!', '', 'success')
     },() =>{
       Swal.fire("Invalid characters!", "Please only use letters and/or numbers", "warning");
     })
@@ -54,8 +55,9 @@ export class AddPlayListComponent implements OnInit {
   editPlayList(form, editForm: NgForm) {
     this.playListService.editPlayList(form.playListProfile.id, editForm.value).subscribe(playList => {
       this.getAllPlayList();
+      Swal.fire('Saved!', '', 'success')
     }, () => {
-      alert('Tên không hợp lệ');
+      Swal.fire("Invalid characters!", "Please only use letters and/or numbers", "warning");
     });
   }
 
