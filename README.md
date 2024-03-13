@@ -1,4 +1,8 @@
-# WebmusicFe
+# Webmusic Front end
+
+School project about a music streaming service website. Complete with a responsive media player, ability to like songs, create playlist, leave comments, and more. This is the frontend project.
+
+Link: zungmp3webmusic.netlify.app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
